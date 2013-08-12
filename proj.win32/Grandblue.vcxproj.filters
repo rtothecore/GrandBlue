@@ -30,10 +30,12 @@
     <ClCompile Include="Dolphin.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="Rocks.cpp">
+    <ClCompile Include="UtilFunc.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="UtilFunc.cpp" />
+    <ClCompile Include="SpriteRepeater.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -57,9 +59,11 @@
     <ClInclude Include="Dolphin.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="Rocks.h">
+    <ClInclude Include="UtilFunc.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="UtilFunc.h" />
+    <ClInclude Include="SpriteRepeater.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

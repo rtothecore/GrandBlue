@@ -24,6 +24,7 @@ public:
     void menuBackCallback(Object* pSender);
 	void addDolphin(float dt);
 	void addRocks();
+	void addRope();
 };
 
 

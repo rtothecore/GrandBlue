@@ -2,9 +2,7 @@
 #include "MainTitleScene.h"
 #include "Dolphin.h"
 #include "Resource.h"
-#include "Rocks.h"
-
-USING_NS_CC;
+#include "SpriteRepeater.h"
 
 //------------------------------------------------------------------
 //
@@ -44,19 +42,10 @@ MainGameLayer::MainGameLayer()
     sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(sprite, 0);
 
-	// 밧줄 이미지 (나중에 클래스로 분리해야 함)
-	Sprite* sprt_line = Sprite::create("line_group.png");
-    sprt_line->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-    this->addChild(sprt_line, 0);
-
 	// 다이버 이미지 (나중에 클래스로 분리해야 함)
 	Sprite* sprt_diver = Sprite::create("diver.png");
 	sprt_diver->setPosition(Point(visibleSize.width/2 + origin.x + sprt_diver->getContentSize().width/4, visibleSize.height/2 + origin.y + 200));
     this->addChild(sprt_diver, 0);
-
-	// Add dolphin layer
-	//addDolphin(0);
-	schedule( schedule_selector(MainGameLayer::addDolphin), 3 );
 }
 
 MainGameLayer::~MainGameLayer()
@@ -68,6 +57,13 @@ void MainGameLayer::onEnterTransitionDidFinish()
 {
 	// Add rocks sprite
 	addRocks();
+
+	// Add rope sprite
+	addRope();
+
+	// Add dolphin layer
+	//addDolphin(0);
+	schedule( schedule_selector(MainGameLayer::addDolphin), 3 );
 }
 
 void MainGameLayer::menuBackCallback(Object* pSender) 
@@ -79,8 +75,15 @@ void MainGameLayer::menuBackCallback(Object* pSender)
 void MainGameLayer::addRocks()
 {
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
-	Rocks* rocks = Rocks::createWithTexture(rocksTexture);
+	Rocks* rocks = (Rocks*)Rocks::createWithTexture(rocksTexture, 1, 3);
 	addChild(rocks);
+}
+
+void MainGameLayer::addRope()
+{
+	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
+	Rope* rope = (Rope*)Rope::createWithTexture(ropeTexture, 0, 15);
+	addChild(rope);
 }
 
 void MainGameLayer::addDolphin(float dt)

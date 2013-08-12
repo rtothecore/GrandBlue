@@ -168,14 +168,14 @@ void DolphinLayer::spriteMoveFinished(Object* pSender)
 
 void DolphinLayer::actionSequence(Layer* lyr, int actualY, int actualDuration)
 {
-	FiniteTimeAction* actionMoveToLeftBefore = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteFlipY, this) );
-	ActionInterval* actionMoveToLeft = MoveTo::create( (float)actualDuration, Point(0 - lyr->getContentSize().width/2, actualY) );
-	FiniteTimeAction* actionMoveToLeftEaseInOut = EaseInOut::create(actionMoveToLeft, 1.2);
-	FiniteTimeAction* actionPause = DelayTime::create(0.5);
-	FiniteTimeAction* actionPauseDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteUnflipY, this) );
-	ActionInterval* actionBackToRight = MoveTo::create( (float)actualDuration, Point(lyr->getPosition().x, actualY) );
-	FiniteTimeAction* actionBackToRightEaseIn = EaseIn::create(actionBackToRight, 1.2);
-	FiniteTimeAction* actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
+	auto actionMoveToLeftBefore = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteFlipY, this) );
+	auto actionMoveToLeft = MoveTo::create( (float)actualDuration, Point(0 - lyr->getContentSize().width/2, actualY) );
+	auto actionMoveToLeftEaseInOut = EaseInOut::create(actionMoveToLeft, 1.2);
+	auto actionPause = DelayTime::create(0.5);
+	auto actionPauseDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteUnflipY, this) );
+	auto actionBackToRight = MoveTo::create( (float)actualDuration, Point(lyr->getPosition().x, actualY) );
+	auto actionBackToRightEaseIn = EaseIn::create(actionBackToRight, 1.2);
+	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
 
     lyr->runAction( CCSequence::create(actionMoveToLeftBefore, actionMoveToLeftEaseInOut, actionPause, actionPauseDone, actionBackToRightEaseIn, actionMoveDone, NULL) );
 }
