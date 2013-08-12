@@ -5,37 +5,37 @@
 
 USING_NS_CC;
 
-class Dolphin : public Sprite, public TargetedTouchDelegate, public Clonable
+class DolphinLayer : public Layer, public Clonable
 {
 public:
-	Dolphin(void);
-	~Dolphin(void);
+	DolphinLayer();
+	~DolphinLayer();
+	virtual DolphinLayer* clone() const;
+	static DolphinLayer* createWithPlist();
+	bool initWithPlist(const char* plist);
+	void removeMyself(float dt);
+
+	// sprite
+	SpriteFrame *frm_dolphin;
+	Sprite *sprt_dolphin;
 
 	// action
-	int getRandomRangeValue(int minVal, int maxVal);
-
 	void spriteFlipY(Object* pSender);
 	void spriteUnflipY(Object* pSender);
 	void spriteMoveFinished(Object* pSender);
 
-	void actionSequence(Sprite* spr, int actualY, int actualDuration);
-	void actionBezier(Sprite* spr, int actualY);
+	void actionSequence(Layer* spr, int actualY, int actualDuration);
+	void actionBezier(Layer* spr, int actualY);
 
 	// touch event
     Rect getRect();
-    bool initWithTexture(Texture2D* aTexture);
     virtual void onEnter();
     virtual void onExit();
     bool containsTouchLocation(Touch* touch);
+
     virtual bool ccTouchBegan(Touch* touch, Event* event);
     virtual void ccTouchMoved(Touch* touch, Event* event);
     virtual void ccTouchEnded(Touch* touch, Event* event);
-
-    virtual Dolphin* clone() const;
-
-    static Dolphin* createWithTexture(Texture2D* aTexture);
-
-	void removeMyself(float dt);
 
 	// Health Point
 	static const int st_healthpoint = 3;

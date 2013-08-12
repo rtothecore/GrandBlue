@@ -138,6 +138,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="MainGameScene.cpp" />
     <ClCompile Include="MainTitleScene.cpp" />
     <ClCompile Include="Rocks.cpp" />
+    <ClCompile Include="UtilFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -148,6 +149,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="MainGameScene.h" />
     <ClInclude Include="MainTitleScene.h" />
     <ClInclude Include="Rocks.h" />
+    <ClInclude Include="UtilFunc.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\cocos2dx\proj.win32\cocos2d.vcxproj">

@@ -28,7 +28,7 @@ MainGameLayer::MainGameLayer()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
-	// 메뉴
+	// Menu
 	MenuItemImage *diveItem = MenuItemImage::create(
 										"menu_dive.png", 
 										"menu_dive_selected.png", 
@@ -44,9 +44,6 @@ MainGameLayer::MainGameLayer()
     sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(sprite, 0);
 
-	// 배경(돌) 이미지
-	//addRocks();
-
 	// 밧줄 이미지 (나중에 클래스로 분리해야 함)
 	Sprite* sprt_line = Sprite::create("line_group.png");
     sprt_line->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
@@ -57,7 +54,8 @@ MainGameLayer::MainGameLayer()
 	sprt_diver->setPosition(Point(visibleSize.width/2 + origin.x + sprt_diver->getContentSize().width/4, visibleSize.height/2 + origin.y + 200));
     this->addChild(sprt_diver, 0);
 
-	// 돌고래 생성
+	// Add dolphin layer
+	//addDolphin(0);
 	schedule( schedule_selector(MainGameLayer::addDolphin), 3 );
 }
 
@@ -68,7 +66,7 @@ MainGameLayer::~MainGameLayer()
 
 void MainGameLayer::onEnterTransitionDidFinish()
 {
-	// 배경(돌) 이미지
+	// Add rocks sprite
 	addRocks();
 }
 
@@ -87,33 +85,31 @@ void MainGameLayer::addRocks()
 
 void MainGameLayer::addDolphin(float dt)
 {
-	Texture2D* dolphinTexture = TextureCache::getInstance()->addImage(s_Dolphin);
+	Array *dolphinsM = Array::createWithCapacity(4);
     
-    Array *dolphinsM = Array::createWithCapacity(4);
+	DolphinLayer* dolphinL = DolphinLayer::createWithPlist();
+    dolphinsM->addObject( dolphinL );
     
-    Dolphin* dolphin = Dolphin::createWithTexture(dolphinTexture);
-    dolphinsM->addObject( dolphin );
-    
-	dolphin = Dolphin::createWithTexture(dolphinTexture);
-	dolphinsM->addObject( dolphin );
+	dolphinL = DolphinLayer::createWithPlist();
+	dolphinsM->addObject( dolphinL );
 
-	dolphin = Dolphin::createWithTexture(dolphinTexture);
-	dolphinsM->addObject( dolphin );
+	dolphinL = DolphinLayer::createWithPlist();
+	dolphinsM->addObject( dolphinL );
 
-	dolphin = Dolphin::createWithTexture(dolphinTexture);
-	dolphinsM->addObject( dolphin );
-
+	dolphinL = DolphinLayer::createWithPlist();
+	dolphinsM->addObject( dolphinL );
+	
     _dolphins = dolphinsM->clone();
     _dolphins->retain();
     
     Object* pObj = NULL;
     CCARRAY_FOREACH(_dolphins, pObj)
     {
-        dolphin = static_cast<Dolphin*>(pObj);
+        dolphinL = static_cast<DolphinLayer*>(pObj);
 
-        if(!dolphin)
+        if(!dolphinL)
             break;
 
-        addChild(dolphin);
+        addChild(dolphinL);
     }
 }

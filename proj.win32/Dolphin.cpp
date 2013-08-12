@@ -1,143 +1,110 @@
 #include "Dolphin.h"
+#include "Resource.h"
+#include "UtilFunc.h"
 
-Dolphin::Dolphin(void)
+DolphinLayer::DolphinLayer()
 {
 	healthPoint = st_healthpoint;
 }
 
-
-Dolphin::~Dolphin(void)
+DolphinLayer::~DolphinLayer()
 {
 }
 
-void Dolphin::spriteFlipY(Object* pSender)
+DolphinLayer* DolphinLayer::clone() const
 {
-	Sprite *sprite = (Sprite *)pSender;
-	sprite->setFlipX(true);
+	DolphinLayer* ret = DolphinLayer::createWithPlist();
+    ret->setPosition(getPosition());
+    ret->setAnchorPoint(getAnchorPoint());
+    return ret;
 }
 
-void Dolphin::spriteUnflipY(Object* pSender)
+DolphinLayer* DolphinLayer::createWithPlist()
 {
-	Sprite *sprite = (Sprite *)pSender;
-	sprite->setFlipX(false);
+	DolphinLayer* pDolphinL = new DolphinLayer();
+	pDolphinL->initWithPlist(p_Dolphin);
+	pDolphinL->autorelease();
+
+	return pDolphinL;
 }
 
-void Dolphin::removeMyself(float dt) 
+bool DolphinLayer::initWithPlist(const char* plist)
 {
-	this->removeFromParentAndCleanup(true);
-}
-
-void Dolphin::spriteMoveFinished(Object* pSender)
-{
-	Sprite *sprite = (Sprite *)pSender;
-	this->removeFromParentAndCleanup(true);
-}
-
-int Dolphin::getRandomRangeValue(int minVal, int maxVal)
-{
-	int rangeVal = maxVal - minVal;
-	return (rand() % rangeVal) + minVal;
-}
-
-void Dolphin::actionSequence(Sprite* spr, int actualY, int actualDuration)
-{
-	FiniteTimeAction* actionMoveToLeftBefore = CallFuncN::create( CC_CALLBACK_1(Dolphin::spriteFlipY, this) );
-	ActionInterval* actionMoveToLeft = MoveTo::create( (float)actualDuration, Point(0 - spr->getContentSize().width/2, actualY) );
-	FiniteTimeAction* actionMoveToLeftEaseInOut = EaseInOut::create(actionMoveToLeft, 1.2);
-	FiniteTimeAction* actionPause = DelayTime::create(0.5);
-	FiniteTimeAction* actionPauseDone = CallFuncN::create( CC_CALLBACK_1(Dolphin::spriteUnflipY, this) );
-	ActionInterval* actionBackToRight = MoveTo::create( (float)actualDuration, Point(spr->getPosition().x, actualY) );
-	FiniteTimeAction* actionBackToRightEaseIn = EaseIn::create(actionBackToRight, 1.2);
-	FiniteTimeAction* actionMoveDone = CallFuncN::create( CC_CALLBACK_1(Dolphin::spriteMoveFinished, this) );
-
-    spr->runAction( CCSequence::create(actionMoveToLeftBefore, actionMoveToLeftEaseInOut, actionPause, actionPauseDone, actionBackToRightEaseIn, actionMoveDone, NULL) );
-}
-
-void Dolphin::actionBezier(Sprite* spr, int actualY)
-{
-    ccBezierConfig bezier;
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_Dolphin);
 	
-    bezier.controlPoint_1 = Point(0, actualY + 200);
-    bezier.controlPoint_2 = Point(-250, actualY - 200);
-    bezier.endPosition = Point(-500, actualY);
-	
-	auto towardToLeft = CallFuncN::create(CC_CALLBACK_1(Dolphin::spriteFlipY, this));
-	auto towardToRight = CallFuncN::create(CC_CALLBACK_1(Dolphin::spriteUnflipY, this));
-    auto bezierForward = BezierBy::create(3, bezier);
-    auto bezierBack = bezierForward->reverse();
-	auto bezierEnd = CallFuncN::create( CC_CALLBACK_1(Dolphin::spriteMoveFinished, this) );
-    auto rep = RepeatForever::create(Sequence::create( towardToLeft, bezierForward, towardToRight, bezierBack, bezierEnd, NULL));
+	if(frm_dolphin = SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Dolphin))
+	{
+		sprt_dolphin = Sprite::createWithSpriteFrame(frm_dolphin);
+		addChild(sprt_dolphin);
 
-    spr->runAction(rep);
-}
+		// Dolphin's Animation
+		Array* animFrames = Array::createWithCapacity(5);
 
-Rect Dolphin::getRect()
-{
-    Size s = getTexture()->getContentSize();
-    return Rect(-s.width / 2, -s.height / 2, s.width, s.height);
-}
+		char str[100] = {0};
 
-Dolphin* Dolphin::createWithTexture(Texture2D* aTexture)
-{
-    Dolphin* pDolphin = new Dolphin();
-    pDolphin->initWithTexture( aTexture );
-    pDolphin->autorelease();
+		for(int i = 1; i < 6; i++) 
+		{
+			sprintf(str, "dolphin%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			animFrames->addObject(frame);
+		}
 
-    return pDolphin;
-}
+		auto animation = Animation::createWithSpriteFrames(animFrames, 0.3f);
+		sprt_dolphin->runAction( RepeatForever::create( Animate::create(animation) ) );	
 
-bool Dolphin::initWithTexture(Texture2D* aTexture)
-{
-    if( Sprite::initWithTexture(aTexture) ) 
-    {
-        //_state = kDolphinStateUngrabbed;
+		// Dolphin's Y
 		Size visibleSize = Director::getInstance()->getVisibleSize();
+		int actualY = UtilFunc::getRandomRangeValue(getContentSize().height, visibleSize.height/1.4 - getContentSize().height);
 
-		// 돌고래 생성 Y좌표
-		int actualY = getRandomRangeValue(getContentSize().height, visibleSize.height/1.4 - getContentSize().height);
-
-		// 돌고래를 오른쪽 끝에서 생성되도록 위치 설정
+		// Set Dolphin to the screen right edge
 		setPosition(Point(visibleSize.width + (getContentSize().width / 2), actualY));
 
-		// 속도
-		int actualDuration = getRandomRangeValue(2.0, 4.0);
+		// Velocity
+		int actualDuration = UtilFunc::getRandomRangeValue(2.0, 4.0);
 
-		// 액션 
+		// Action
 		int actionIndex = (rand() % 2);
-		actionIndex>0 ? Dolphin::actionSequence(this, actualY, actualDuration) : Dolphin::actionBezier(this, actualY);
+		actionIndex>0 ? DolphinLayer::actionSequence(this, actualY, actualDuration) : DolphinLayer::actionBezier(this, actualY);
 
-		// 체력 게이지
+		// HP sprite
 		sprt_hp = Sprite::create();
 		sprt_hp->setTextureRect(CCRectMake(0, 0, 50, 5));
 		sprt_hp->setColor(ccRED);
-		CCSize dolphinSize = this->getContentSize();
-		sprt_hp->setPosition(Point(dolphinSize.width / 2, dolphinSize.height + 10));
+		Size dolphinSize = frm_dolphin->getOriginalSize();
+		sprt_hp->setPosition(Point(0, dolphinSize.height / 2 + 5));
 		this->addChild(sprt_hp);
-    }
-    
-    return true;
+	}
+
+	return true;
 }
 
-void Dolphin::onEnter()
+Rect DolphinLayer::getRect()
+{
+	Size s = frm_dolphin->getOriginalSize();
+	
+    return Rect(-s.width / 2, -s.height / 2, s.width, s.height);
+}
+
+void DolphinLayer::onEnter()
 {
     Director* director = Director::getInstance();
     director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-    Sprite::onEnter();
+    Layer::onEnter();
 }
 
-void Dolphin::onExit()
+void DolphinLayer::onExit()
 {
     Director* director = Director::getInstance();
     director->getTouchDispatcher()->removeDelegate(this);
-    Sprite::onExit();
-}    
+    Layer::onExit();
+}
 
-bool Dolphin::containsTouchLocation(Touch* touch)
+bool DolphinLayer::containsTouchLocation(Touch* touch)
 {
     return getRect().containsPoint(convertTouchToNodeSpaceAR(touch));
 }
 
-bool Dolphin::ccTouchBegan(Touch* touch, Event* event)
+bool DolphinLayer::ccTouchBegan(Touch* touch, Event* event)
 {
     if ( !containsTouchLocation(touch) ) return false;
     
@@ -146,7 +113,7 @@ bool Dolphin::ccTouchBegan(Touch* touch, Event* event)
     return true;
 }
 
-void Dolphin::decreaseHealthPoint(Touch* touch) 
+void DolphinLayer::decreaseHealthPoint(Touch* touch) 
 {
 	healthPoint--;
 
@@ -157,33 +124,76 @@ void Dolphin::decreaseHealthPoint(Touch* touch)
 	{
 		CCLog("HealthPoint is 0");
 
-		//파티클 효과
+		// Particle effect
 		auto particle = ParticleExplosion::create();
 		particle->setPosition( touch->getLocation() );
 		particle->setAutoRemoveOnFinish(true);
 		getParent()->addChild(particle);
 
-		//Dolphine 객체 제거
+		// Remove Dolphin
 		this->removeFromParentAndCleanup(true);	
 	}
 }
 
-void Dolphin::ccTouchMoved(Touch* touch, Event* event)
+void DolphinLayer::ccTouchMoved(Touch* touch, Event* event)
 {   
-	/*
-    Point touchPoint = touch->getLocation();   
-    setPosition( Point(touchPoint.x, getPosition().y) );
-	*/
 }
 
-void Dolphin::ccTouchEnded(Touch* touch, Event* event)
+void DolphinLayer::ccTouchEnded(Touch* touch, Event* event)
 {    
-} 
+}
 
-Dolphin* Dolphin::clone() const
+void DolphinLayer::spriteFlipY(Object* pSender)
 {
-    Dolphin* ret = Dolphin::createWithTexture(_texture);
-    ret->setPosition(getPosition());
-    ret->setAnchorPoint(getAnchorPoint());
-    return ret;
+	Layer *layer = (Layer *)pSender;
+	layer->setScaleX(-1);
+}
+
+void DolphinLayer::spriteUnflipY(Object* pSender)
+{
+	Layer *layer = (Layer *)pSender;
+	layer->setScaleX(1);
+}
+
+void DolphinLayer::removeMyself(float dt) 
+{
+	this->removeFromParentAndCleanup(true);
+}
+
+void DolphinLayer::spriteMoveFinished(Object* pSender)
+{
+	Sprite *sprite = (Sprite *)pSender;
+	this->removeFromParentAndCleanup(true);
+}
+
+void DolphinLayer::actionSequence(Layer* lyr, int actualY, int actualDuration)
+{
+	FiniteTimeAction* actionMoveToLeftBefore = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteFlipY, this) );
+	ActionInterval* actionMoveToLeft = MoveTo::create( (float)actualDuration, Point(0 - lyr->getContentSize().width/2, actualY) );
+	FiniteTimeAction* actionMoveToLeftEaseInOut = EaseInOut::create(actionMoveToLeft, 1.2);
+	FiniteTimeAction* actionPause = DelayTime::create(0.5);
+	FiniteTimeAction* actionPauseDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteUnflipY, this) );
+	ActionInterval* actionBackToRight = MoveTo::create( (float)actualDuration, Point(lyr->getPosition().x, actualY) );
+	FiniteTimeAction* actionBackToRightEaseIn = EaseIn::create(actionBackToRight, 1.2);
+	FiniteTimeAction* actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
+
+    lyr->runAction( CCSequence::create(actionMoveToLeftBefore, actionMoveToLeftEaseInOut, actionPause, actionPauseDone, actionBackToRightEaseIn, actionMoveDone, NULL) );
+}
+
+void DolphinLayer::actionBezier(Layer* lyr, int actualY)
+{
+    ccBezierConfig bezier;
+	
+    bezier.controlPoint_1 = Point(0, actualY + 200);
+    bezier.controlPoint_2 = Point(-250, actualY - 200);
+    bezier.endPosition = Point(-500, actualY);
+	
+	auto towardToLeft = CallFuncN::create(CC_CALLBACK_1(DolphinLayer::spriteFlipY, this));
+	auto towardToRight = CallFuncN::create(CC_CALLBACK_1(DolphinLayer::spriteUnflipY, this));
+    auto bezierForward = BezierBy::create(3, bezier);
+    auto bezierBack = bezierForward->reverse();
+	auto bezierEnd = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
+    auto rep = RepeatForever::create(Sequence::create( towardToLeft, bezierForward, towardToRight, bezierBack, bezierEnd, NULL));
+
+    lyr->runAction(rep);
 }

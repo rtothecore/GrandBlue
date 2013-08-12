@@ -33,6 +33,7 @@
     <ClCompile Include="Rocks.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="UtilFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -59,5 +60,6 @@
     <ClInclude Include="Rocks.h">
       <Filter>MyClass</Filter>
     </ClInclude>
+    <ClInclude Include="UtilFunc.h" />
   </ItemGroup>
 </Project>
