@@ -1,8 +1,16 @@
 #include "MainGameScene.h"
 #include "MainTitleScene.h"
 #include "Dolphin.h"
+#include "Diver.h"
 #include "Resource.h"
 #include "SpriteRepeater.h"
+#include "Sound.h"
+#include "Background.h"
+
+enum {
+    kTagBackground = 1,
+    kTagLabel = 2,
+};
 
 //------------------------------------------------------------------
 //
@@ -37,15 +45,13 @@ MainGameLayer::MainGameLayer()
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
 
-    // 배경(바다_빛) 이미지 (나중에 클래스로 분리해야 함)
-    Sprite* sprite = Sprite::create("underTheSea_light.png");
-    sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-    this->addChild(sprite, 0);
+	// Add background sprite
+	addBackground();
+}
 
-	// 다이버 이미지 (나중에 클래스로 분리해야 함)
-	Sprite* sprt_diver = Sprite::create("diver.png");
-	sprt_diver->setPosition(Point(visibleSize.width/2 + origin.x + sprt_diver->getContentSize().width/4, visibleSize.height/2 + origin.y + 200));
-    this->addChild(sprt_diver, 0);
+void MainGameLayer::playBubbleEffect(float dt) 
+{
+	Sound::playBubbleEffect();
 }
 
 MainGameLayer::~MainGameLayer()
@@ -55,21 +61,37 @@ MainGameLayer::~MainGameLayer()
 
 void MainGameLayer::onEnterTransitionDidFinish()
 {
+	// Run Background effect
+	BackgroundLayer* bgLayer = (BackgroundLayer*)getChildByTag(kTagBackground);
+	bgLayer->runEffect();
+
 	// Add rocks sprite
 	addRocks();
 
 	// Add rope sprite
 	addRope();
 
+	// Add diver layer
+	addDiver();
+
 	// Add dolphin layer
-	//addDolphin(0);
 	schedule( schedule_selector(MainGameLayer::addDolphin), 3 );
+
+	// Sound
+	Sound::playBackgroundMusic(true);
+	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
 }
 
 void MainGameLayer::menuBackCallback(Object* pSender) 
 {
 	Scene *scene = TransitionSlideInT::create(2, MainTitle::scene());
 	Director::getInstance()->pushScene(scene);
+}
+
+void MainGameLayer::addBackground()
+{
+	BackgroundLayer* bgLayer = BackgroundLayer::create();
+	addChild(bgLayer, 0, kTagBackground);
 }
 
 void MainGameLayer::addRocks()
@@ -115,4 +137,11 @@ void MainGameLayer::addDolphin(float dt)
 
         addChild(dolphinL);
     }
+}
+
+void MainGameLayer::addDiver()
+{
+	Diver* diver = Diver::createWithPlist();
+	//diver->autorelease();
+	addChild(diver);
 }

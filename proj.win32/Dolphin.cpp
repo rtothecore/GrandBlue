@@ -1,6 +1,7 @@
 #include "Dolphin.h"
 #include "Resource.h"
 #include "UtilFunc.h"
+#include "Sound.h"
 
 DolphinLayer::DolphinLayer()
 {
@@ -30,7 +31,7 @@ DolphinLayer* DolphinLayer::createWithPlist()
 
 bool DolphinLayer::initWithPlist(const char* plist)
 {
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_Dolphin);
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist);
 	
 	if(frm_dolphin = SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Dolphin))
 	{
@@ -72,7 +73,7 @@ bool DolphinLayer::initWithPlist(const char* plist)
 		sprt_hp->setColor(ccRED);
 		Size dolphinSize = frm_dolphin->getOriginalSize();
 		sprt_hp->setPosition(Point(0, dolphinSize.height / 2 + 5));
-		this->addChild(sprt_hp);
+		addChild(sprt_hp);
 	}
 
 	return true;
@@ -130,9 +131,15 @@ void DolphinLayer::decreaseHealthPoint(Touch* touch)
 		particle->setAutoRemoveOnFinish(true);
 		getParent()->addChild(particle);
 
+		// Sound
+		Sound::playDolphinEffectWithType(3);
+
 		// Remove Dolphin
-		this->removeFromParentAndCleanup(true);	
+		this->removeFromParentAndCleanup(true);
+	} else {
+		Sound::playDolphinEffectRand();
 	}
+
 }
 
 void DolphinLayer::ccTouchMoved(Touch* touch, Event* event)

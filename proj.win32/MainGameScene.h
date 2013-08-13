@@ -23,8 +23,13 @@ public:
 	void onEnterTransitionDidFinish();
     void menuBackCallback(Object* pSender);
 	void addDolphin(float dt);
+	void addDiver();
 	void addRocks();
 	void addRope();
+	void addBackground();
+
+	//Sound
+	void playBubbleEffect(float dt);
 };
 
 
