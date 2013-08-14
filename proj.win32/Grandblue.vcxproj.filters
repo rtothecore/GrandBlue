@@ -48,6 +48,9 @@
     <ClCompile Include="MenuLabel.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="ProgressBar.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -87,6 +90,12 @@
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="MenuLabel.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressBar.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="GrandBlueConfig.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

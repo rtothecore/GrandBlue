@@ -2,6 +2,7 @@
 #define __MAINGAME_SCENE_H__
 
 #include "cocos2d.h"
+#include "ProgressBar.h"
 
 USING_NS_CC;
 
@@ -15,6 +16,7 @@ class MainGameLayer : public Layer
 {
 private:
 	Array*    _dolphins;
+	ProgressBarLayer* pbLayer;
 
 public:
 	MainGameLayer();
