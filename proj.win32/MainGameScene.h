@@ -30,6 +30,9 @@ public:
 
 	//Sound
 	void playBubbleEffect(float dt);
+
+	//Label
+	//void addLabelAtlas(char* chrLabel);
 };
 
 

@@ -45,6 +45,9 @@
     <ClCompile Include="Background.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="MenuLabel.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -81,6 +84,9 @@
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLabel.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

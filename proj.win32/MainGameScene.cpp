@@ -6,6 +6,7 @@
 #include "SpriteRepeater.h"
 #include "Sound.h"
 #include "Background.h"
+#include "MenuLabel.h"
 
 enum {
     kTagBackground = 1,
@@ -80,6 +81,15 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	// Sound
 	Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
+
+	// Menu Label
+	MenuLabelLayer* mLabel = new MenuLabelLayer("Menu Label Layer");
+	mLabel->addMenuItem("1.Start");
+	mLabel->addMenuItem("2.End");
+	mLabel->createMenu();
+	mLabel->renameMenuItem(2, "2.End_modified");
+	mLabel->setZOrder(1);
+	addChild(mLabel);
 }
 
 void MainGameLayer::menuBackCallback(Object* pSender) 
