@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include "UtilFunc.h"
 #include "Sound.h"
+#include "MainGameScene.h"
 
 DolphinLayer::DolphinLayer()
 {
@@ -107,7 +108,15 @@ bool DolphinLayer::containsTouchLocation(Touch* touch)
 
 bool DolphinLayer::ccTouchBegan(Touch* touch, Event* event)
 {
-    if ( !containsTouchLocation(touch) ) return false;
+    if ( !containsTouchLocation(touch) )
+	{
+		// MainGameLayer dolphin touch for fever RESET
+		/*CCLog("TOUCH MISS!!!!");
+		MainGameLayer* parent = (MainGameLayer*)getParent();
+		parent->resetTouchCombo();*/
+
+		return false;
+	}
     
 	decreaseHealthPoint(touch);
 
@@ -116,12 +125,13 @@ bool DolphinLayer::ccTouchBegan(Touch* touch, Event* event)
 
 void DolphinLayer::decreaseHealthPoint(Touch* touch) 
 {
-	healthPoint--;
+	//healthPoint--;
+	healthPoint -= ((MainGameLayer*)getParent())->iTouchDamage;
 
 	int hpBar = (50 / st_healthpoint) * healthPoint;
 	sprt_hp->setTextureRect(CCRectMake(0, 0, hpBar, 5));
 
-	if(0 == healthPoint) 
+	if(0 >= healthPoint)
 	{
 		CCLog("HealthPoint is 0");
 
@@ -133,6 +143,13 @@ void DolphinLayer::decreaseHealthPoint(Touch* touch)
 
 		// Sound
 		Sound::playDolphinEffectWithType(3);
+
+		// MainGameLayer dolphin count++
+		MainGameLayer* parent = (MainGameLayer*)getParent();
+		parent->increaseDolphinBye();
+
+		// MainGameLayer dolphin touch for fever ++
+		parent->increaseTouchCombo();
 
 		// Remove Dolphin
 		this->removeFromParentAndCleanup(true);

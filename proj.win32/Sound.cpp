@@ -11,6 +11,7 @@ float Sound::gainVal = 1;
 Sound::Sound(void)
 {
 	SimpleAudioEngine::getInstance()->preloadBackgroundMusic( MUSIC_FILE );
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic( FEVER_FILE );
 	SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5);
 
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BUBBLE_FILE );
@@ -33,6 +34,16 @@ void Sound::playBackgroundMusic(bool loop)
 }
 
 void Sound::stopBackgroundMusic()
+{
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+}
+
+void Sound::playFeverMusic(bool loop)
+{
+	SimpleAudioEngine::getInstance()->playBackgroundMusic(FEVER_FILE, loop);
+}
+
+void Sound::stopFeverMusic()
 {
 	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 }

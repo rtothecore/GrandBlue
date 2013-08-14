@@ -10,7 +10,7 @@
 
 enum {
     kTagBackground = 1,
-    kTagLabel = 2,
+    kTagLabelDolphin = 2,
 };
 
 //------------------------------------------------------------------
@@ -32,6 +32,12 @@ MainGameScene::MainGameScene()
 //------------------------------------------------------------------
 MainGameLayer::MainGameLayer()
 { 
+	iDolphinBye = 0;
+	bFeverMode = false;
+	iDolphinTouchFeverRequire = st_feverRequire;
+	iDolphinTouch = 0;
+	iTouchDamage = st_touchDamage;
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
@@ -48,6 +54,10 @@ MainGameLayer::MainGameLayer()
 
 	// Add background sprite
 	addBackground();
+
+	// Touch
+	Director* director = Director::getInstance();
+    director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 }
 
 void MainGameLayer::playBubbleEffect(float dt) 
@@ -58,6 +68,10 @@ void MainGameLayer::playBubbleEffect(float dt)
 MainGameLayer::~MainGameLayer()
 {
     _dolphins->release();
+
+	// Touch
+	Director* director = Director::getInstance();
+    director->getTouchDispatcher()->removeDelegate(this);
 }
 
 void MainGameLayer::onEnterTransitionDidFinish()
@@ -83,13 +97,21 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
 
 	// Menu Label
-	MenuLabelLayer* mLabel = new MenuLabelLayer("Menu Label Layer");
-	mLabel->addMenuItem("1.Start");
-	mLabel->addMenuItem("2.End");
-	mLabel->createMenu();
-	mLabel->renameMenuItem(2, "2.End_modified");
-	mLabel->setZOrder(1);
-	addChild(mLabel);
+	MenuLabelLayer* mLabel_DolphinBye = new MenuLabelLayer("Dolphin's Bye");
+	mLabel_DolphinBye->addMenuItem("0");
+	mLabel_DolphinBye->createMenu();
+	mLabel_DolphinBye->setZOrder(1);
+	addChild(mLabel_DolphinBye, 1, kTagLabelDolphin);
+	schedule(schedule_selector(MainGameLayer::menuLabelDolphinRefresh), 0.5); 
+}
+
+void MainGameLayer::menuLabelDolphinRefresh(float dt)
+{
+	MenuLabelLayer* mLabelL = (MenuLabelLayer*)getChildByTag(kTagLabelDolphin);
+	char chrDolphinBye[12] = {0};
+	sprintf(chrDolphinBye, "%d/%d/%d", MainGameLayer::iDolphinBye, MainGameLayer::iDolphinTouchFeverRequire, MainGameLayer::iDolphinTouch);
+
+	mLabelL->renameMenuItem(1, chrDolphinBye);
 }
 
 void MainGameLayer::menuBackCallback(Object* pSender) 
@@ -154,4 +176,96 @@ void MainGameLayer::addDiver()
 	Diver* diver = Diver::createWithPlist();
 	//diver->autorelease();
 	addChild(diver);
+}
+
+void MainGameLayer::increaseDolphinBye()
+{
+	MainGameLayer::iDolphinBye++;
+}
+
+void MainGameLayer::increaseTouchCombo()
+{
+	if(!bFeverMode)
+	{
+		MainGameLayer::iDolphinTouch++;
+		MainGameLayer::checkFever();
+	}
+}
+
+void MainGameLayer::resetTouchCombo()
+{
+	MainGameLayer::iDolphinTouch = 0;
+}
+
+bool MainGameLayer::containsDolphinLocation(Touch* touch)
+{
+	DolphinLayer* dolphinL;
+	Object* pObj = NULL;
+    CCARRAY_FOREACH(_dolphins, pObj)
+    {
+        dolphinL = static_cast<DolphinLayer*>(pObj);
+
+        if(!dolphinL)
+            break;
+
+		if( !dolphinL->getRect().containsPoint(convertTouchToNodeSpaceAR(touch)) )
+			return false;
+    }
+
+	return true;
+}
+
+bool MainGameLayer::ccTouchBegan(Touch* touch, Event* event)
+{
+	if ( !containsDolphinLocation(touch) )
+	{
+		// MainGameLayer dolphin touch for fever RESET
+		CCLog("TOUCH MISS!!!!");
+		MainGameLayer::resetTouchCombo();
+
+		return false;
+	}
+
+    return true;
+}
+
+void MainGameLayer::ccTouchMoved(Touch* touch, Event* event)
+{
+}
+
+void MainGameLayer::ccTouchEnded(Touch* touch, Event* event)
+{    
+}
+
+void MainGameLayer::checkFever()
+{
+	if(MainGameLayer::iDolphinTouchFeverRequire <= MainGameLayer::iDolphinTouch)
+	{
+		intoTheFever();
+		schedule( schedule_selector(MainGameLayer::endFever), st_feverTime );
+	} 
+}
+
+void MainGameLayer::intoTheFever()
+{
+	CCLog("Fever Time!!!");
+
+	bFeverMode = true;
+	MainGameLayer::resetTouchCombo();
+	MainGameLayer::iTouchDamage = MainGameLayer::st_touchDamageFever;
+
+	// Sound - fever music
+	Sound::stopBackgroundMusic();
+	Sound::playFeverMusic(true);
+}
+
+void MainGameLayer::endFever(float dt)
+{
+	CCLog("End Fever...");
+	bFeverMode = false;
+	MainGameLayer::iTouchDamage = MainGameLayer::st_touchDamage;
+
+	// Sound - background music
+	Sound::stopFeverMusic();
+	Sound::playBackgroundMusic(true);
 }

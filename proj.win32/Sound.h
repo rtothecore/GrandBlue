@@ -19,11 +19,12 @@ public:
 	static void playBackgroundMusic(bool loop);
 	static void stopBackgroundMusic();
 
+	static void playFeverMusic(bool loop);
+	static void stopFeverMusic();
+
 	static void playBubbleEffect();
 	static void playDolphinEffectRand();
 	static void playDolphinEffectWithType(int type);
-	
-	
 };
 
 #endif

@@ -28,11 +28,38 @@ public:
 	void addRope();
 	void addBackground();
 
-	//Sound
+	// Dolphin bye count
+	int iDolphinBye; 
+	void increaseDolphinBye();
+
+	// Touch Fever
+	bool bFeverMode;
+	int iDolphinTouchFeverRequire;	// fever requirements
+	int iDolphinTouch;
+	void increaseTouchCombo();
+	void resetTouchCombo();
+	void checkFever();
+	void intoTheFever();
+	void endFever(float dt);
+
+	static const int st_feverRequire = 5;
+	static const int st_touchDamage = 1;
+	static const int st_touchDamageFever = 3;
+	static const int st_feverTime = 10;
+	int iTouchDamage;
+
+	// Sound
 	void playBubbleEffect(float dt);
 
-	//Label
-	//void addLabelAtlas(char* chrLabel);
+	// Label
+	void menuLabelDolphinRefresh(float dt);
+
+	// touch event
+    bool containsDolphinLocation(Touch* touch);
+
+    virtual bool ccTouchBegan(Touch* touch, Event* event);
+    virtual void ccTouchMoved(Touch* touch, Event* event);
+    virtual void ccTouchEnded(Touch* touch, Event* event);
 };
 
 
