@@ -12,6 +12,7 @@ public:
 	~UtilFunc(void);
 
 	static int getRandomRangeValue(int minVal, int maxVal);
+	static void setSizeToScreenSize(Sprite* sprt);
 };
 
 #endif

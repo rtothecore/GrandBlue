@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "MainTitleScene.h"
+#include "UtilFunc.h"
 
 USING_NS_CC;
 
@@ -66,6 +67,8 @@ bool HelloWorld::init()
 
     // add "HelloWorld" splash screen"
     Sprite* sprite = Sprite::create("HelloWorld.png");
+
+	UtilFunc::setSizeToScreenSize(sprite);
 
     // position the sprite on the center of the screen
     sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
