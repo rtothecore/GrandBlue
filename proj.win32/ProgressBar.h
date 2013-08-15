@@ -21,6 +21,7 @@ public:
 
 	void increaseProgress(int stepVal);
 	void decreaseProgress(int stepVal);
+	void setProgressWithTagetVal(int targetVal);
 
 	void emptyProgress();
 	void fullProgress();

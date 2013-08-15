@@ -34,6 +34,10 @@ Sound::~Sound(void)
 void Sound::playBackgroundMusic(bool loop)
 {
 #if (BACKGROUND_MUSIC)
+	if(SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
+	{
+		SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+	}
 	SimpleAudioEngine::getInstance()->playBackgroundMusic(MUSIC_FILE, loop);
 #endif
 }
@@ -48,6 +52,10 @@ void Sound::stopBackgroundMusic()
 void Sound::playFeverMusic(bool loop)
 {
 #if (BACKGROUND_MUSIC)
+	if(SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
+	{
+		SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+	}
 	SimpleAudioEngine::getInstance()->playBackgroundMusic(FEVER_FILE, loop);
 #endif
 }

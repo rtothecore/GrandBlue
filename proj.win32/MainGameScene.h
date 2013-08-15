@@ -2,7 +2,6 @@
 #define __MAINGAME_SCENE_H__
 
 #include "cocos2d.h"
-#include "ProgressBar.h"
 
 USING_NS_CC;
 
@@ -16,7 +15,6 @@ class MainGameLayer : public Layer
 {
 private:
 	Array*    _dolphins;
-	ProgressBarLayer* pbLayer;
 
 public:
 	MainGameLayer();
@@ -33,22 +31,6 @@ public:
 	// Dolphin bye count
 	int iDolphinBye; 
 	void increaseDolphinBye();
-
-	// Touch Fever
-	bool bFeverMode;
-	int iDolphinTouchFeverRequire;	// fever requirements
-	int iDolphinTouch;
-	void increaseTouchCombo();
-	void resetTouchCombo();
-	void checkFever();
-	void intoTheFever();
-	void endFever(float dt);
-
-	static const int st_feverRequire = 5;
-	static const int st_touchDamage = 1;
-	static const int st_touchDamageFever = 3;
-	static const int st_feverTime = 10;
-	int iTouchDamage;
 
 	// Sound
 	void playBubbleEffect(float dt);

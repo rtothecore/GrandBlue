@@ -3,6 +3,11 @@
 #include "UtilFunc.h"
 #include "Sound.h"
 #include "MainGameScene.h"
+#include "Fever.h"
+
+enum {
+	kTagFever = 3,
+};
 
 DolphinLayer::DolphinLayer()
 {
@@ -71,7 +76,7 @@ bool DolphinLayer::initWithPlist(const char* plist)
 		// HP sprite
 		sprt_hp = Sprite::create();
 		sprt_hp->setTextureRect(CCRectMake(0, 0, 50, 5));
-		sprt_hp->setColor(ccRED);
+		sprt_hp->setColor(Color3B::BLUE);
 		Size dolphinSize = frm_dolphin->getOriginalSize();
 		sprt_hp->setPosition(Point(0, dolphinSize.height / 2 + 5));
 		addChild(sprt_hp);
@@ -125,8 +130,10 @@ bool DolphinLayer::ccTouchBegan(Touch* touch, Event* event)
 
 void DolphinLayer::decreaseHealthPoint(Touch* touch) 
 {
-	//healthPoint--;
-	healthPoint -= ((MainGameLayer*)getParent())->iTouchDamage;
+	MainGameLayer* parent = (MainGameLayer*)getParent();
+
+	int touchDamage = ((FeverLayer*)parent->getChildByTag(kTagFever))->getTouchDamage();
+	healthPoint -= touchDamage;
 
 	int hpBar = (50 / st_healthpoint) * healthPoint;
 	sprt_hp->setTextureRect(CCRectMake(0, 0, hpBar, 5));
@@ -145,11 +152,10 @@ void DolphinLayer::decreaseHealthPoint(Touch* touch)
 		Sound::playDolphinEffectWithType(3);
 
 		// MainGameLayer dolphin count++
-		MainGameLayer* parent = (MainGameLayer*)getParent();
 		parent->increaseDolphinBye();
 
 		// MainGameLayer dolphin touch for fever ++
-		parent->increaseTouchCombo();
+		((FeverLayer*)parent->getChildByTag(kTagFever))->increaseTouchCombo();
 
 		// Remove Dolphin
 		this->removeFromParentAndCleanup(true);

@@ -51,6 +51,9 @@
     <ClCompile Include="ProgressBar.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="Fever.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -96,6 +99,9 @@
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="GrandBlueConfig.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Fever.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

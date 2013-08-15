@@ -8,11 +8,12 @@
 #include "Background.h"
 #include "MenuLabel.h"
 #include "ProgressBar.h"
+#include "Fever.h"
 
 enum {
     kTagBackground = 1,
     kTagLabelDolphin = 2,
-	kTagFeverProgressBar = 3,
+	kTagFever = 3,
 };
 
 //------------------------------------------------------------------
@@ -35,11 +36,6 @@ MainGameScene::MainGameScene()
 MainGameLayer::MainGameLayer()
 { 
 	iDolphinBye = 0;
-	bFeverMode = false;
-	iDolphinTouchFeverRequire = st_feverRequire;
-	iDolphinTouch = 0;
-	iTouchDamage = st_touchDamage;
-
 	_dolphins = NULL;
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -108,20 +104,20 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	addChild(mLabel_DolphinBye, 1, kTagLabelDolphin);
 	schedule(schedule_selector(MainGameLayer::menuLabelDolphinRefresh), 0.5);
 
-	// Fever Progress Bar
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	pbLayer = new ProgressBarLayer(visibleSize.width, 10, 5);
-	pbLayer->setPosition(0, 0);
-	addChild(pbLayer, 1, kTagFeverProgressBar);
+	// Fever
+	FeverLayer* feverL = new FeverLayer();
+	addChild(feverL, 1, kTagFever);
 }
 
 void MainGameLayer::menuLabelDolphinRefresh(float dt)
 {
 	MenuLabelLayer* mLabelL = (MenuLabelLayer*)getChildByTag(kTagLabelDolphin);
 	char chrDolphinBye[12] = {0};
-	sprintf(chrDolphinBye, "%d/%d/%d", MainGameLayer::iDolphinBye, MainGameLayer::iDolphinTouchFeverRequire, MainGameLayer::iDolphinTouch);
+	sprintf(chrDolphinBye, "%d/%d/%d", MainGameLayer::iDolphinBye, 
+										((FeverLayer*)getChildByTag(kTagFever))->getTouchComboForFever(), 
+										((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
 
-	if(bFeverMode)
+	if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
 	{ 
 		mLabelL->renameMenuItem(0, "Fever Time!!!!");
 	} else {
@@ -199,26 +195,6 @@ void MainGameLayer::increaseDolphinBye()
 	MainGameLayer::iDolphinBye++;
 }
 
-void MainGameLayer::increaseTouchCombo()
-{
-	if(!bFeverMode)
-	{
-		pbLayer->increaseProgress(1);
-
-		MainGameLayer::iDolphinTouch++;
-		MainGameLayer::checkFever();
-	}
-}
-
-void MainGameLayer::resetTouchCombo()
-{
-	if(!bFeverMode)
-	{
-		MainGameLayer::iDolphinTouch = 0;
-		pbLayer->emptyProgress();
-	}
-}
-
 bool MainGameLayer::containsDolphinLocation(Touch* touch)
 {
 	DolphinLayer* dolphinL;
@@ -245,9 +221,9 @@ bool MainGameLayer::ccTouchBegan(Touch* touch, Event* event)
 {
 	if ( !containsDolphinLocation(touch) )
 	{
-		// MainGameLayer dolphin touch for fever RESET
+		// reset Touch Combo
 		CCLog("TOUCH MISS!!!!");
-		MainGameLayer::resetTouchCombo();
+		((FeverLayer*)getChildByTag(kTagFever))->resetTouchCombo();
 
 		return false;
 	}
@@ -261,40 +237,4 @@ void MainGameLayer::ccTouchMoved(Touch* touch, Event* event)
 
 void MainGameLayer::ccTouchEnded(Touch* touch, Event* event)
 {    
-}
-
-void MainGameLayer::checkFever()
-{
-	if(MainGameLayer::iDolphinTouchFeverRequire <= MainGameLayer::iDolphinTouch)
-	{
-		intoTheFever();
-		scheduleOnce( schedule_selector(MainGameLayer::endFever), st_feverTime );
-	} 
-}
-
-void MainGameLayer::intoTheFever()
-{
-	CCLog("Fever Time!!!");
-	bFeverMode = true;
-	MainGameLayer::iTouchDamage = MainGameLayer::st_touchDamageFever;
-
-	// Sound - fever music
-	Sound::stopBackgroundMusic();
-	Sound::playFeverMusic(true);
-}
-
-void MainGameLayer::endFever(float dt)
-{
-	CCLog("End Fever...");
-	bFeverMode = false;
-	MainGameLayer::iTouchDamage = MainGameLayer::st_touchDamage;
-
-	MainGameLayer::resetTouchCombo();
-
-	// Sound - background music
-	Sound::stopFeverMusic();
-	Sound::playBackgroundMusic(true);
-
-	// ProgressBar
-	pbLayer->emptyProgress();
 }

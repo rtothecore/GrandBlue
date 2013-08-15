@@ -72,7 +72,7 @@ bool Diver::initWithPlist(const char* plist)
 		// HP sprite
 		sprt_hp = Sprite::create();
 		sprt_hp->setTextureRect(CCRectMake(0, 0, 50, 5));
-		sprt_hp->setColor(ccRED);
+		sprt_hp->setColor(Color3B::RED);
 		Size diverSize = frm_diver->getOriginalSize();
 		sprt_hp->setPosition(Point(0, diverSize.height / 2 + 5));
 		this->addChild(sprt_hp);

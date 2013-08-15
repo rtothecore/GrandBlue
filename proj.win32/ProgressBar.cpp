@@ -26,8 +26,6 @@ ProgressBarLayer::ProgressBarLayer(int width, int height, int divVal)
 	sprt_back->setTextureRect(CCRectMake(0, 0, maxBarWidth, barHeight));
 	sprt_back->setColor(Color3B::RED);
 	sprt_back->setAnchorPoint( Point(0, 0) );
-	/*Size dolphinSize = frm_dolphin->getOriginalSize();
-	sprt_hp->setPosition(Point(0, dolphinSize.height / 2 + 5));*/
 	addChild(sprt_back, 0, kTagBackgroundProgress);
 
 	//foreground sprite
@@ -63,6 +61,18 @@ void ProgressBarLayer::decreaseProgress(int stepVal)
 	{
 		dstWidth = 0;
 	}
+
+	sprt_fore->setTextureRect(CCRectMake(0, 0, dstWidth, barHeight));
+}
+
+void ProgressBarLayer::setProgressWithTagetVal(int targetVal)
+{
+	int dstWidth = segmentVal * targetVal;
+
+	if(0 > dstWidth)
+		dstWidth = 0;
+	if(maxBarWidth < dstWidth)
+		dstWidth = maxBarWidth;
 
 	sprt_fore->setTextureRect(CCRectMake(0, 0, dstWidth, barHeight));
 }
