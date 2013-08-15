@@ -133,36 +133,36 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
-    <ClCompile Include="Fever.cpp" />
-    <ClCompile Include="MenuLabel.cpp" />
-    <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Diver.cpp" />
-    <ClCompile Include="Dolphin.cpp" />
+    <ClCompile Include="..\Classes\Fever.cpp" />
+    <ClCompile Include="..\Classes\MenuLabel.cpp" />
+    <ClCompile Include="..\Classes\Background.cpp" />
+    <ClCompile Include="..\Classes\Diver.cpp" />
+    <ClCompile Include="..\Classes\Dolphin.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainGameScene.cpp" />
-    <ClCompile Include="MainTitleScene.cpp" />
-    <ClCompile Include="ProgressBar.cpp" />
-    <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="SpriteRepeater.cpp" />
-    <ClCompile Include="UtilFunc.cpp" />
+    <ClCompile Include="..\Classes\MainGameScene.cpp" />
+    <ClCompile Include="..\Classes\MainTitleScene.cpp" />
+    <ClCompile Include="..\Classes\ProgressBar.cpp" />
+    <ClCompile Include="..\Classes\Sound.cpp" />
+    <ClCompile Include="..\Classes\SpriteRepeater.cpp" />
+    <ClCompile Include="..\Classes\UtilFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
-    <ClInclude Include="Fever.h" />
-    <ClInclude Include="GrandBlueConfig.h" />
-    <ClInclude Include="MenuLabel.h" />
-    <ClInclude Include="Background.h" />
-    <ClInclude Include="Diver.h" />
-    <ClInclude Include="Dolphin.h" />
-    <ClInclude Include="ProgressBar.h" />
-    <ClInclude Include="Resource.h" />
+    <ClInclude Include="..\Classes\Fever.h" />
+    <ClInclude Include="..\Classes\GrandBlueConfig.h" />
+    <ClInclude Include="..\Classes\MenuLabel.h" />
+    <ClInclude Include="..\Classes\Background.h" />
+    <ClInclude Include="..\Classes\Diver.h" />
+    <ClInclude Include="..\Classes\Dolphin.h" />
+    <ClInclude Include="..\Classes\ProgressBar.h" />
+    <ClInclude Include="..\Classes\Resource.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="MainGameScene.h" />
-    <ClInclude Include="MainTitleScene.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="SpriteRepeater.h" />
-    <ClInclude Include="UtilFunc.h" />
+    <ClInclude Include="..\Classes\MainGameScene.h" />
+    <ClInclude Include="..\Classes\MainTitleScene.h" />
+    <ClInclude Include="..\Classes\Sound.h" />
+    <ClInclude Include="..\Classes\SpriteRepeater.h" />
+    <ClInclude Include="..\Classes\UtilFunc.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\cocos2dx\proj.win32\cocos2d.vcxproj">

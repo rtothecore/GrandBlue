@@ -21,37 +21,37 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="MainTitleScene.cpp">
+    <ClCompile Include="..\Classes\Background.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="MainGameScene.cpp">
+    <ClCompile Include="..\Classes\Diver.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="Dolphin.cpp">
+    <ClCompile Include="..\Classes\Dolphin.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="UtilFunc.cpp">
+    <ClCompile Include="..\Classes\Fever.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteRepeater.cpp">
+    <ClCompile Include="..\Classes\MainGameScene.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="Diver.cpp">
+    <ClCompile Include="..\Classes\MainTitleScene.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="Sound.cpp">
+    <ClCompile Include="..\Classes\MenuLabel.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
+    <ClCompile Include="..\Classes\ProgressBar.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="MenuLabel.cpp">
+    <ClCompile Include="..\Classes\Sound.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="ProgressBar.cpp">
+    <ClCompile Include="..\Classes\SpriteRepeater.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="Fever.cpp">
+    <ClCompile Include="..\Classes\UtilFunc.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,43 +65,43 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="MainGameScene.h">
+    <ClInclude Include="..\Classes\Background.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="MainTitleScene.h">
+    <ClInclude Include="..\Classes\Diver.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="..\Classes\Dolphin.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="Dolphin.h">
+    <ClInclude Include="..\Classes\Fever.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="UtilFunc.h">
+    <ClInclude Include="..\Classes\GrandBlueConfig.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteRepeater.h">
+    <ClInclude Include="..\Classes\MainGameScene.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="Diver.h">
+    <ClInclude Include="..\Classes\MainTitleScene.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
+    <ClInclude Include="..\Classes\MenuLabel.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
+    <ClInclude Include="..\Classes\ProgressBar.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="MenuLabel.h">
+    <ClInclude Include="..\Classes\Resource.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="ProgressBar.h">
+    <ClInclude Include="..\Classes\Sound.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="GrandBlueConfig.h">
+    <ClInclude Include="..\Classes\SpriteRepeater.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="Fever.h">
+    <ClInclude Include="..\Classes\UtilFunc.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

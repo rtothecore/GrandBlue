@@ -1,5 +1,5 @@
 #include "HelloWorldScene.h"
-#include "../proj.win32/MainTitleScene.h"
+#include "MainTitleScene.h"
 
 USING_NS_CC;
 
