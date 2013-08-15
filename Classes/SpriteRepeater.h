@@ -9,7 +9,9 @@ class SpriteRepeater : public Sprite
 {
 
 public:
-	static SpriteRepeater* createWithTexture(Texture2D* aTexture, int zValue, int durValue);
+	virtual bool init();
+	CREATE_FUNC(SpriteRepeater);
+
 	virtual bool initWithTexture(Texture2D* aTexture, int zValue, int durValue);
 	virtual void actionSequence(Sprite* spr, int destX, int destY, int actualDuration);
 	virtual void moveFinished(Object* pSender);
@@ -18,15 +20,15 @@ public:
 class Rope : public SpriteRepeater
 {
 public:
-	Rope(void);
-	~Rope(void);
+	virtual bool init();
+	CREATE_FUNC(Rope);
 };
 
 class Rocks : public SpriteRepeater
 {
 public:
-	Rocks(void);
-	~Rocks(void);
+	virtual bool init();
+	CREATE_FUNC(Rocks);
 };
 
 #endif

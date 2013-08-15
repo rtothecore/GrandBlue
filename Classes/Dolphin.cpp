@@ -9,9 +9,13 @@ enum {
 	kTagFever = 3,
 };
 
-DolphinLayer::DolphinLayer()
+bool DolphinLayer::init()
 {
 	healthPoint = st_healthpoint;
+
+	initWithPlist(p_Dolphin);
+	
+	return true;
 }
 
 DolphinLayer::~DolphinLayer()
@@ -20,19 +24,10 @@ DolphinLayer::~DolphinLayer()
 
 DolphinLayer* DolphinLayer::clone() const
 {
-	DolphinLayer* ret = DolphinLayer::createWithPlist();
+	DolphinLayer* ret = DolphinLayer::create();
     ret->setPosition(getPosition());
     ret->setAnchorPoint(getAnchorPoint());
     return ret;
-}
-
-DolphinLayer* DolphinLayer::createWithPlist()
-{
-	DolphinLayer* pDolphinL = new DolphinLayer();
-	pDolphinL->initWithPlist(p_Dolphin);
-	pDolphinL->autorelease();
-
-	return pDolphinL;
 }
 
 bool DolphinLayer::initWithPlist(const char* plist)

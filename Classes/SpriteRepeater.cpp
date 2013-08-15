@@ -1,17 +1,14 @@
 #include "SpriteRepeater.h"
+#include "Resource.h"
 
 //------------------------------------------------------------------
 //
 // SpriteRepeater
 //
 //------------------------------------------------------------------
-SpriteRepeater* SpriteRepeater::createWithTexture(Texture2D* aTexture, int zValue, int durValue)
+bool SpriteRepeater::init()
 {
-    SpriteRepeater* pSR = new SpriteRepeater();
-    pSR->initWithTexture( aTexture, zValue, durValue );
-    pSR->autorelease();
-
-    return pSR;
+    return true;
 }
 
 bool SpriteRepeater::initWithTexture(Texture2D* aTexture, int zValue, int durValue)
@@ -62,28 +59,24 @@ void SpriteRepeater::moveFinished(Object* pSender)
 	setPosition(Point(orgX, orgY));
 }
 
+
 //------------------------------------------------------------------
 //
 // Rope
 //
 //------------------------------------------------------------------
-Rope::Rope(void)
+bool Rope::init()
 {
+    return true;
 }
 
-Rope::~Rope(void)
-{
-}
 
 //------------------------------------------------------------------
 //
 // Rocks
 //
 //------------------------------------------------------------------
-Rocks::Rocks(void)
+bool Rocks::init()
 {
-}
-
-Rocks::~Rocks(void)
-{
+    return true;
 }

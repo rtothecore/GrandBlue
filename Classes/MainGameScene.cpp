@@ -21,11 +21,12 @@ enum {
 // MainGameScene
 //
 //------------------------------------------------------------------
-MainGameScene::MainGameScene()
+bool MainGameScene::init()
 {
-    MainGameLayer *mainGameLayer = new MainGameLayer();
+	MainGameLayer *mainGameLayer = MainGameLayer::create();
     addChild(mainGameLayer);
-    mainGameLayer->release();
+
+	return true;
 }
 
 //------------------------------------------------------------------
@@ -33,8 +34,8 @@ MainGameScene::MainGameScene()
 // MainGameLayer
 //
 //------------------------------------------------------------------
-MainGameLayer::MainGameLayer()
-{ 
+bool MainGameLayer::init()
+{
 	iDolphinBye = 0;
 	_dolphins = NULL;
 
@@ -58,6 +59,8 @@ MainGameLayer::MainGameLayer()
 	// Touch
 	Director* director = Director::getInstance();
     director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+
+	return true;
 }
 
 void MainGameLayer::playBubbleEffect(float dt) 
@@ -97,7 +100,8 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
 
 	// Menu Label
-	MenuLabelLayer* mLabel_DolphinBye = new MenuLabelLayer("Dolphin's Bye");
+	MenuLabelLayer* mLabel_DolphinBye = MenuLabelLayer::create();
+	mLabel_DolphinBye->initWithLabel("Dolphin's Bye");
 	mLabel_DolphinBye->addMenuItem("0");
 	mLabel_DolphinBye->createMenu();
 	mLabel_DolphinBye->setZOrder(1);
@@ -105,7 +109,7 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	schedule(schedule_selector(MainGameLayer::menuLabelDolphinRefresh), 0.5);
 
 	// Fever
-	FeverLayer* feverL = new FeverLayer();
+	FeverLayer* feverL = FeverLayer::create();
 	addChild(feverL, 1, kTagFever);
 }
 
@@ -142,14 +146,16 @@ void MainGameLayer::addBackground()
 void MainGameLayer::addRocks()
 {
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
-	Rocks* rocks = (Rocks*)Rocks::createWithTexture(rocksTexture, 1, 3);
+	Rocks* rocks = Rocks::create();
+	rocks->initWithTexture(rocksTexture, 1, 3);
 	addChild(rocks);
 }
 
 void MainGameLayer::addRope()
 {
 	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
-	Rope* rope = (Rope*)Rope::createWithTexture(ropeTexture, 0, 15);
+	Rope* rope = Rope::create();
+	rope->initWithTexture(ropeTexture, 0, 15);
 	addChild(rope);
 }
 
@@ -157,16 +163,16 @@ void MainGameLayer::addDolphin(float dt)
 {
 	Array *dolphinsM = Array::createWithCapacity(4);
     
-	DolphinLayer* dolphinL = DolphinLayer::createWithPlist();
+	DolphinLayer* dolphinL = DolphinLayer::create();
     dolphinsM->addObject( dolphinL );
     
-	dolphinL = DolphinLayer::createWithPlist();
+	dolphinL = DolphinLayer::create();
 	dolphinsM->addObject( dolphinL );
 
-	dolphinL = DolphinLayer::createWithPlist();
+	dolphinL = DolphinLayer::create();
 	dolphinsM->addObject( dolphinL );
 
-	dolphinL = DolphinLayer::createWithPlist();
+	dolphinL = DolphinLayer::create();
 	dolphinsM->addObject( dolphinL );
 	
     _dolphins = dolphinsM->clone();
@@ -186,7 +192,7 @@ void MainGameLayer::addDolphin(float dt)
 
 void MainGameLayer::addDiver()
 {
-	Diver* diver = Diver::createWithPlist();
+	Diver* diver = Diver::create();
 	addChild(diver);
 }
 

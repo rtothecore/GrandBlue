@@ -107,6 +107,7 @@ void MainTitle::menuCloseCallback(Object* pSender)
 
 void MainTitle::menuDiveCallback(Object* pSender) 
 {
-	Scene *scene = TransitionSlideInB::create(2, new MainGameScene());
+	//Scene *scene = TransitionSlideInB::create(2, new MainGameScene());
+	Scene *scene = TransitionSlideInB::create(2, MainGameScene::create());
 	Director::getInstance()->pushScene(scene);
 }

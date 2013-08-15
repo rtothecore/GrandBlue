@@ -8,15 +8,14 @@ USING_NS_CC;
 class BackgroundLayer : public Layer
 {
 public:
-	BackgroundLayer(void);
-	~BackgroundLayer(void);
+	virtual bool init();
+	CREATE_FUNC(BackgroundLayer);
 
 	virtual void onEnter();
     virtual void onExit();
 
 	Node* effectNode;
 
-	static BackgroundLayer* create();
 	void initWithSprite(const char* chrSprt);
 	void runEffect();
 };

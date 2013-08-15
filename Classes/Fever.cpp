@@ -6,23 +6,21 @@ enum {
 	kTagFeverProgressBar = 1,
 };
 
-FeverLayer::FeverLayer(void)
+bool FeverLayer::init()
 {
 	bFeverMode = false;
 	iTouchCombo = 0;
 
 	initProgressBar();
-}
 
-
-FeverLayer::~FeverLayer(void)
-{
+	return true;
 }
 
 void FeverLayer::initProgressBar()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	ProgressBarLayer* pbLayer = new ProgressBarLayer(visibleSize.width, 10, 5);
+	ProgressBarLayer* pbLayer = ProgressBarLayer::create();
+	pbLayer->initWithSize(visibleSize.width, 10, 5);
 	pbLayer->setPosition(0, 0);
 	addChild(pbLayer, 1, kTagFeverProgressBar);
 }

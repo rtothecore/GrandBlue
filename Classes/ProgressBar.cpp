@@ -5,21 +5,16 @@ enum {
 	kTagForegroundProgress = 1,
 };
 
-ProgressBarLayer::ProgressBarLayer(int width, int height, int divVal)
+bool ProgressBarLayer::init()
+{
+	return true;
+}
+
+void ProgressBarLayer::initWithSize(int width, int height, int divVal)
 {
 	segmentVal = width / divVal;
 	maxBarWidth = width;
 	barHeight = height;
-	/*
-	sprite = new Sprite();
-    sprite->init();
-    sprite->setTextureRect( Rect(0, 0, 300,300) );
-    sprite->setColor(Color3B::RED);
-    sprite->setOpacity(128);
-    sprite->setPosition(Point(3*s.width/4, s.height/2));
-    addChild(sprite, 100);
-    sprite->release();
-	*/
 
 	//background sprite
 	sprt_back = Sprite::create();
@@ -34,11 +29,6 @@ ProgressBarLayer::ProgressBarLayer(int width, int height, int divVal)
 	sprt_fore->setColor(Color3B::YELLOW);
 	sprt_fore->setAnchorPoint( Point(0, 0) );
 	addChild(sprt_fore, 1, kTagForegroundProgress);
-}
-
-ProgressBarLayer::~ProgressBarLayer(void)
-{
-	
 }
 
 void ProgressBarLayer::increaseProgress(int stepVal)

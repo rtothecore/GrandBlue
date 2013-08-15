@@ -8,13 +8,13 @@ USING_NS_CC;
 class MenuLabelLayer : public Layer
 {
 public:
+	virtual bool init();
+	CREATE_FUNC(MenuLabelLayer);
+
 	Menu* menu;
 	char* fontFile;
 
-	MenuLabelLayer(char* chrLabel);
-	~MenuLabelLayer(void);
-
-	void init(char* chrLabel);
+	void initWithLabel(char* chrLabel);
 	void addMenuItem(char* chrLabel);
 	void createMenu();
 

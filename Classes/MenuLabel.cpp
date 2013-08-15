@@ -1,18 +1,13 @@
 #include "MenuLabel.h"
 
-MenuLabelLayer::MenuLabelLayer(char* chrLabel)
+bool MenuLabelLayer::init()
 {
 	fontFile = "fonts/Courier.fnt";
 
-	MenuLabelLayer::init(chrLabel);
+	return true;
 }
 
-
-MenuLabelLayer::~MenuLabelLayer(void)
-{
-}
-
-void MenuLabelLayer::init(char* chrLabel)
+void MenuLabelLayer::initWithLabel(char* chrLabel)
 {
 	// Label Item (LabelBMFont)
     LabelBMFont* label = LabelBMFont::create(chrLabel, fontFile);

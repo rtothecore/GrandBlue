@@ -8,7 +8,8 @@ USING_NS_CC;
 class MainGameScene : public Scene
 {
 public:
-	MainGameScene();
+	virtual bool init();
+	CREATE_FUNC(MainGameScene);
 };
 
 class MainGameLayer : public Layer
@@ -17,7 +18,9 @@ private:
 	Array*    _dolphins;
 
 public:
-	MainGameLayer();
+	virtual bool init();
+	CREATE_FUNC(MainGameLayer);
+	
 	~MainGameLayer();
  
 	void onEnterTransitionDidFinish();

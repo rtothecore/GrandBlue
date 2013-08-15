@@ -8,10 +8,11 @@ USING_NS_CC;
 class DolphinLayer : public Layer, public Clonable
 {
 public:
-	DolphinLayer();
+	virtual bool init();
+	CREATE_FUNC(DolphinLayer);
+
 	~DolphinLayer();
 	virtual DolphinLayer* clone() const;
-	static DolphinLayer* createWithPlist();
 	bool initWithPlist(const char* plist);
 	void removeMyself(float dt);
 

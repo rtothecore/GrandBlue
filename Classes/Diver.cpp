@@ -2,11 +2,12 @@
 #include "Resource.h"
 #include "UtilFunc.h"
 
-Diver::Diver(void)
+bool Diver::init()
 {
 	healthPoint = st_healthpoint;
+	initWithPlist(p_Diver);
+	return true;
 }
-
 
 Diver::~Diver(void)
 {
@@ -14,19 +15,10 @@ Diver::~Diver(void)
 
 Diver* Diver::clone() const
 {
-	Diver* ret = Diver::createWithPlist();
+	Diver* ret = Diver::create();
     ret->setPosition(getPosition());
     ret->setAnchorPoint(getAnchorPoint());
     return ret;
-}
-
-Diver* Diver::createWithPlist()
-{
-	Diver* pDiver = new Diver();
-	pDiver->initWithPlist(p_Diver);
-	pDiver->autorelease();
-
-	return pDiver;
 }
 
 bool Diver::initWithPlist(const char* plist)

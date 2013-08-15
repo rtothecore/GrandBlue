@@ -70,13 +70,10 @@ ActionInterval* getAction()
 // BackgroundLayer
 //
 //----------------------------------------------------------------
-
-BackgroundLayer::BackgroundLayer(void)
+bool BackgroundLayer::init()
 {
-}
-
-BackgroundLayer::~BackgroundLayer(void)
-{
+	initWithSprite(s_UnderSea);
+	return true;
 }
 
 void BackgroundLayer::onEnter()
@@ -87,15 +84,6 @@ void BackgroundLayer::onEnter()
 void BackgroundLayer::onExit()
 {
     Layer::onExit();
-}
-
-BackgroundLayer* BackgroundLayer::create()
-{
-	BackgroundLayer* pBackgroundL = new BackgroundLayer();
-	pBackgroundL->initWithSprite(s_UnderSea);
-	pBackgroundL->autorelease();
-
-	return pBackgroundL;
 }
 
 void BackgroundLayer::initWithSprite(const char* chrSprt)

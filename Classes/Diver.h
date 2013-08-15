@@ -8,10 +8,11 @@ USING_NS_CC;
 class Diver : public Layer, public Clonable
 {
 public:
-	Diver(void);
+	virtual bool init();
+	CREATE_FUNC(Diver);
+
 	~Diver(void);
 	virtual Diver* clone() const;
-	static Diver* createWithPlist();
 	bool initWithPlist(const char* plist);
 	void removeMyself(float dt);
 

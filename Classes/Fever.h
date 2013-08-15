@@ -28,8 +28,8 @@ private:
 	void endFever(float dt);
 
 public:
-	FeverLayer(void);
-	~FeverLayer(void);
+	virtual bool init();
+	CREATE_FUNC(FeverLayer);
 
 	int getTouchDamage();
 	bool isFever();

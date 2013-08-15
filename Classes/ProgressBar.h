@@ -13,8 +13,10 @@ private:
 	int barHeight;
 
 public:
-	ProgressBarLayer(int width, int height, int divVal);
-	~ProgressBarLayer(void);
+	virtual bool init();
+	CREATE_FUNC(ProgressBarLayer);
+	
+	void initWithSize(int width, int height, int divVal);
 
 	Sprite* sprt_back;
 	Sprite* sprt_fore;
