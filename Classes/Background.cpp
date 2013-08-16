@@ -1,5 +1,6 @@
 #include "Background.h"
 #include "Resource.h"
+#include "UtilFunc.h"
 
 //------------------------------------------------------------------
 //
@@ -88,15 +89,13 @@ void BackgroundLayer::onExit()
 
 void BackgroundLayer::initWithSprite(const char* chrSprt)
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-
 	// Effect
 	effectNode = Node::create();
     addChild(effectNode, 0, 1);
 
 	// Sprite
 	Sprite* sprt = Sprite::create(chrSprt);
-	sprt->setPosition(Point(visibleSize.width / 2, visibleSize.height / 2));
+	sprt->setPosition(Point(UtilFunc::getWinSize().width / 2, UtilFunc::getWinSize().height / 2));
 	effectNode->addChild(sprt);
 }
 

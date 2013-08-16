@@ -52,14 +52,13 @@ bool DolphinLayer::initWithPlist(const char* plist)
 		}
 
 		auto animation = Animation::createWithSpriteFrames(animFrames, 0.3f);
-		sprt_dolphin->runAction( RepeatForever::create( Animate::create(animation) ) );	
+		sprt_dolphin->runAction( RepeatForever::create( Animate::create(animation) ) );
 
 		// Dolphin's Y
-		Size visibleSize = Director::getInstance()->getVisibleSize();
-		int actualY = UtilFunc::getRandomRangeValue(getContentSize().height, visibleSize.height/1.4 - getContentSize().height);
+		int actualY = UtilFunc::getRandomRangeValue(getContentSize().height, UtilFunc::getWinSize().height/1.4 - getContentSize().height);
 
 		// Set Dolphin to the screen right edge
-		setPosition(Point(visibleSize.width + (getContentSize().width / 2), actualY));
+		setPosition(Point(UtilFunc::getWinSize().width + (getContentSize().width / 2), actualY));
 
 		// Velocity
 		int actualDuration = UtilFunc::getRandomRangeValue(2.0, 4.0);
@@ -110,11 +109,6 @@ bool DolphinLayer::ccTouchBegan(Touch* touch, Event* event)
 {
     if ( !containsTouchLocation(touch) )
 	{
-		// MainGameLayer dolphin touch for fever RESET
-		/*CCLog("TOUCH MISS!!!!");
-		MainGameLayer* parent = (MainGameLayer*)getParent();
-		parent->resetTouchCombo();*/
-
 		return false;
 	}
     
@@ -135,7 +129,7 @@ void DolphinLayer::decreaseHealthPoint(Touch* touch)
 
 	if(0 >= healthPoint)
 	{
-		CCLog("HealthPoint is 0");
+		log("HealthPoint is 0");
 
 		// Particle effect
 		auto particle = ParticleExplosion::create();

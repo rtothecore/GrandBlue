@@ -46,12 +46,10 @@ bool Diver::initWithPlist(const char* plist)
 		sprt_diver->runAction( RepeatForever::create( Animate::create(animation) ) );	
 
 		//Y
-		Size visibleSize = Director::getInstance()->getVisibleSize();
-		int actualY = UtilFunc::getRandomRangeValue(getContentSize().height, visibleSize.height/1.4 - getContentSize().height);
+		//int actualY = UtilFunc::getRandomRangeValue(getContentSize().height, visibleSize.height/1.4 - getContentSize().height);
 
 		// Set to the screen right edge
-		//setPosition(Point(visibleSize.width + (getContentSize().width / 2), actualY));
-		setPosition(Point(visibleSize.width / 2, 500));
+		setPosition( Point(UtilFunc::getWinSize().width / 2, UtilFunc::getWinSize().height-(UtilFunc::getWinSize().height/5)) );
 
 		// Velocity
 		int actualDuration = UtilFunc::getRandomRangeValue(2.0, 4.0);

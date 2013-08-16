@@ -47,10 +47,9 @@ bool MainGameLayer::init()
 										"menu_dive.png", 
 										"menu_dive_selected.png", 
 										CC_CALLBACK_1(MainGameLayer::menuBackCallback, this));
-	diveItem->setPosition(Point(origin.x + visibleSize.width/2, origin.y + diveItem->getContentSize().height/2));
 
     Menu* menu = Menu::create(diveItem, NULL);
-    menu->setPosition(Point::ZERO);
+	menu->setPosition( Point(origin.x + visibleSize.width/2, visibleSize.height - visibleSize.height/5) );
     this->addChild(menu, 1);
 
 	// Add background sprite
@@ -105,6 +104,7 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	mLabel_DolphinBye->addMenuItem("0");
 	mLabel_DolphinBye->createMenu();
 	mLabel_DolphinBye->setZOrder(1);
+
 	addChild(mLabel_DolphinBye, 1, kTagLabelDolphin);
 	schedule(schedule_selector(MainGameLayer::menuLabelDolphinRefresh), 0.5);
 
@@ -133,7 +133,7 @@ void MainGameLayer::menuLabelDolphinRefresh(float dt)
 
 void MainGameLayer::menuBackCallback(Object* pSender) 
 {
-	Scene *scene = TransitionSlideInT::create(2, MainTitle::scene());
+	Scene *scene = TransitionSlideInT::create(2, MainTitleScene::create());
 	Director::getInstance()->pushScene(scene);
 }
 
@@ -228,7 +228,7 @@ bool MainGameLayer::ccTouchBegan(Touch* touch, Event* event)
 	if ( !containsDolphinLocation(touch) )
 	{
 		// reset Touch Combo
-		CCLog("TOUCH MISS!!!!");
+		log("TOUCH MISS!!!!");
 		((FeverLayer*)getChildByTag(kTagFever))->resetTouchCombo();
 
 		return false;

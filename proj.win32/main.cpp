@@ -17,7 +17,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     EGLView* eglView = EGLView::getInstance();
     eglView->setViewName("Grandblue");
     //eglView->setFrameSize(480, 320);
-	eglView->setFrameSize(500, 660);
-	//eglView->setFrameSize(780, 1280);	// Galaxy S3 screeen size
+
+	eglView->setFrameSize(720, 1080);
+	eglView->setFrameZoomFactor(0.8f);
+
     return Application::getInstance()->run();
 }

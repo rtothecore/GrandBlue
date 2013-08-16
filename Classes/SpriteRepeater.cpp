@@ -1,5 +1,6 @@
 #include "SpriteRepeater.h"
 #include "Resource.h"
+#include "UtilFunc.h"
 
 //------------------------------------------------------------------
 //
@@ -15,11 +16,10 @@ bool SpriteRepeater::initWithTexture(Texture2D* aTexture, int zValue, int durVal
 {
     if( Sprite::initWithTexture(aTexture) ) 
     {
-		Size visibleSize = Director::getInstance()->getVisibleSize();
-
 		// coordinates
-		int orgX = visibleSize.width / 2;
-		int orgY = visibleSize.height / 2;
+		int orgX = UtilFunc::getWinSize().width / 2;
+		int orgY = UtilFunc::getWinSize().height / 2;
+
 		int destY = getContentSize().height + (getContentSize().height/2);
 
 		// set position
@@ -52,9 +52,8 @@ void SpriteRepeater::actionSequence(Sprite* spr, int destX, int destY, int actua
 
 void SpriteRepeater::moveFinished(Object* pSender)
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	int orgX = visibleSize.width / 2;
-	int orgY = visibleSize.height / 2;
+	int orgX = UtilFunc::getWinSize().width / 2;
+	int orgY = UtilFunc::getWinSize().height / 2;
 
 	setPosition(Point(orgX, orgY));
 }

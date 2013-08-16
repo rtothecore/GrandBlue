@@ -1,6 +1,7 @@
 #include "Fever.h"
 #include "Sound.h"
 #include "ProgressBar.h"
+#include "UtilFunc.h"
 
 enum {
 	kTagFeverProgressBar = 1,
@@ -18,9 +19,8 @@ bool FeverLayer::init()
 
 void FeverLayer::initProgressBar()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
 	ProgressBarLayer* pbLayer = ProgressBarLayer::create();
-	pbLayer->initWithSize(visibleSize.width, 10, 5);
+	pbLayer->initWithSize(UtilFunc::getWinSize().width, 10, 5);
 	pbLayer->setPosition(0, 0);
 	addChild(pbLayer, 1, kTagFeverProgressBar);
 }
@@ -61,7 +61,7 @@ void FeverLayer::checkFever()
 
 void FeverLayer::intoTheFever()
 {
-	CCLog("Fever Time!!!");
+	log("Fever Time!!!");
 
 	bFeverMode = true;
 
@@ -71,7 +71,7 @@ void FeverLayer::intoTheFever()
 
 void FeverLayer::endFever(float dt)
 {
-	CCLog("End Fever...");
+	log("End Fever...");
 
 	bFeverMode = false;
 	resetTouchCombo();

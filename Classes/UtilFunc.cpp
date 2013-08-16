@@ -17,17 +17,14 @@ int UtilFunc::getRandomRangeValue(int minVal, int maxVal)
 	return (rand() % rangeVal) + minVal;
 }
 
-void UtilFunc::setSizeToScreenSize(Sprite* sprt)
+Size UtilFunc::getWinSize()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Size winSize = Director::getInstance()->getWinSize();
+	return winSize;
+}
 
-	float widthRatio = visibleSize.width / sprt->getContentSize().width;
-	float heightRatio = visibleSize.height / sprt->getContentSize().height;
-
-	if(widthRatio > heightRatio)
-	{
-		sprt->setScale(heightRatio);
-	} else {
-		sprt->setScale(widthRatio);
-	}
+Size UtilFunc::getVisibleSize()
+{
+	Size winSize = Director::getInstance()->getVisibleSize();
+	return winSize;
 }
