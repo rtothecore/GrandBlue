@@ -43,6 +43,11 @@ public:
 	Sprite *sprt_hp;
 	int healthPoint;
 	void decreaseHealthPoint(Touch* touch);
+
+	// Bye
+	int touched;
+	Sprite *sprt_bye;
+
 };
 
 #endif

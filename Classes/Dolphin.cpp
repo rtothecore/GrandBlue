@@ -12,6 +12,7 @@ enum {
 bool DolphinLayer::init()
 {
 	healthPoint = st_healthpoint;
+	touched = 0;
 
 	initWithPlist(p_Dolphin);
 	
@@ -68,12 +69,19 @@ bool DolphinLayer::initWithPlist(const char* plist)
 		actionIndex>0 ? DolphinLayer::actionSequence(this, actualY, actualDuration) : DolphinLayer::actionBezier(this, actualY);
 
 		// HP sprite
-		sprt_hp = Sprite::create();
+		/*sprt_hp = Sprite::create();
 		sprt_hp->setTextureRect(CCRectMake(0, 0, 50, 5));
 		sprt_hp->setColor(Color3B::BLUE);
 		Size dolphinSize = frm_dolphin->getOriginalSize();
 		sprt_hp->setPosition(Point(0, dolphinSize.height / 2 + 5));
-		addChild(sprt_hp);
+		addChild(sprt_hp);*/
+
+		// bye sprite
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_Bye);
+		sprt_bye = Sprite::createWithSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye) );
+		sprt_bye->setPosition( Point(0, frm_dolphin->getOriginalSize().height/2) );
+		sprt_bye->setVisible(false);
+		addChild(sprt_bye);
 	}
 
 	return true;
@@ -124,18 +132,38 @@ void DolphinLayer::decreaseHealthPoint(Touch* touch)
 	int touchDamage = ((FeverLayer*)parent->getChildByTag(kTagFever))->getTouchDamage();
 	healthPoint -= touchDamage;
 
-	int hpBar = (50 / st_healthpoint) * healthPoint;
-	sprt_hp->setTextureRect(CCRectMake(0, 0, hpBar, 5));
+	//int hpBar = (50 / st_healthpoint) * healthPoint;
+	//sprt_hp->setTextureRect(CCRectMake(0, 0, hpBar, 5));
 
-	if(0 >= healthPoint)
+	// Bye sprite frame++
+	if(2 == healthPoint)
 	{
-		log("HealthPoint is 0");
+		sprt_bye->setVisible(true);
+	} else if (1 == healthPoint) {
+		if( sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye)) )
+			sprt_bye->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName("bye2.png") );
+	}
+
+	// Tint action
+	auto tintAction = TintBy::create(0.1, 0, -255, -255);
+	auto tintAction_back = tintAction->reverse();
+	sprt_dolphin->runAction( Sequence::create( tintAction, tintAction_back, NULL) );
+
+	if(0 == healthPoint)
+	{
+		// Bye sprite
+		if( sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye)) 
+			|| sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName("bye2.png")) )
+		{
+			sprt_bye->setVisible(true);
+			sprt_bye->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName("bye3.png") );
+		}
 
 		// Particle effect
-		auto particle = ParticleExplosion::create();
+		/*auto particle = ParticleExplosion::create();
 		particle->setPosition( touch->getLocation() );
 		particle->setAutoRemoveOnFinish(true);
-		getParent()->addChild(particle);
+		getParent()->addChild(particle);*/
 
 		// Sound
 		Sound::playDolphinEffectWithType(3);
@@ -146,8 +174,15 @@ void DolphinLayer::decreaseHealthPoint(Touch* touch)
 		// MainGameLayer dolphin touch for fever ++
 		((FeverLayer*)parent->getChildByTag(kTagFever))->increaseTouchCombo();
 
+		// Blink action
+		stopAllActions();
+		auto blinkAction = Blink::create(1, 3);
+		auto blinkActionDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
+		auto seq = Sequence::create( blinkAction, blinkActionDone, NULL );
+		sprt_dolphin->runAction(seq);
+
 		// Remove Dolphin
-		this->removeFromParentAndCleanup(true);
+		//this->removeFromParentAndCleanup(true);
 	} else {
 		Sound::playDolphinEffectRand();
 	}
@@ -166,12 +201,15 @@ void DolphinLayer::spriteFlipY(Object* pSender)
 {
 	Layer *layer = (Layer *)pSender;
 	layer->setScaleX(-1);
+	sprt_bye->setScaleX(-1);
 }
 
 void DolphinLayer::spriteUnflipY(Object* pSender)
 {
 	Layer *layer = (Layer *)pSender;
 	layer->setScaleX(1);
+	sprt_bye->setScaleX(1);
+	sprt_bye->setPositionX(frm_dolphin->getOriginalSize().width/2);
 }
 
 void DolphinLayer::removeMyself(float dt) 

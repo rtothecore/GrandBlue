@@ -79,8 +79,8 @@ MainGameLayer::~MainGameLayer()
 void MainGameLayer::onEnterTransitionDidFinish()
 {
 	// Run Background effect
-	BackgroundLayer* bgLayer = (BackgroundLayer*)getChildByTag(kTagBackground);
-	bgLayer->runEffect();
+	/*BackgroundLayer* bgLayer = (BackgroundLayer*)getChildByTag(kTagBackground);
+	bgLayer->runEffect();*/
 
 	// Add rocks sprite
 	addRocks();
@@ -122,7 +122,7 @@ void MainGameLayer::menuLabelDolphinRefresh(float dt)
 										((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
 
 	if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
-	{ 
+	{
 		mLabelL->renameMenuItem(0, "Fever Time!!!!");
 	} else {
 		mLabelL->renameMenuItem(0, "Dolphin's Bye");

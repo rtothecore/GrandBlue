@@ -8,6 +8,9 @@ static const char s_Dolphin[]              = "dolphin1.png";
 static const char p_Diver[]                = "zwoptex/diver.plist";
 static const char s_Diver[]                = "diver1.png";
 
+static const char p_Bye[]                = "zwoptex/bye.plist";
+static const char s_Bye[]                = "bye1.png";
+
 // Image
 static const char s_UnderSea[]				   = "underTheSea_light.png";
 static const char s_Rocks[]				   = "underTheSea_rocks.png";
