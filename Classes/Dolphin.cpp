@@ -11,8 +11,8 @@ enum {
 
 bool DolphinLayer::init()
 {
+	isBye = false;
 	healthPoint = st_healthpoint;
-	touched = 0;
 
 	initWithPlist(p_Dolphin);
 	
@@ -120,7 +120,10 @@ bool DolphinLayer::ccTouchBegan(Touch* touch, Event* event)
 		return false;
 	}
     
-	decreaseHealthPoint(touch);
+	if(!isBye)
+	{
+		decreaseHealthPoint(touch);
+	}
 
     return true;
 }
@@ -149,8 +152,10 @@ void DolphinLayer::decreaseHealthPoint(Touch* touch)
 	auto tintAction_back = tintAction->reverse();
 	sprt_dolphin->runAction( Sequence::create( tintAction, tintAction_back, NULL) );
 
-	if(0 == healthPoint)
+	if(0 >= healthPoint)
 	{
+		isBye = true;
+
 		// Bye sprite
 		if( sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye)) 
 			|| sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName("bye2.png")) )

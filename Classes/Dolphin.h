@@ -45,7 +45,7 @@ public:
 	void decreaseHealthPoint(Touch* touch);
 
 	// Bye
-	int touched;
+	bool isBye;
 	Sprite *sprt_bye;
 
 };
