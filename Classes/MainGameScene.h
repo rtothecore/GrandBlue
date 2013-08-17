@@ -47,6 +47,10 @@ public:
     virtual bool ccTouchBegan(Touch* touch, Event* event);
     virtual void ccTouchMoved(Touch* touch, Event* event);
     virtual void ccTouchEnded(Touch* touch, Event* event);
+
+	// collision check
+	void detectCollisionBitwinDolphinNDiver(float dt);
+	bool checkCollisionBitwinDolphinNDiver();
 };
 
 

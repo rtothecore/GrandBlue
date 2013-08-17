@@ -9,11 +9,14 @@
 #include "MenuLabel.h"
 #include "ProgressBar.h"
 #include "Fever.h"
+#include "DiveFeet.h"
 
 enum {
     kTagBackground = 1,
     kTagLabelDolphin = 2,
 	kTagFever = 3,
+	kTagLayerDiver = 4,
+	kTagLayerDiveFeet = 5,
 };
 
 //------------------------------------------------------------------
@@ -98,19 +101,27 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
 
-	// Menu Label
+	// Menu Label - dolphin bye
 	MenuLabelLayer* mLabel_DolphinBye = MenuLabelLayer::create();
-	mLabel_DolphinBye->initWithLabel("Dolphin's Bye");
-	mLabel_DolphinBye->addMenuItem("0");
+	mLabel_DolphinBye->initWithLabel("Dolphin's Bye", 1.0f);
+	mLabel_DolphinBye->addMenuItem("0", 1.0f);
 	mLabel_DolphinBye->createMenu();
 	mLabel_DolphinBye->setZOrder(1);
 
 	addChild(mLabel_DolphinBye, 1, kTagLabelDolphin);
 	schedule(schedule_selector(MainGameLayer::menuLabelDolphinRefresh), 0.5);
 
+	// Menu Label - dive feet
+	DiveFeetLayer* diveFeetL = DiveFeetLayer::create();
+	diveFeetL->startDive();
+	addChild(diveFeetL, 1, kTagLayerDiveFeet);
+	
 	// Fever
 	FeverLayer* feverL = FeverLayer::create();
 	addChild(feverL, 1, kTagFever);
+
+	// collision detect between Dolphin and Diver
+	schedule(schedule_selector(MainGameLayer::detectCollisionBitwinDolphinNDiver), 0.5);
 }
 
 void MainGameLayer::menuLabelDolphinRefresh(float dt)
@@ -192,13 +203,48 @@ void MainGameLayer::addDolphin(float dt)
 
 void MainGameLayer::addDiver()
 {
-	Diver* diver = Diver::create();
-	addChild(diver);
+	DiverLayer* diverL = DiverLayer::create();
+	addChild(diverL, 1, kTagLayerDiver);
 }
 
 void MainGameLayer::increaseDolphinBye()
 {
 	MainGameLayer::iDolphinBye++;
+}
+
+void MainGameLayer::detectCollisionBitwinDolphinNDiver(float dt)
+{
+	checkCollisionBitwinDolphinNDiver();
+}
+
+bool MainGameLayer::checkCollisionBitwinDolphinNDiver()
+{
+	DolphinLayer* dolphinL;
+	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
+	Object* pObj = NULL;
+
+	if(NULL != _dolphins)
+	{
+		CCARRAY_FOREACH(_dolphins, pObj)
+		{
+			dolphinL = static_cast<DolphinLayer*>(pObj);
+
+			if(!dolphinL)
+				break;
+
+			if( !dolphinL->isAttachedToDiver &&
+				 dolphinL->getDolphinRect().intersectsRect(diverL->getDiverRect()) )
+			{
+					dolphinL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
+					diverL->refreshDiverPositionWithDolphin();
+					((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(diverL->attachedDolphins + 1);
+					CCLOG("Dolphin meet diver~^^");
+					return true;
+			}
+		}
+	}
+
+	return false;
 }
 
 bool MainGameLayer::containsDolphinLocation(Touch* touch)

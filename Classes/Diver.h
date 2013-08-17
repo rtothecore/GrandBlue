@@ -5,14 +5,14 @@
 
 USING_NS_CC;
 
-class Diver : public Layer, public Clonable
+class DiverLayer : public Layer, public Clonable
 {
 public:
 	virtual bool init();
-	CREATE_FUNC(Diver);
+	CREATE_FUNC(DiverLayer);
 
-	~Diver(void);
-	virtual Diver* clone() const;
+	~DiverLayer(void);
+	virtual DiverLayer* clone() const;
 	bool initWithPlist(const char* plist);
 	void removeMyself(float dt);
 
@@ -44,6 +44,12 @@ public:
 	Sprite *sprt_hp;
 	int healthPoint;
 	void decreaseHealthPoint(Touch* touch);
+
+	// get collisioned dolphin
+	Rect getDiverRect();
+	int attachedDolphins;
+	void refreshDiverPositionWithDolphin();
+	void actionDownMoveBy(int yDelta);
 };
 
 #endif

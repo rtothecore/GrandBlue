@@ -12,7 +12,8 @@ enum {
 bool DolphinLayer::init()
 {
 	isBye = false;
-	healthPoint = st_healthpoint;
+	byePoint = 0;
+	isAttachedToDiver = false;
 
 	initWithPlist(p_Dolphin);
 	
@@ -68,14 +69,6 @@ bool DolphinLayer::initWithPlist(const char* plist)
 		int actionIndex = (rand() % 2);
 		actionIndex>0 ? DolphinLayer::actionSequence(this, actualY, actualDuration) : DolphinLayer::actionBezier(this, actualY);
 
-		// HP sprite
-		/*sprt_hp = Sprite::create();
-		sprt_hp->setTextureRect(CCRectMake(0, 0, 50, 5));
-		sprt_hp->setColor(Color3B::BLUE);
-		Size dolphinSize = frm_dolphin->getOriginalSize();
-		sprt_hp->setPosition(Point(0, dolphinSize.height / 2 + 5));
-		addChild(sprt_hp);*/
-
 		// bye sprite
 		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_Bye);
 		sprt_bye = Sprite::createWithSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye) );
@@ -122,76 +115,97 @@ bool DolphinLayer::ccTouchBegan(Touch* touch, Event* event)
     
 	if(!isBye)
 	{
-		decreaseHealthPoint(touch);
+		aliveDolphinTouched();
 	}
 
     return true;
 }
 
-void DolphinLayer::decreaseHealthPoint(Touch* touch) 
+void DolphinLayer::aliveDolphinTouched()
+{
+	byePointUp();
+
+	playDolphinSound();
+	refreshByeSprite();
+	actionTint(sprt_dolphin);
+
+	if(st_byePoint <= byePoint)
+	{
+		comboForFeverUp();
+		actionBlinkAndRemove(sprt_dolphin);
+	}
+}
+
+void DolphinLayer::byePointUp()
 {
 	MainGameLayer* parent = (MainGameLayer*)getParent();
+	int touchPoint = ((FeverLayer*)parent->getChildByTag(kTagFever))->getTouchDamage();
 
-	int touchDamage = ((FeverLayer*)parent->getChildByTag(kTagFever))->getTouchDamage();
-	healthPoint -= touchDamage;
+	byePoint += touchPoint;
 
-	//int hpBar = (50 / st_healthpoint) * healthPoint;
-	//sprt_hp->setTextureRect(CCRectMake(0, 0, hpBar, 5));
+	if(st_byePoint <= byePoint)
+		isBye = true;
+}
 
-	// Bye sprite frame++
-	if(2 == healthPoint)
+void DolphinLayer::refreshByeSprite()
+{
+	switch(byePoint) 
 	{
-		sprt_bye->setVisible(true);
-	} else if (1 == healthPoint) {
-		if( sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye)) )
-			sprt_bye->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName("bye2.png") );
+		case 1:
+			sprt_bye->setVisible(true);
+			break;
+		case 2:
+			if( sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye)) )
+				sprt_bye->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName("bye2.png") );
+			break;
+		case 3:
+		default:
+			sprt_bye->setVisible(true);
+			if( sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye)) ||
+				sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName("bye2.png")) )
+				sprt_bye->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName("bye3.png") );
+			break;
 	}
+}
 
-	// Tint action
+void DolphinLayer::actionTint(Sprite* sprt)
+{
 	auto tintAction = TintBy::create(0.1, 0, -255, -255);
 	auto tintAction_back = tintAction->reverse();
-	sprt_dolphin->runAction( Sequence::create( tintAction, tintAction_back, NULL) );
+	sprt->runAction( Sequence::create( tintAction, tintAction_back, NULL) );
+}
 
-	if(0 >= healthPoint)
+void DolphinLayer::comboForFeverUp()
+{
+	MainGameLayer* parent = (MainGameLayer*)getParent();
+	parent->increaseDolphinBye();
+
+	// MainGameLayer dolphin touch for fever ++
+	((FeverLayer*)parent->getChildByTag(kTagFever))->increaseTouchCombo();	
+}
+
+void DolphinLayer::actionBlinkAndRemove(Sprite* sprt)
+{
+	stopAllActions();
+	auto blinkAction = Blink::create(1, 3);
+	auto blinkActionDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
+	auto seq = Sequence::create( blinkAction, blinkActionDone, NULL );
+	sprt->runAction(seq);
+}
+
+void DolphinLayer::playDolphinSound()
+{
+	switch(byePoint)
 	{
-		isBye = true;
-
-		// Bye sprite
-		if( sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye)) 
-			|| sprt_bye->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName("bye2.png")) )
-		{
-			sprt_bye->setVisible(true);
-			sprt_bye->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName("bye3.png") );
-		}
-
-		// Particle effect
-		/*auto particle = ParticleExplosion::create();
-		particle->setPosition( touch->getLocation() );
-		particle->setAutoRemoveOnFinish(true);
-		getParent()->addChild(particle);*/
-
-		// Sound
-		Sound::playDolphinEffectWithType(3);
-
-		// MainGameLayer dolphin count++
-		parent->increaseDolphinBye();
-
-		// MainGameLayer dolphin touch for fever ++
-		((FeverLayer*)parent->getChildByTag(kTagFever))->increaseTouchCombo();
-
-		// Blink action
-		stopAllActions();
-		auto blinkAction = Blink::create(1, 3);
-		auto blinkActionDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
-		auto seq = Sequence::create( blinkAction, blinkActionDone, NULL );
-		sprt_dolphin->runAction(seq);
-
-		// Remove Dolphin
-		//this->removeFromParentAndCleanup(true);
-	} else {
-		Sound::playDolphinEffectRand();
+		case 1:
+		case 2:
+			Sound::playDolphinEffectRand();
+			break;
+		case 3:
+		default:
+			Sound::playDolphinEffectWithType(3);
+			break;
 	}
-
 }
 
 void DolphinLayer::ccTouchMoved(Touch* touch, Event* event)
@@ -258,4 +272,28 @@ void DolphinLayer::actionBezier(Layer* lyr, int actualY)
     auto rep = RepeatForever::create(Sequence::create( towardToLeft, bezierForward, towardToRight, bezierBack, bezierEnd, NULL));
 
     lyr->runAction(rep);
+}
+
+Rect DolphinLayer::getDolphinRect()
+{
+	return Rect( this->getPosition().x - (sprt_dolphin->getContentSize().width/2),
+				 this->getPosition().y - (sprt_dolphin->getContentSize().height/2),
+				 sprt_dolphin->getContentSize().width,
+				 sprt_dolphin->getContentSize().height );
+}
+
+void DolphinLayer::attachToDiver(int diverPosX, int diverPosY)
+{
+	isAttachedToDiver = true;
+
+	stopAllActions();
+
+	// unvisible bye sprt
+	sprt_bye->setVisible(false);
+
+	// disable touch
+	Director* director = Director::getInstance();
+    director->getTouchDispatcher()->removeDelegate(this);
+
+	this->setPosition(diverPosX, diverPosY);
 }

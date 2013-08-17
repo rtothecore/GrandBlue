@@ -54,6 +54,9 @@
     <ClCompile Include="..\Classes\UtilFunc.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\DiveFeet.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppMacros.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DiveFeet.h">
+      <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

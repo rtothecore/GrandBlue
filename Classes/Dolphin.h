@@ -38,15 +38,25 @@ public:
     virtual void ccTouchMoved(Touch* touch, Event* event);
     virtual void ccTouchEnded(Touch* touch, Event* event);
 
-	// Health Point
-	static const int st_healthpoint = 3;
-	Sprite *sprt_hp;
-	int healthPoint;
-	void decreaseHealthPoint(Touch* touch);
-
-	// Bye
+	// Bye Point
 	bool isBye;
+	static const int st_byePoint = 3;
+	int byePoint;
 	Sprite *sprt_bye;
+
+	void aliveDolphinTouched();
+
+	void byePointUp();
+	void refreshByeSprite();
+	void actionTint(Sprite* sprt);
+	void comboForFeverUp();
+	void actionBlinkAndRemove(Sprite* sprt);
+	void playDolphinSound();
+
+	// attach to diver
+	bool isAttachedToDiver;
+	Rect getDolphinRect();
+	void attachToDiver(int diverPosX, int diverPosY);
 
 };
 

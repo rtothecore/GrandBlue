@@ -7,24 +7,24 @@ bool MenuLabelLayer::init()
 	return true;
 }
 
-void MenuLabelLayer::initWithLabel(char* chrLabel)
+void MenuLabelLayer::initWithLabel(char* chrLabel, float scaleVal)
 {
 	// Label Item (LabelBMFont)
     LabelBMFont* label = LabelBMFont::create(chrLabel, fontFile);
     MenuItemLabel* item = MenuItemLabel::create(label);
-    item->setScale( 1.0f );
+    item->setScale( scaleVal );
 	item->setTag(0);
 
 	// create menu
 	menu = Menu::create( item, NULL);
 }
 
-void MenuLabelLayer::addMenuItem(char* chrLabel)
+void MenuLabelLayer::addMenuItem(char* chrLabel, float scaleVal)
 {
 	// Label Item (LabelBMFont)
     LabelBMFont* label = LabelBMFont::create(chrLabel, fontFile);
     MenuItemLabel* item = MenuItemLabel::create(label);
-    item->setScale( 1.0f );
+    item->setScale( scaleVal );
 
 	menu->addChild(item, 0, menu->getChildrenCount());
 }
@@ -59,8 +59,6 @@ void MenuLabelLayer::createMenu()
 
 	// add menu
 	addChild(menu);
-
-	menu->setPosition( Point(s.width - 200, 100) );
 }
 
 void MenuLabelLayer::renameMenuItem(int itemIndex, char* chrLabel)

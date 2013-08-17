@@ -14,8 +14,8 @@ public:
 	Menu* menu;
 	char* fontFile;
 
-	void initWithLabel(char* chrLabel);
-	void addMenuItem(char* chrLabel);
+	void initWithLabel(char* chrLabel, float scaleVal);
+	void addMenuItem(char* chrLabel, float scaleVal);
 	void createMenu();
 
 	void renameMenuItem(int itemIndex, char* chrLabel);

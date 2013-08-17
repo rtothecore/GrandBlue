@@ -2,26 +2,27 @@
 #include "Resource.h"
 #include "UtilFunc.h"
 
-bool Diver::init()
+bool DiverLayer::init()
 {
 	healthPoint = st_healthpoint;
+	attachedDolphins = 0;
 	initWithPlist(p_Diver);
 	return true;
 }
 
-Diver::~Diver(void)
+DiverLayer::~DiverLayer(void)
 {
 }
 
-Diver* Diver::clone() const
+DiverLayer* DiverLayer::clone() const
 {
-	Diver* ret = Diver::create();
+	DiverLayer* ret = DiverLayer::create();
     ret->setPosition(getPosition());
     ret->setAnchorPoint(getAnchorPoint());
     return ret;
 }
 
-bool Diver::initWithPlist(const char* plist)
+bool DiverLayer::initWithPlist(const char* plist)
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist);
 	
@@ -57,7 +58,7 @@ bool Diver::initWithPlist(const char* plist)
 		// Action
 		//int actionIndex = (rand() % 2);
 		//actionIndex>0 ? Diver::actionSequence(this, actualY, actualDuration) : Diver::actionBezier(this, actualY);
-		Diver::actionMoveStacked(this, 50, 0);
+		actionMoveStacked(this, 50, 0);
 
 		// HP sprite
 		sprt_hp = Sprite::create();
@@ -71,7 +72,7 @@ bool Diver::initWithPlist(const char* plist)
 	return true;
 }
 
-void Diver::actionMoveStacked(Layer *lyr, int destX, int destY)
+void DiverLayer::actionMoveStacked(Layer *lyr, int destX, int destY)
 {
     lyr->runAction(
         RepeatForever::create(
@@ -89,33 +90,33 @@ void Diver::actionMoveStacked(Layer *lyr, int destX, int destY)
       ));
 }
 
-Rect Diver::getRect()
+Rect DiverLayer::getRect()
 {
 	Size s = frm_diver->getOriginalSize();
 	
     return Rect(-s.width / 2, -s.height / 2, s.width, s.height);
 }
 
-void Diver::onEnter()
+void DiverLayer::onEnter()
 {
     Director* director = Director::getInstance();
     director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
     Layer::onEnter();
 }
 
-void Diver::onExit()
+void DiverLayer::onExit()
 {
     Director* director = Director::getInstance();
     director->getTouchDispatcher()->removeDelegate(this);
     Layer::onExit();
 }
 
-bool Diver::containsTouchLocation(Touch* touch)
+bool DiverLayer::containsTouchLocation(Touch* touch)
 {
     return getRect().containsPoint(convertTouchToNodeSpaceAR(touch));
 }
 
-bool Diver::ccTouchBegan(Touch* touch, Event* event)
+bool DiverLayer::ccTouchBegan(Touch* touch, Event* event)
 {
     if ( !containsTouchLocation(touch) ) return false;
     
@@ -124,7 +125,7 @@ bool Diver::ccTouchBegan(Touch* touch, Event* event)
     return true;
 }
 
-void Diver::decreaseHealthPoint(Touch* touch) 
+void DiverLayer::decreaseHealthPoint(Touch* touch) 
 {
 	healthPoint--;
 
@@ -146,52 +147,52 @@ void Diver::decreaseHealthPoint(Touch* touch)
 	}
 }
 
-void Diver::ccTouchMoved(Touch* touch, Event* event)
+void DiverLayer::ccTouchMoved(Touch* touch, Event* event)
 {   
 }
 
-void Diver::ccTouchEnded(Touch* touch, Event* event)
+void DiverLayer::ccTouchEnded(Touch* touch, Event* event)
 {    
 }
 
-void Diver::spriteFlipY(Object* pSender)
+void DiverLayer::spriteFlipY(Object* pSender)
 {
 	Layer *layer = (Layer *)pSender;
 	layer->setScaleX(-1);
 }
 
-void Diver::spriteUnflipY(Object* pSender)
+void DiverLayer::spriteUnflipY(Object* pSender)
 {
 	Layer *layer = (Layer *)pSender;
 	layer->setScaleX(1);
 }
 
-void Diver::removeMyself(float dt) 
+void DiverLayer::removeMyself(float dt) 
 {
 	this->removeFromParentAndCleanup(true);
 }
 
-void Diver::spriteMoveFinished(Object* pSender)
+void DiverLayer::spriteMoveFinished(Object* pSender)
 {
 	Sprite *sprite = (Sprite *)pSender;
 	this->removeFromParentAndCleanup(true);
 }
 
-void Diver::actionSequence(Layer* lyr, int actualY, int actualDuration)
+void DiverLayer::actionSequence(Layer* lyr, int actualY, int actualDuration)
 {
-	auto actionMoveToLeftBefore = CallFuncN::create( CC_CALLBACK_1(Diver::spriteFlipY, this) );
+	auto actionMoveToLeftBefore = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteFlipY, this) );
 	auto actionMoveToLeft = MoveTo::create( (float)actualDuration, Point(0 - lyr->getContentSize().width/2, actualY) );
 	auto actionMoveToLeftEaseInOut = EaseInOut::create(actionMoveToLeft, 1.2);
 	auto actionPause = DelayTime::create(0.5);
-	auto actionPauseDone = CallFuncN::create( CC_CALLBACK_1(Diver::spriteUnflipY, this) );
+	auto actionPauseDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteUnflipY, this) );
 	auto actionBackToRight = MoveTo::create( (float)actualDuration, Point(lyr->getPosition().x, actualY) );
 	auto actionBackToRightEaseIn = EaseIn::create(actionBackToRight, 1.2);
-	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(Diver::spriteMoveFinished, this) );
+	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
 
     lyr->runAction( CCSequence::create(actionMoveToLeftBefore, actionMoveToLeftEaseInOut, actionPause, actionPauseDone, actionBackToRightEaseIn, actionMoveDone, NULL) );
 }
 
-void Diver::actionBezier(Layer* lyr, int actualY)
+void DiverLayer::actionBezier(Layer* lyr, int actualY)
 {
     ccBezierConfig bezier;
 	
@@ -199,12 +200,32 @@ void Diver::actionBezier(Layer* lyr, int actualY)
     bezier.controlPoint_2 = Point(-250, actualY - 200);
     bezier.endPosition = Point(-500, actualY);
 	
-	auto towardToLeft = CallFuncN::create(CC_CALLBACK_1(Diver::spriteFlipY, this));
-	auto towardToRight = CallFuncN::create(CC_CALLBACK_1(Diver::spriteUnflipY, this));
+	auto towardToLeft = CallFuncN::create(CC_CALLBACK_1(DiverLayer::spriteFlipY, this));
+	auto towardToRight = CallFuncN::create(CC_CALLBACK_1(DiverLayer::spriteUnflipY, this));
     auto bezierForward = BezierBy::create(3, bezier);
     auto bezierBack = bezierForward->reverse();
-	auto bezierEnd = CallFuncN::create( CC_CALLBACK_1(Diver::spriteMoveFinished, this) );
+	auto bezierEnd = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
     auto rep = RepeatForever::create(Sequence::create( towardToLeft, bezierForward, towardToRight, bezierBack, bezierEnd, NULL));
 
     lyr->runAction(rep);
+}
+
+Rect DiverLayer::getDiverRect()
+{
+	return Rect( this->getPosition().x - (sprt_diver->getContentSize().width/2),
+				 this->getPosition().y - (sprt_diver->getContentSize().height/2),
+				 sprt_diver->getContentSize().width,
+				 sprt_diver->getContentSize().height );
+}
+
+void DiverLayer::refreshDiverPositionWithDolphin()
+{
+	attachedDolphins++;
+	actionDownMoveBy(-20);
+}
+
+void DiverLayer::actionDownMoveBy(int yDelta)
+{
+	auto actionMoveToDown = MoveBy::create( 1.0f, Point(0, yDelta) );
+	runAction(actionMoveToDown);
 }
