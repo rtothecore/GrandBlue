@@ -39,15 +39,17 @@ public:
     virtual void ccTouchMoved(Touch* touch, Event* event);
     virtual void ccTouchEnded(Touch* touch, Event* event);
 
-	// Health Point
-	static const int st_healthpoint = 3;
-	Sprite *sprt_hp;
-	int healthPoint;
-	void decreaseHealthPoint(Touch* touch);
+	// Love Point
+	bool isLove;
+	static const unsigned int st_maxLovePoint = 5;
+	unsigned int lovePoint;
+	Sprite *sprt_love;
+	void refreshLoveSprite();
+	void increaseLovePoint();
+	void runLoveAction();
 
 	// get collisioned dolphin
 	Rect getDiverRect();
-	int attachedDolphins;
 	void refreshDiverPositionWithDolphin();
 	void actionDownMoveBy(int yDelta);
 };

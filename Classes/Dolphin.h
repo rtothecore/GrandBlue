@@ -19,6 +19,7 @@ public:
 	// sprite
 	SpriteFrame *frm_dolphin;
 	Sprite *sprt_dolphin;
+	bool isHeadToLeft;
 
 	// action
 	void spriteFlipY(Object* pSender);
@@ -57,6 +58,9 @@ public:
 	bool isAttachedToDiver;
 	Rect getDolphinRect();
 	void attachToDiver(int diverPosX, int diverPosY);
+
+	// love action
+	void runLoveAction();
 
 };
 

@@ -29,6 +29,11 @@ void DiveFeetLayer::startDive()
 	schedule( schedule_selector(DiveFeetLayer::incrementDiveFeet), 2.0f );
 }
 
+void DiveFeetLayer::stopDive()
+{
+	unschedule( schedule_selector(DiveFeetLayer::incrementDiveFeet) );
+}
+
 void DiveFeetLayer::incrementDiveFeet(float dt)
 {
 	currentDivedFeet += diveStep;
@@ -39,8 +44,14 @@ void DiveFeetLayer::incrementDiveFeet(float dt)
 	((MenuLabelLayer*)getChildByTag(kTagMLDiveFeet))->renameMenuItem(0, chrDiveFeet);
 }
 
-void DiveFeetLayer::setDiveStep(int diveStepVal)
+void DiveFeetLayer::setDiveStep(int diveStepVal, float timeVal)
 {
 	diveStep = diveStepVal;
+	scheduleOnce( schedule_selector(DiveFeetLayer::resetDiveStep), timeVal );
+}
+
+void DiveFeetLayer::resetDiveStep(float dt)
+{
+	diveStep = 1;
 }
 

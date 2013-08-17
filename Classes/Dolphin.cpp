@@ -13,6 +13,7 @@ bool DolphinLayer::init()
 {
 	isBye = false;
 	byePoint = 0;
+	isHeadToLeft = true;
 	isAttachedToDiver = false;
 
 	initWithPlist(p_Dolphin);
@@ -221,6 +222,7 @@ void DolphinLayer::spriteFlipY(Object* pSender)
 	Layer *layer = (Layer *)pSender;
 	layer->setScaleX(-1);
 	sprt_bye->setScaleX(-1);
+	isHeadToLeft = true;
 }
 
 void DolphinLayer::spriteUnflipY(Object* pSender)
@@ -229,6 +231,7 @@ void DolphinLayer::spriteUnflipY(Object* pSender)
 	layer->setScaleX(1);
 	sprt_bye->setScaleX(1);
 	sprt_bye->setPositionX(frm_dolphin->getOriginalSize().width/2);
+	isHeadToLeft = false;
 }
 
 void DolphinLayer::removeMyself(float dt) 
@@ -291,9 +294,20 @@ void DolphinLayer::attachToDiver(int diverPosX, int diverPosY)
 	// unvisible bye sprt
 	sprt_bye->setVisible(false);
 
+	// head to left
+	spriteFlipY(this);
+
 	// disable touch
 	Director* director = Director::getInstance();
     director->getTouchDispatcher()->removeDelegate(this);
 
 	this->setPosition(diverPosX, diverPosY);
+}
+
+void DolphinLayer::runLoveAction()
+{
+	// move to left screen edge
+	auto actionMoveToLeft = MoveTo::create( 4.5, Point(0 - sprt_dolphin->getContentSize().width , getPositionY()) );
+	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DolphinLayer::spriteMoveFinished, this) );
+	runAction( Sequence::create(actionMoveToLeft, actionMoveDone, NULL) );
 }

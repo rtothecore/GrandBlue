@@ -4,8 +4,9 @@
 
 bool DiverLayer::init()
 {
-	healthPoint = st_healthpoint;
-	attachedDolphins = 0;
+	isLove = false;
+	lovePoint = 0;
+
 	initWithPlist(p_Diver);
 	return true;
 }
@@ -60,13 +61,14 @@ bool DiverLayer::initWithPlist(const char* plist)
 		//actionIndex>0 ? Diver::actionSequence(this, actualY, actualDuration) : Diver::actionBezier(this, actualY);
 		actionMoveStacked(this, 50, 0);
 
-		// HP sprite
-		sprt_hp = Sprite::create();
-		sprt_hp->setTextureRect(CCRectMake(0, 0, 50, 5));
-		sprt_hp->setColor(Color3B::RED);
+		// Love sprite
 		Size diverSize = frm_diver->getOriginalSize();
-		sprt_hp->setPosition(Point(0, diverSize.height / 2 + 5));
-		this->addChild(sprt_hp);
+
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_Love);
+		sprt_love = Sprite::createWithSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Love) );
+		sprt_love->setPosition( Point(0, diverSize.height/2) );
+		sprt_love->setVisible(false);
+		addChild(sprt_love);
 	}
 
 	return true;
@@ -119,32 +121,8 @@ bool DiverLayer::containsTouchLocation(Touch* touch)
 bool DiverLayer::ccTouchBegan(Touch* touch, Event* event)
 {
     if ( !containsTouchLocation(touch) ) return false;
-    
-	decreaseHealthPoint(touch);
 
     return true;
-}
-
-void DiverLayer::decreaseHealthPoint(Touch* touch) 
-{
-	healthPoint--;
-
-	int hpBar = (50 / st_healthpoint) * healthPoint;
-	sprt_hp->setTextureRect(CCRectMake(0, 0, hpBar, 5));
-
-	if(0 == healthPoint) 
-	{
-		CCLog("HealthPoint is 0");
-
-		// Particle effect
-		auto particle = ParticleGalaxy::create();
-		particle->setPosition( touch->getLocation() );
-		particle->setAutoRemoveOnFinish(true);
-		getParent()->addChild(particle);
-
-		// Remove Diver
-		this->removeFromParentAndCleanup(true);	
-	}
 }
 
 void DiverLayer::ccTouchMoved(Touch* touch, Event* event)
@@ -220,12 +198,59 @@ Rect DiverLayer::getDiverRect()
 
 void DiverLayer::refreshDiverPositionWithDolphin()
 {
-	attachedDolphins++;
 	actionDownMoveBy(-20);
+
+	increaseLovePoint();
+	refreshLoveSprite();
 }
 
 void DiverLayer::actionDownMoveBy(int yDelta)
 {
 	auto actionMoveToDown = MoveBy::create( 1.0f, Point(0, yDelta) );
 	runAction(actionMoveToDown);
+}
+
+void DiverLayer::refreshLoveSprite()
+{
+	if(st_maxLovePoint >= lovePoint)
+	{
+		if(1 == lovePoint)
+		{
+			sprt_love->setVisible(true);
+		} else {
+			char chrCurrentLoveFrame[10] = {0};
+			sprintf(chrCurrentLoveFrame, "love%d.png", lovePoint-1);
+
+			char chrNextLoveFrame[10] = {0};
+			sprintf(chrNextLoveFrame, "love%d.png", lovePoint);
+
+			if( sprt_love->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(chrCurrentLoveFrame)) )
+				sprt_love->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(chrNextLoveFrame) );
+		}
+	}
+}
+
+void DiverLayer::increaseLovePoint()
+{
+	if(st_maxLovePoint > lovePoint)
+	{
+		lovePoint++;
+
+		if(st_maxLovePoint == lovePoint)
+		{
+			isLove = true;
+			CCLog("Diver is falling in love with dolphin");
+		}
+	}
+}
+
+void DiverLayer::runLoveAction()
+{
+	// rotate 90
+	sprt_diver->setRotation(90);
+
+	// move to left screen edge
+	auto actionMoveToLeft = MoveTo::create( 5, Point(0 - sprt_diver->getContentSize().width , getPositionY()) );
+	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
+	runAction( Sequence::create(actionMoveToLeft, actionMoveDone, NULL) );
 }

@@ -14,12 +14,15 @@ private:
 	void initWithLabel();
 	void incrementDiveFeet(float dt);
 
+	void resetDiveStep(float dt);
+
 public:
 	virtual bool init();
 	CREATE_FUNC(DiveFeetLayer);
 
 	void startDive();
-	void setDiveStep(int diveStepVal);
+	void stopDive();
+	void setDiveStep(int diveStepVal, float timeVal);
 };
 
 #endif

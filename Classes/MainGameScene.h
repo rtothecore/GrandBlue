@@ -14,9 +14,6 @@ public:
 
 class MainGameLayer : public Layer
 {
-private:
-	Array*    _dolphins;
-
 public:
 	virtual bool init();
 	CREATE_FUNC(MainGameLayer);
@@ -51,6 +48,10 @@ public:
 	// collision check
 	void detectCollisionBitwinDolphinNDiver(float dt);
 	bool checkCollisionBitwinDolphinNDiver();
+
+	// falled in love event
+	void runDiverFalledInLoveEvent();
+	void DiverNDophinLoveAction(float dt);
 };
 
 

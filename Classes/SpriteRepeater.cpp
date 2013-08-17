@@ -58,6 +58,11 @@ void SpriteRepeater::moveFinished(Object* pSender)
 	setPosition(Point(orgX, orgY));
 }
 
+void SpriteRepeater::stopMoveActions()
+{
+	stopAllActions();
+}
+
 
 //------------------------------------------------------------------
 //

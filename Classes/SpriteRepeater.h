@@ -15,6 +15,7 @@ public:
 	virtual bool initWithTexture(Texture2D* aTexture, int zValue, int durValue);
 	virtual void actionSequence(Sprite* spr, int destX, int destY, int actualDuration);
 	virtual void moveFinished(Object* pSender);
+	virtual void stopMoveActions();
 };
 
 class Rope : public SpriteRepeater

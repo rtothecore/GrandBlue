@@ -17,6 +17,9 @@ enum {
 	kTagFever = 3,
 	kTagLayerDiver = 4,
 	kTagLayerDiveFeet = 5,
+	kTagRocks = 6,
+	kTagRope = 7,
+	kTagLayerDolphin = 8,
 };
 
 //------------------------------------------------------------------
@@ -40,7 +43,6 @@ bool MainGameScene::init()
 bool MainGameLayer::init()
 {
 	iDolphinBye = 0;
-	_dolphins = NULL;
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
@@ -72,8 +74,6 @@ void MainGameLayer::playBubbleEffect(float dt)
 
 MainGameLayer::~MainGameLayer()
 {
-    _dolphins->release();
-
 	// Touch
 	Director* director = Director::getInstance();
     director->getTouchDispatcher()->removeDelegate(this);
@@ -159,7 +159,7 @@ void MainGameLayer::addRocks()
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
 	Rocks* rocks = Rocks::create();
 	rocks->initWithTexture(rocksTexture, 1, 3);
-	addChild(rocks);
+	addChild(rocks, 1, kTagRocks);
 }
 
 void MainGameLayer::addRope()
@@ -167,38 +167,16 @@ void MainGameLayer::addRope()
 	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
 	Rope* rope = Rope::create();
 	rope->initWithTexture(ropeTexture, 0, 15);
-	addChild(rope);
+	addChild(rope, 0, kTagRope);
 }
 
 void MainGameLayer::addDolphin(float dt)
 {
-	Array *dolphinsM = Array::createWithCapacity(4);
-    
-	DolphinLayer* dolphinL = DolphinLayer::create();
-    dolphinsM->addObject( dolphinL );
-    
-	dolphinL = DolphinLayer::create();
-	dolphinsM->addObject( dolphinL );
-
-	dolphinL = DolphinLayer::create();
-	dolphinsM->addObject( dolphinL );
-
-	dolphinL = DolphinLayer::create();
-	dolphinsM->addObject( dolphinL );
-	
-    _dolphins = dolphinsM->clone();
-    _dolphins->retain();
-    
-    Object* pObj = NULL;
-    CCARRAY_FOREACH(_dolphins, pObj)
-    {
-        dolphinL = static_cast<DolphinLayer*>(pObj);
-
-        if(!dolphinL)
-            break;
-
-        addChild(dolphinL);
-    }
+	for(int i=0; i<4; i++)
+	{
+		DolphinLayer* dolphinL = DolphinLayer::create();
+		addChild(dolphinL, 0, kTagLayerDolphin);
+	}
 }
 
 void MainGameLayer::addDiver()
@@ -223,22 +201,32 @@ bool MainGameLayer::checkCollisionBitwinDolphinNDiver()
 	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
 	Object* pObj = NULL;
 
-	if(NULL != _dolphins)
+	Array *arrChildren = getChildren();
+
+	CCARRAY_FOREACH(arrChildren, pObj)
 	{
-		CCARRAY_FOREACH(_dolphins, pObj)
+		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
 		{
 			dolphinL = static_cast<DolphinLayer*>(pObj);
 
 			if(!dolphinL)
 				break;
 
-			if( !dolphinL->isAttachedToDiver &&
-				 dolphinL->getDolphinRect().intersectsRect(diverL->getDiverRect()) )
+			if( !diverL->isLove
+				&& !dolphinL->isAttachedToDiver 
+				&& dolphinL->getDolphinRect().intersectsRect(diverL->getDiverRect()) )
 			{
+					CCLOG("Dolphin meet diver~^^");
+
 					dolphinL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
 					diverL->refreshDiverPositionWithDolphin();
-					((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(diverL->attachedDolphins + 1);
-					CCLOG("Dolphin meet diver~^^");
+					((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(5, 5);
+					
+					if(diverL->isLove)
+					{
+						runDiverFalledInLoveEvent();
+					}
+
 					return true;
 			}
 		}
@@ -247,14 +235,57 @@ bool MainGameLayer::checkCollisionBitwinDolphinNDiver()
 	return false;
 }
 
+void MainGameLayer::runDiverFalledInLoveEvent()
+{
+	unschedule( schedule_selector(MainGameLayer::detectCollisionBitwinDolphinNDiver) );
+	unschedule( schedule_selector(MainGameLayer::addDolphin) );
+
+	((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->stopDive();
+
+	((Rope*)getChildByTag(kTagRope))->stopMoveActions();
+	removeChildByTag(kTagRope);
+
+	((Rocks*)getChildByTag(kTagRocks))->stopMoveActions();
+	removeChildByTag(kTagRocks);
+
+	removeChildByTag(kTagBackground);
+
+	scheduleOnce( schedule_selector(MainGameLayer::DiverNDophinLoveAction), 3);
+	//unschedule( schedule_selector(MainGameLayer::menuLabelDolphinRefresh) );
+}
+
+void MainGameLayer::DiverNDophinLoveAction(float dt)
+{
+	// dolphin love action
+	Array *arrChildren = getChildren();
+	Object* pObj = NULL;
+	DolphinLayer* dolphinL;
+
+	CCARRAY_FOREACH(arrChildren, pObj)
+	{
+		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
+		{
+			dolphinL = static_cast<DolphinLayer*>(pObj);
+
+			if(dolphinL && dolphinL->isAttachedToDiver)
+				dolphinL->runLoveAction();
+		}
+	}
+
+	// diver love action
+	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
+	diverL->runLoveAction();
+}
+
 bool MainGameLayer::containsDolphinLocation(Touch* touch)
 {
-	DolphinLayer* dolphinL;
+	Array *arrChildren = getChildren();
 	Object* pObj = NULL;
+	DolphinLayer* dolphinL;
 
-	if(NULL != _dolphins)
+	CCARRAY_FOREACH(arrChildren, pObj)
 	{
-		CCARRAY_FOREACH(_dolphins, pObj)
+		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
 		{
 			dolphinL = static_cast<DolphinLayer*>(pObj);
 
