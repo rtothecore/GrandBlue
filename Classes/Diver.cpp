@@ -8,6 +8,11 @@ bool DiverLayer::init()
 	lovePoint = 0;
 
 	initWithPlist(p_Diver);
+
+	//touch
+	Director* director = Director::getInstance();
+    director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+
 	return true;
 }
 
@@ -20,6 +25,11 @@ DiverLayer* DiverLayer::clone() const
 	DiverLayer* ret = DiverLayer::create();
     ret->setPosition(getPosition());
     ret->setAnchorPoint(getAnchorPoint());
+
+	//Added
+	ret->lovePoint = lovePoint;
+	ret->isLove = isLove;
+
     return ret;
 }
 
@@ -69,6 +79,12 @@ bool DiverLayer::initWithPlist(const char* plist)
 		sprt_love->setPosition( Point(0, diverSize.height/2) );
 		sprt_love->setVisible(false);
 		addChild(sprt_love);
+
+		// Collision Check sprite
+		/*Sprite* sprtTest = Sprite::create();
+		sprtTest->setTextureRect(getDiverRect());
+		sprtTest->setColor(Color3B::WHITE);
+		addChild(sprtTest);*/
 	}
 
 	return true;
@@ -101,8 +117,6 @@ Rect DiverLayer::getRect()
 
 void DiverLayer::onEnter()
 {
-    Director* director = Director::getInstance();
-    director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
     Layer::onEnter();
 }
 
@@ -127,6 +141,14 @@ bool DiverLayer::ccTouchBegan(Touch* touch, Event* event)
 
 void DiverLayer::ccTouchMoved(Touch* touch, Event* event)
 {   
+	Rect moveLimitRect = Rect( 0 + getContentSize().width, 
+							   0 + getContentSize().height , 
+							   UtilFunc::getWinSize().width - getContentSize().width,
+							   UtilFunc::getWinSize().height - getContentSize().height
+						     );
+
+	if( moveLimitRect.containsPoint(touch->getLocation()) )
+		setPosition( Point(touch->getLocation().x, touch->getLocation().y) );
 }
 
 void DiverLayer::ccTouchEnded(Touch* touch, Event* event)
@@ -188,17 +210,28 @@ void DiverLayer::actionBezier(Layer* lyr, int actualY)
     lyr->runAction(rep);
 }
 
+// WARNING : Rect's anchor point is not (0.5, 0.5) but (0, 0) !!!!
 Rect DiverLayer::getDiverRect()
 {
-	return Rect( this->getPosition().x - (sprt_diver->getContentSize().width/2),
+	//ORIGINAL
+	/*return Rect( this->getPosition().x - (sprt_diver->getContentSize().width/2),
 				 this->getPosition().y - (sprt_diver->getContentSize().height/2),
 				 sprt_diver->getContentSize().width,
-				 sprt_diver->getContentSize().height );
+				 sprt_diver->getContentSize().height );*/
+
+	float rectWidth = 20;
+	float rectHeight = 20;
+	
+	return Rect( this->getPosition().x - rectWidth / 2, 
+		         this->getPosition().y - rectHeight / 2,
+				 rectWidth, 
+				 rectHeight );
 }
 
 void DiverLayer::refreshDiverPositionWithDolphin()
 {
-	actionDownMoveBy(-20);
+	if(0 + getContentSize().height < getPositionY() - 20)
+		actionDownMoveBy(-20);
 
 	increaseLovePoint();
 	refreshLoveSprite();

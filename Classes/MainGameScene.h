@@ -50,8 +50,9 @@ public:
 	bool checkCollisionBitwinDolphinNDiver();
 
 	// falled in love event
-	void runDiverFalledInLoveEvent();
-	void DiverNDophinLoveAction(float dt);
+	/*void runDiverFalledInLoveEvent();
+	void DiverNDophinLoveAction(float dt);*/
+	void toEndGameSceneWithLove();
 };
 
 

@@ -10,6 +10,7 @@
 #include "ProgressBar.h"
 #include "Fever.h"
 #include "DiveFeet.h"
+#include "EndGameScene.h"
 
 enum {
     kTagBackground = 1,
@@ -121,7 +122,7 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	addChild(feverL, 1, kTagFever);
 
 	// collision detect between Dolphin and Diver
-	schedule(schedule_selector(MainGameLayer::detectCollisionBitwinDolphinNDiver), 0.5);
+	schedule(schedule_selector(MainGameLayer::detectCollisionBitwinDolphinNDiver));
 }
 
 void MainGameLayer::menuLabelDolphinRefresh(float dt)
@@ -146,6 +147,40 @@ void MainGameLayer::menuBackCallback(Object* pSender)
 {
 	Scene *scene = TransitionSlideInT::create(2, MainTitleScene::create());
 	Director::getInstance()->pushScene(scene);
+}
+
+void MainGameLayer::toEndGameSceneWithLove()
+{
+	EndGameScene *scene = EndGameScene::create();
+
+	// clone Diver
+	DiverLayer* diverCloneL = ((DiverLayer*)getChildByTag(kTagLayerDiver))->clone();
+	scene->addChild(diverCloneL, 1, kTagLayerDiver);
+
+	// clone Dolphin
+	Array *arrChildren = getChildren();
+	Object* pObj = NULL;
+	DolphinLayer* dolphinL;
+
+	CCARRAY_FOREACH(arrChildren, pObj)
+	{
+		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
+		{
+			dolphinL = static_cast<DolphinLayer*>(pObj);
+
+			if(dolphinL && dolphinL->isAttachedToDiver)
+			{
+				DolphinLayer* dolphinCloneL = dolphinL->clone();
+				dolphinCloneL->attachToDiver(dolphinL->getPositionX(), dolphinL->getPositionY());
+				scene->addChild(dolphinCloneL, 0, kTagLayerDolphin);
+			}
+		}
+	}
+
+	// start love event
+	scene->runLoveEvent();
+
+	Director::getInstance()->replaceScene(scene);
 }
 
 void MainGameLayer::addBackground()
@@ -213,68 +248,30 @@ bool MainGameLayer::checkCollisionBitwinDolphinNDiver()
 				break;
 
 			if( !diverL->isLove
+				&& !dolphinL->isBye
 				&& !dolphinL->isAttachedToDiver 
 				&& dolphinL->getDolphinRect().intersectsRect(diverL->getDiverRect()) )
 			{
-					CCLOG("Dolphin meet diver~^^");
+				Rect diverR = diverL->getDiverRect();
+				Rect dolR = dolphinL->getDolphinRect();
 
-					dolphinL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
-					diverL->refreshDiverPositionWithDolphin();
-					((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(5, 5);
-					
-					if(diverL->isLove)
-					{
-						runDiverFalledInLoveEvent();
-					}
+				log("Dolphin meet diver~^^");
 
-					return true;
+				dolphinL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
+				diverL->refreshDiverPositionWithDolphin();
+				((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(5, 5);
+
+				if(diverL->isLove)
+				{
+					toEndGameSceneWithLove();
+				}
+
+				return true;
 			}
 		}
 	}
 
 	return false;
-}
-
-void MainGameLayer::runDiverFalledInLoveEvent()
-{
-	unschedule( schedule_selector(MainGameLayer::detectCollisionBitwinDolphinNDiver) );
-	unschedule( schedule_selector(MainGameLayer::addDolphin) );
-
-	((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->stopDive();
-
-	((Rope*)getChildByTag(kTagRope))->stopMoveActions();
-	removeChildByTag(kTagRope);
-
-	((Rocks*)getChildByTag(kTagRocks))->stopMoveActions();
-	removeChildByTag(kTagRocks);
-
-	removeChildByTag(kTagBackground);
-
-	scheduleOnce( schedule_selector(MainGameLayer::DiverNDophinLoveAction), 3);
-	//unschedule( schedule_selector(MainGameLayer::menuLabelDolphinRefresh) );
-}
-
-void MainGameLayer::DiverNDophinLoveAction(float dt)
-{
-	// dolphin love action
-	Array *arrChildren = getChildren();
-	Object* pObj = NULL;
-	DolphinLayer* dolphinL;
-
-	CCARRAY_FOREACH(arrChildren, pObj)
-	{
-		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
-		{
-			dolphinL = static_cast<DolphinLayer*>(pObj);
-
-			if(dolphinL && dolphinL->isAttachedToDiver)
-				dolphinL->runLoveAction();
-		}
-	}
-
-	// diver love action
-	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
-	diverL->runLoveAction();
 }
 
 bool MainGameLayer::containsDolphinLocation(Touch* touch)

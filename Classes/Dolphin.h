@@ -58,6 +58,7 @@ public:
 	bool isAttachedToDiver;
 	Rect getDolphinRect();
 	void attachToDiver(int diverPosX, int diverPosY);
+	void runAfterDiver(float dt);
 
 	// love action
 	void runLoveAction();

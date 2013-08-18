@@ -57,6 +57,9 @@
     <ClCompile Include="..\Classes\DiveFeet.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\EndGameScene.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -111,6 +114,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\DiveFeet.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EndGameScene.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

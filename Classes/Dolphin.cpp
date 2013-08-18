@@ -4,9 +4,11 @@
 #include "Sound.h"
 #include "MainGameScene.h"
 #include "Fever.h"
+#include "Diver.h"
 
 enum {
 	kTagFever = 3,
+	kTagLayerDiver = 4,
 };
 
 bool DolphinLayer::init()
@@ -17,6 +19,10 @@ bool DolphinLayer::init()
 	isAttachedToDiver = false;
 
 	initWithPlist(p_Dolphin);
+
+	//touch
+	Director* director = Director::getInstance();
+    director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 	
 	return true;
 }
@@ -30,6 +36,13 @@ DolphinLayer* DolphinLayer::clone() const
 	DolphinLayer* ret = DolphinLayer::create();
     ret->setPosition(getPosition());
     ret->setAnchorPoint(getAnchorPoint());
+
+	//Added
+	ret->isBye = isBye;
+	ret->byePoint = byePoint;
+	ret->isHeadToLeft = isHeadToLeft;
+	ret->isAttachedToDiver = isAttachedToDiver;
+
     return ret;
 }
 
@@ -76,6 +89,12 @@ bool DolphinLayer::initWithPlist(const char* plist)
 		sprt_bye->setPosition( Point(0, frm_dolphin->getOriginalSize().height/2) );
 		sprt_bye->setVisible(false);
 		addChild(sprt_bye);
+
+		// Collision Check sprite
+		/*Sprite* sprtTest = Sprite::create();
+		sprtTest->setTextureRect(getDolphinRect());
+		sprtTest->setColor(Color3B::WHITE);
+		addChild(sprtTest);*/
 	}
 
 	return true;
@@ -90,8 +109,6 @@ Rect DolphinLayer::getRect()
 
 void DolphinLayer::onEnter()
 {
-    Director* director = Director::getInstance();
-    director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
     Layer::onEnter();
 }
 
@@ -145,7 +162,9 @@ void DolphinLayer::byePointUp()
 	byePoint += touchPoint;
 
 	if(st_byePoint <= byePoint)
+	{
 		isBye = true;
+	}
 }
 
 void DolphinLayer::refreshByeSprite()
@@ -291,6 +310,9 @@ void DolphinLayer::attachToDiver(int diverPosX, int diverPosY)
 
 	stopAllActions();
 
+	// set color
+	sprt_dolphin->setColor(Color3B::RED);
+
 	// unvisible bye sprt
 	sprt_bye->setVisible(false);
 
@@ -301,7 +323,21 @@ void DolphinLayer::attachToDiver(int diverPosX, int diverPosY)
 	Director* director = Director::getInstance();
     director->getTouchDispatcher()->removeDelegate(this);
 
-	this->setPosition(diverPosX, diverPosY);
+	// run after diver
+	schedule( schedule_selector(DolphinLayer::runAfterDiver), 0.5f );
+
+	// set potion to diver
+	//this->setPosition(diverPosX, diverPosY);
+}
+
+void DolphinLayer::runAfterDiver(float dt)
+{
+	MainGameLayer* parent = (MainGameLayer*)getParent();
+	Point pntDiver = ((DiverLayer*)parent->getChildByTag(kTagLayerDiver))->getPosition();
+
+	auto actionMoveToDiver = MoveTo::create(3.4, pntDiver);
+	auto actionMoveToDiverEaseInOut = EaseInOut::create(actionMoveToDiver, 1.2);
+	runAction(actionMoveToDiverEaseInOut);
 }
 
 void DolphinLayer::runLoveAction()
