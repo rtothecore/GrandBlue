@@ -23,8 +23,14 @@ public:
 	static void stopFeverMusic();
 
 	static void playBubbleEffect();
+
+	// dolphin
 	static void playDolphinEffectRand();
 	static void playDolphinEffectWithType(int type);
+
+	// turtle
+	static void playTurtleEffectRand();
+	static void playTurtleEffectWithType(int type);
 };
 
 #endif

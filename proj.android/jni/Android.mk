@@ -21,7 +21,11 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/Diver.cpp \
 		   ../../Classes/Background.cpp \
 		   ../../Classes/DiveFeet.cpp \
-		   ../../Classes/EndGameScene.cpp
+		   ../../Classes/EndGameScene.cpp \
+		   ../../Classes/MarineLife.cpp \
+		   ../../Classes/Turtle.cpp \
+		   ../../Classes/MainGameScene2.cpp \
+		   ../../Classes/MainGameBase.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

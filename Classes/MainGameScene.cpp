@@ -1,27 +1,16 @@
 #include "MainGameScene.h"
-#include "MainTitleScene.h"
 #include "Dolphin.h"
-#include "Diver.h"
+#include "MenuLabel.h"
 #include "Resource.h"
 #include "SpriteRepeater.h"
 #include "Sound.h"
 #include "Background.h"
-#include "MenuLabel.h"
 #include "ProgressBar.h"
-#include "Fever.h"
 #include "DiveFeet.h"
-#include "EndGameScene.h"
-
-enum {
-    kTagBackground = 1,
-    kTagLabelDolphin = 2,
-	kTagFever = 3,
-	kTagLayerDiver = 4,
-	kTagLayerDiveFeet = 5,
-	kTagRocks = 6,
-	kTagRope = 7,
-	kTagLayerDolphin = 8,
-};
+#include "Fever.h"
+#include "Diver.h"
+#include "Tags.h"
+#include "MainGameScene2.h"
 
 //------------------------------------------------------------------
 //
@@ -43,7 +32,9 @@ bool MainGameScene::init()
 //------------------------------------------------------------------
 bool MainGameLayer::init()
 {
-	iDolphinBye = 0;
+	iMarineLifeBye = 0;
+	iMaxFeet = 20;
+	iTagForMarinelife = kTagLayerDolphin;
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
@@ -66,18 +57,6 @@ bool MainGameLayer::init()
     director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
 
 	return true;
-}
-
-void MainGameLayer::playBubbleEffect(float dt) 
-{
-	Sound::playBubbleEffect();
-}
-
-MainGameLayer::~MainGameLayer()
-{
-	// Touch
-	Director* director = Director::getInstance();
-    director->getTouchDispatcher()->removeDelegate(this);
 }
 
 void MainGameLayer::onEnterTransitionDidFinish()
@@ -109,8 +88,8 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	mLabel_DolphinBye->createMenu();
 	mLabel_DolphinBye->setZOrder(1);
 
-	addChild(mLabel_DolphinBye, 1, kTagLabelDolphin);
-	schedule(schedule_selector(MainGameLayer::menuLabelDolphinRefresh), 0.5);
+	addChild(mLabel_DolphinBye, 1, kTagMainGameMenuLabel);
+	schedule(schedule_selector(MainGameLayer::byeMenuLabelRefresh), 0.5);
 
 	// Menu Label - dive feet
 	DiveFeetLayer* diveFeetL = DiveFeetLayer::create();
@@ -122,65 +101,10 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	addChild(feverL, 1, kTagFever);
 
 	// collision detect between Dolphin and Diver
-	schedule(schedule_selector(MainGameLayer::detectCollisionBitwinDolphinNDiver));
-}
+	schedule(schedule_selector(MainGameLayer::detectCollision));
 
-void MainGameLayer::menuLabelDolphinRefresh(float dt)
-{
-	MenuLabelLayer* mLabelL = (MenuLabelLayer*)getChildByTag(kTagLabelDolphin);
-	char chrDolphinBye[12] = {0};
-	sprintf(chrDolphinBye, "%d/%d/%d", MainGameLayer::iDolphinBye, 
-										((FeverLayer*)getChildByTag(kTagFever))->getTouchComboForFever(), 
-										((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
-
-	if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
-	{
-		mLabelL->renameMenuItem(0, "Fever Time!!!!");
-	} else {
-		mLabelL->renameMenuItem(0, "Dolphin's Bye");
-	}
-
-	mLabelL->renameMenuItem(1, chrDolphinBye);
-}
-
-void MainGameLayer::menuBackCallback(Object* pSender) 
-{
-	Scene *scene = TransitionSlideInT::create(2, MainTitleScene::create());
-	Director::getInstance()->pushScene(scene);
-}
-
-void MainGameLayer::toEndGameSceneWithLove()
-{
-	EndGameScene *scene = EndGameScene::create();
-
-	// clone Diver
-	DiverLayer* diverCloneL = ((DiverLayer*)getChildByTag(kTagLayerDiver))->clone();
-	scene->addChild(diverCloneL, 1, kTagLayerDiver);
-
-	// clone Dolphin
-	Array *arrChildren = getChildren();
-	Object* pObj = NULL;
-	DolphinLayer* dolphinL;
-
-	CCARRAY_FOREACH(arrChildren, pObj)
-	{
-		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
-		{
-			dolphinL = static_cast<DolphinLayer*>(pObj);
-
-			if(dolphinL && dolphinL->isAttachedToDiver)
-			{
-				DolphinLayer* dolphinCloneL = dolphinL->clone();
-				dolphinCloneL->attachToDiver(dolphinL->getPositionX(), dolphinL->getPositionY());
-				scene->addChild(dolphinCloneL, 0, kTagLayerDolphin);
-			}
-		}
-	}
-
-	// start love event
-	scene->runLoveEvent();
-
-	Director::getInstance()->replaceScene(scene);
+	// check feet
+	schedule( schedule_selector(MainGameLayer::checkFeet), 1.0f );
 }
 
 void MainGameLayer::addBackground()
@@ -220,101 +144,8 @@ void MainGameLayer::addDiver()
 	addChild(diverL, 1, kTagLayerDiver);
 }
 
-void MainGameLayer::increaseDolphinBye()
+void MainGameLayer::goToNextGameScene()
 {
-	MainGameLayer::iDolphinBye++;
-}
-
-void MainGameLayer::detectCollisionBitwinDolphinNDiver(float dt)
-{
-	checkCollisionBitwinDolphinNDiver();
-}
-
-bool MainGameLayer::checkCollisionBitwinDolphinNDiver()
-{
-	DolphinLayer* dolphinL;
-	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
-	Object* pObj = NULL;
-
-	Array *arrChildren = getChildren();
-
-	CCARRAY_FOREACH(arrChildren, pObj)
-	{
-		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
-		{
-			dolphinL = static_cast<DolphinLayer*>(pObj);
-
-			if(!dolphinL)
-				break;
-
-			if( !diverL->isLove
-				&& !dolphinL->isBye
-				&& !dolphinL->isAttachedToDiver 
-				&& dolphinL->getDolphinRect().intersectsRect(diverL->getDiverRect()) )
-			{
-				Rect diverR = diverL->getDiverRect();
-				Rect dolR = dolphinL->getDolphinRect();
-
-				log("Dolphin meet diver~^^");
-
-				dolphinL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
-				diverL->refreshDiverPositionWithDolphin();
-				((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(5, 5);
-
-				if(diverL->isLove)
-				{
-					toEndGameSceneWithLove();
-				}
-
-				return true;
-			}
-		}
-	}
-
-	return false;
-}
-
-bool MainGameLayer::containsDolphinLocation(Touch* touch)
-{
-	Array *arrChildren = getChildren();
-	Object* pObj = NULL;
-	DolphinLayer* dolphinL;
-
-	CCARRAY_FOREACH(arrChildren, pObj)
-	{
-		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
-		{
-			dolphinL = static_cast<DolphinLayer*>(pObj);
-
-			if(!dolphinL)
-				break;
-
-			if( !dolphinL->getRect().containsPoint(convertTouchToNodeSpaceAR(touch)) )
-				return false;
-		}
-	}
-
-	return true;
-}
-
-bool MainGameLayer::ccTouchBegan(Touch* touch, Event* event)
-{
-	if ( !containsDolphinLocation(touch) )
-	{
-		// reset Touch Combo
-		log("TOUCH MISS!!!!");
-		((FeverLayer*)getChildByTag(kTagFever))->resetTouchCombo();
-
-		return false;
-	}
-
-    return true;
-}
-
-void MainGameLayer::ccTouchMoved(Touch* touch, Event* event)
-{
-}
-
-void MainGameLayer::ccTouchEnded(Touch* touch, Event* event)
-{    
+	Scene *scene = TransitionSlideInT::create(2, MainGameScene2::create());
+	Director::getInstance()->pushScene(scene);
 }

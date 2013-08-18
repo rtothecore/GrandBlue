@@ -22,6 +22,9 @@ Sound::Sound(void)
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DOLPHIN1_FILE );
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DOLPHIN2_FILE );
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DOLPHIN3_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_TURTLE1_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_TURTLE2_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_TURTLE3_FILE );
 	SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
 #endif
 }
@@ -99,6 +102,34 @@ void Sound::playDolphinEffectWithType(int type)
 			break;
 		case 3:
 			SimpleAudioEngine::getInstance()->playEffect(EFFECT_DOLPHIN3_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		default:
+			break;
+	}
+#endif
+}
+
+void Sound::playTurtleEffectRand()
+{
+#if (EFFECT_SOUND)
+	int typeVal = rand() % 2 + 1;
+	playTurtleEffectWithType(typeVal);
+#endif
+}
+
+void Sound::playTurtleEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	switch(type)
+	{
+		case 1:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_TURTLE1_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		case 2:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_TURTLE2_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		case 3:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_TURTLE3_FILE, false, pitchVal, panVal, gainVal);
 			break;
 		default:
 			break;

@@ -55,3 +55,8 @@ void DiveFeetLayer::resetDiveStep(float dt)
 	diveStep = 1;
 }
 
+int DiveFeetLayer::getCurrentFeet()
+{
+	return currentDivedFeet;
+}
+

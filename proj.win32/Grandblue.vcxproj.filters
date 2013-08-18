@@ -60,6 +60,18 @@
     <ClCompile Include="..\Classes\EndGameScene.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Turtle.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MarineLife.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene2.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameBase.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -117,6 +129,21 @@
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\EndGameScene.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Turtle.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MarineLife.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene2.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameBase.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tags.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>
