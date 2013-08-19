@@ -31,6 +31,10 @@ public:
 	// turtle
 	static void playTurtleEffectRand();
 	static void playTurtleEffectWithType(int type);
+
+	// squid
+	static void playSquidEffectRand();
+	static void playSquidEffectWithType(int type);
 };
 
 #endif

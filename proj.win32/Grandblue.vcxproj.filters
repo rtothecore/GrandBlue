@@ -75,6 +75,12 @@
     <ClCompile Include="..\Classes\MainGameData.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Squid.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene3.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -150,6 +156,12 @@
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainGameData.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Squid.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene3.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

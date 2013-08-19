@@ -308,7 +308,7 @@ void MainGameBaseLayer::addAttachedMarinelife(Layer* lyr)
 
 	CCARRAY_FOREACH(arrChildren, pObj)
 	{
-		if( iTagForMarinelife == ((Node*)pObj)->getTag() )
+		if( kTagForMarinelifes < ((Node*)pObj)->getTag() )
 		{
 			marinelifeL = static_cast<MarineLifeLayer*>(pObj);
 

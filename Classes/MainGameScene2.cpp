@@ -11,6 +11,7 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
+#include "MainGameScene3.h"
 
 //------------------------------------------------------------------
 //
@@ -80,14 +81,14 @@ void MainGameLayer2::onEnterTransitionDidFinish()
 	Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer2::playBubbleEffect), 2);
 
-	// Menu Label - turtle bye
-	MenuLabelLayer* mLabel_TurtleBye = MenuLabelLayer::create();
-	mLabel_TurtleBye->initWithLabel("Turtle's Bye", 1.0f);
-	mLabel_TurtleBye->addMenuItem("0", 1.0f);
-	mLabel_TurtleBye->createMenu();
-	mLabel_TurtleBye->setZOrder(1);
-	mLabel_TurtleBye->setPosition(0, -200);
-	addChild(mLabel_TurtleBye, 1, kTagMainGameMenuLabel);
+	// Menu Label - bye
+	MenuLabelLayer* mLabel_Bye = MenuLabelLayer::create();
+	mLabel_Bye->initWithLabel("Turtle's Bye", 1.0f);
+	mLabel_Bye->addMenuItem("0", 1.0f);
+	mLabel_Bye->createMenu();
+	mLabel_Bye->setZOrder(1);
+	mLabel_Bye->setPosition(0, -200);
+	addChild(mLabel_Bye, 1, kTagMainGameMenuLabel);
 	schedule(schedule_selector(MainGameLayer2::byeMenuLabelRefresh), 0.5);
 
 	// Menu Label - dive feet
@@ -96,12 +97,14 @@ void MainGameLayer2::onEnterTransitionDidFinish()
 	addChild(diveFeetL, 1, kTagLayerDiveFeet);
 	
 	// Fever
-	//FeverLayer* feverL = FeverLayer::create();
 	FeverLayer* feverL = MainGameDataLayer::loadFever();
 	addChild(feverL, 1, kTagFever);
 
 	// collision detect 
 	schedule(schedule_selector(MainGameLayer2::detectCollision));
+
+	// check feet
+	schedule( schedule_selector(MainGameLayer2::checkFeet), 1.0f );
 }
 
 void MainGameLayer2::addBackground()
@@ -143,6 +146,7 @@ void MainGameLayer2::addDiver()
 
 void MainGameLayer2::goToNextGameScene()
 {
-	/*Scene *scene = TransitionSlideInT::create(2, MainGameScene2::create());
-	Director::getInstance()->pushScene(scene);*/
+	Scene *scene = MainGameScene3::create();
+	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
+	Director::getInstance()->replaceScene(scene);
 }

@@ -11,7 +11,7 @@ UtilFunc::~UtilFunc(void)
 }
 
 
-int UtilFunc::getRandomRangeValue(int minVal, int maxVal)
+float UtilFunc::getRandomRangeValue(float minVal, float maxVal)
 {
 	int rangeVal = maxVal - minVal;
 	return (rand() % rangeVal) + minVal;

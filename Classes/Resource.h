@@ -17,6 +17,9 @@ static const char s_Love[]                = "love1.png";
 static const char p_Turtle[]              = "zwoptex/turtle.plist";
 static const char s_Turtle[]              = "turtle1.png";
 
+static const char p_Squid[]              = "zwoptex/squid.plist";
+static const char s_Squid[]              = "squid1.png";
+
 // Image
 static const char s_UnderSea[]				   = "underTheSea_light.png";
 static const char s_Rocks[]				   = "underTheSea_rocks.png";
@@ -35,6 +38,10 @@ static const char s_Rope[]				   = "rope.png";
 #define EFFECT_TURTLE1_FILE        "sound/turtle1.wav"
 #define EFFECT_TURTLE2_FILE        "sound/turtle2.wav"
 #define EFFECT_TURTLE3_FILE        "sound/turtle3.wav"
+
+#define EFFECT_SQUID1_FILE        "sound/squid1.wav"
+#define EFFECT_SQUID2_FILE        "sound/squid2.wav"
+#define EFFECT_SQUID3_FILE        "sound/squid3.wav"
 
 
 #endif

@@ -11,7 +11,7 @@ public:
 	UtilFunc(void);
 	~UtilFunc(void);
 
-	static int getRandomRangeValue(int minVal, int maxVal);
+	static float getRandomRangeValue(float minVal, float maxVal);
 	static Size getVisibleSize();
 	static Size getWinSize();
 };

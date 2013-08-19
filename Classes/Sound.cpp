@@ -25,6 +25,9 @@ Sound::Sound(void)
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_TURTLE1_FILE );
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_TURTLE2_FILE );
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_TURTLE3_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SQUID1_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SQUID2_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SQUID3_FILE );
 	SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
 #endif
 }
@@ -130,6 +133,34 @@ void Sound::playTurtleEffectWithType(int type)
 			break;
 		case 3:
 			SimpleAudioEngine::getInstance()->playEffect(EFFECT_TURTLE3_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		default:
+			break;
+	}
+#endif
+}
+
+void Sound::playSquidEffectRand()
+{
+#if (EFFECT_SOUND)
+	int typeVal = rand() % 2 + 1;
+	playSquidEffectWithType(typeVal);
+#endif
+}
+
+void Sound::playSquidEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	switch(type)
+	{
+		case 1:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_SQUID1_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		case 2:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_SQUID2_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		case 3:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_SQUID3_FILE, false, pitchVal, panVal, gainVal);
 			break;
 		default:
 			break;

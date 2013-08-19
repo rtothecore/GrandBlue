@@ -98,11 +98,10 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	addChild(diveFeetL, 1, kTagLayerDiveFeet);
 	
 	// Fever
-	//FeverLayer* feverL = FeverLayer::create();
 	FeverLayer* feverL = MainGameDataLayer::loadFever();
 	addChild(feverL, 1, kTagFever);
 
-	// collision detect between Dolphin and Diver
+	// collision detect
 	schedule(schedule_selector(MainGameLayer::detectCollision));
 
 	// check feet
