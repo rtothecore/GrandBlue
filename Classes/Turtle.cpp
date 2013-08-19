@@ -28,7 +28,7 @@ bool TurtleLayer::initWithPlist(const char* plist, const char* frameName)
 		sprt_marineLife = Sprite::createWithSpriteFrame(frm_marineLife);
 		addChild(sprt_marineLife);
 
-		// Dolphin's Animation
+		// Animation
 		Array* animFrames = Array::createWithCapacity(4);
 
 		char str[100] = {0};
@@ -46,7 +46,7 @@ bool TurtleLayer::initWithPlist(const char* plist, const char* frameName)
 		// Y
 		int actualY = UtilFunc::getRandomRangeValue(getContentSize().height, UtilFunc::getWinSize().height/1.4 - getContentSize().height);
 
-		// Set Dolphin to the screen right edge
+		// Set to the screen right edge
 		setPosition(Point(UtilFunc::getWinSize().width + (getContentSize().width / 2), actualY));
 
 		// Velocity
@@ -94,11 +94,11 @@ void TurtleLayer::playMarineLifeSound()
 	{
 		case 1:
 		case 2:
-			Sound::playDolphinEffectRand();
+			Sound::playTurtleEffectRand();
 			break;
 		case 3:
 		default:
-			Sound::playDolphinEffectWithType(3);
+			Sound::playTurtleEffectWithType(3);
 			break;
 	}
 }

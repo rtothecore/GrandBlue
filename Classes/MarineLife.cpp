@@ -2,7 +2,7 @@
 #include "Resource.h"
 #include "UtilFunc.h"
 #include "Sound.h"
-#include "MainGameScene.h"
+#include "MainGameBase.h"
 #include "Fever.h"
 #include "Diver.h"
 
@@ -13,18 +13,6 @@ enum {
 
 bool MarineLifeLayer::init()
 {
-	//isBye = false;
-	//byePoint = 0;
-	//isHeadToLeft = true;
-	//isAttachedToDiver = false;
-
-	//initWithPlist(p_Dolphin, s_Dolphin);
-
-	////touch
-	//Director* director = Director::getInstance();
-    //director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-	
-	//return true;
 	return true;
 }
 
@@ -45,56 +33,6 @@ MarineLifeLayer* MarineLifeLayer::clone() const
 
 bool MarineLifeLayer::initWithPlist(const char* plist, const char* frameName)
 {
-	//SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist);
-	//
-	//if(frm_marineLife = SpriteFrameCache::getInstance()->getSpriteFrameByName(frameName))
-	//{
-	//	sprt_marineLife = Sprite::createWithSpriteFrame(frm_marineLife);
-	//	addChild(sprt_marineLife);
-
-	//	// Dolphin's Animation
-	//	Array* animFrames = Array::createWithCapacity(5);
-
-	//	char str[100] = {0};
-
-	//	for(int i = 1; i < 6; i++) 
-	//	{
-	//		sprintf(str, "dolphin%d.png", i);
-	//		SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
-	//		animFrames->addObject(frame);
-	//	}
-
-	//	auto animation = Animation::createWithSpriteFrames(animFrames, 0.3f);
-	//	sprt_marineLife->runAction( RepeatForever::create( Animate::create(animation) ) );
-
-	//	// Dolphin's Y
-	//	int actualY = UtilFunc::getRandomRangeValue(getContentSize().height, UtilFunc::getWinSize().height/1.4 - getContentSize().height);
-
-	//	// Set Dolphin to the screen right edge
-	//	setPosition(Point(UtilFunc::getWinSize().width + (getContentSize().width / 2), actualY));
-
-	//	// Velocity
-	//	int actualDuration = UtilFunc::getRandomRangeValue(2.0, 4.0);
-
-	//	// Action
-	//	int actionIndex = (rand() % 2);
-	//	actionIndex>0 ? MarineLifeLayer::actionSequence(this, actualY, actualDuration) : MarineLifeLayer::actionBezier(this, actualY);
-
-	//	// bye sprite
-	//	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(p_Bye);
-	//	sprt_bye = Sprite::createWithSpriteFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Bye) );
-	//	sprt_bye->setPosition( Point(0, frm_marineLife->getOriginalSize().height/2) );
-	//	sprt_bye->setVisible(false);
-	//	addChild(sprt_bye);
-
-	//	// Collision Check sprite
-	//	/*Sprite* sprtTest = Sprite::create();
-	//	sprtTest->setTextureRect(getDolphinRect());
-	//	sprtTest->setColor(Color3B::WHITE);
-	//	addChild(sprtTest);*/
-	//}
-
-	//return true;
 	return true;
 }
 
@@ -167,7 +105,7 @@ void MarineLifeLayer::aliveMarineLifeTouched()
 
 void MarineLifeLayer::byePointUp()
 {
-	MainGameScene* parent = (MainGameScene*)getParent();
+	Scene* parent = (Scene*)getParent();
 	int touchPoint = ((FeverLayer*)parent->getChildByTag(kTagFever))->getTouchDamage();
 
 	byePoint += touchPoint;
@@ -208,7 +146,7 @@ void MarineLifeLayer::actionTint(Sprite* sprt)
 
 void MarineLifeLayer::comboForFeverUp()
 {
-	MainGameLayer* parent = (MainGameLayer*)getParent();
+	MainGameBaseLayer* parent = (MainGameBaseLayer*)getParent();
 	parent->increaseMarineLifeBye();
 
 	// MainGameLayer dolphin touch for fever ++
@@ -330,14 +268,14 @@ void MarineLifeLayer::attachToDiver(int diverPosX, int diverPosY)
 
 void MarineLifeLayer::runAfterDiver(float dt)
 {
-	MainGameScene* parent = (MainGameScene*)getParent();
+	Scene* parent = (Scene*)getParent();
 	if( (DiverLayer*)parent->getChildByTag(kTagLayerDiver) )
 	{
 		Point pntDiver = ((DiverLayer*)parent->getChildByTag(kTagLayerDiver))->getPosition();
 
-		auto actionMoveToDiver = MoveTo::create(3.4, pntDiver);
-		auto actionMoveToDiverEaseInOut = EaseInOut::create(actionMoveToDiver, 1.2);
-		runAction(actionMoveToDiverEaseInOut);
+		auto actionMoveToDiver = MoveTo::create(2.0f, pntDiver);
+		//auto actionMoveToDiverEaseInOut = EaseInOut::create(actionMoveToDiver, 1.2);
+		runAction(actionMoveToDiver);
 	}
 }
 

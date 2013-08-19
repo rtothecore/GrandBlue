@@ -8,4 +8,5 @@ enum {
 	kTagRope = 7,
 	kTagLayerDolphin = 8,
 	kTagLayerTurtle = 9,
+	kTagGameSceneLayer = 10,
 };

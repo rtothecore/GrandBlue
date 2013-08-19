@@ -10,6 +10,7 @@
 #include "Fever.h"
 #include "Diver.h"
 #include "Tags.h"
+#include "MainGameData.h"
 
 //------------------------------------------------------------------
 //
@@ -19,7 +20,7 @@
 bool MainGameScene2::init()
 {
 	MainGameLayer2 *mainGameLayer2 = MainGameLayer2::create();
-    addChild(mainGameLayer2);
+    addChild(mainGameLayer2, 0, kTagGameSceneLayer);
 
 	return true;
 }
@@ -136,7 +137,8 @@ void MainGameLayer2::addTurtle(float dt)
 
 void MainGameLayer2::addDiver()
 {
-	DiverLayer* diverL = DiverLayer::create();
+	//DiverLayer* diverL = DiverLayer::create();
+	DiverLayer* diverL = MainGameDataLayer::loadDiver();
 	addChild(diverL, 1, kTagLayerDiver);
 }
 

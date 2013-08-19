@@ -20,7 +20,7 @@
 bool MainGameScene::init()
 {
 	MainGameLayer *mainGameLayer = MainGameLayer::create();
-    addChild(mainGameLayer);
+    addChild(mainGameLayer, 0, kTagGameSceneLayer);
 
 	return true;
 }
@@ -146,6 +146,8 @@ void MainGameLayer::addDiver()
 
 void MainGameLayer::goToNextGameScene()
 {
-	Scene *scene = TransitionSlideInT::create(2, MainGameScene2::create());
-	Director::getInstance()->pushScene(scene);
+	//Scene *scene = TransitionSlideInB::create(2, MainGameScene2::create());
+	Scene *scene = MainGameScene2::create();
+	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
+	Director::getInstance()->replaceScene(scene);
 }

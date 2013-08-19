@@ -72,6 +72,9 @@
     <ClCompile Include="..\Classes\MainGameBase.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MainGameData.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -144,6 +147,9 @@
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Tags.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameData.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

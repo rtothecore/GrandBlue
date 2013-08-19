@@ -1,15 +1,17 @@
 #include "EndGameScene.h"
-#include "Dolphin.h"
 #include "Diver.h"
-
-enum {
-	kTagLayerDiver = 4,
-	kTagLayerDolphin = 8,
-};
+#include "MarineLife.h"
+#include "MainGameBase.h"
+#include "Tags.h"
 
 bool EndGameScene::init()
 {
 	return true;
+}
+
+void EndGameScene::initWithMarinelifeTag(int tagVal)
+{
+	iTagForMarinelife = tagVal;
 }
 
 void EndGameScene::runLoveEvent()
@@ -19,19 +21,21 @@ void EndGameScene::runLoveEvent()
 
 void EndGameScene::actionLove(float dt)
 {
-	// dolphin love action
+	// marinelife love action
 	Array *arrChildren = getChildren();
 	Object* pObj = NULL;
-	DolphinLayer* dolphinL;
+	MarineLifeLayer* marinelifeL;
+
+	MainGameBaseLayer* parent = (MainGameBaseLayer*)getParent();
 
 	CCARRAY_FOREACH(arrChildren, pObj)
 	{
-		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
+		if( iTagForMarinelife == ((Node*)pObj)->getTag() )
 		{
-			dolphinL = static_cast<DolphinLayer*>(pObj);
+			marinelifeL = static_cast<MarineLifeLayer*>(pObj);
 
-			if(dolphinL && dolphinL->isAttachedToDiver)
-				dolphinL->runLoveAction();
+			if(marinelifeL && marinelifeL->isAttachedToDiver)
+				marinelifeL->runLoveAction();
 		}
 	}
 

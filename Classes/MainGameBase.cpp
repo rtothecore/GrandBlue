@@ -8,6 +8,7 @@
 #include "EndGameScene.h"
 #include "Tags.h"
 #include "Sound.h"
+#include "MainGameData.h"
 
 bool MainGameBaseLayer::init()
 {
@@ -232,12 +233,13 @@ void MainGameBaseLayer::toEndGameSceneWithLove()
 	//}
 
 	EndGameScene *scene = EndGameScene::create();
+	scene->initWithMarinelifeTag(iTagForMarinelife);
 
 	// clone Diver
 	DiverLayer* diverCloneL = ((DiverLayer*)getChildByTag(kTagLayerDiver))->clone();
 	scene->addChild(diverCloneL, 1, kTagLayerDiver);
 
-	// clone Dolphin
+	// clone Marinelife
 	Array *arrChildren = getChildren();
 	Object* pObj = NULL;
 	MarineLifeLayer* marinelifeL;
@@ -272,7 +274,39 @@ void MainGameBaseLayer::checkFeet(float dt)
 {
 	DiveFeetLayer* divefeetL = (DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet);
 	if( iMaxFeet <= divefeetL->getCurrentFeet() )
+	{
+		saveDiverData();
 		goToNextGameScene();
+	}
+}
+
+void MainGameBaseLayer::saveDiverData()
+{
+	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
+	MainGameDataLayer::saveDiver(diverL);
+}
+
+void MainGameBaseLayer::addAttachedMarinelife(Layer* lyr)
+{
+	// clone marinelife
+	Array *arrChildren = getChildren();
+	Object* pObj = NULL;
+	MarineLifeLayer* marinelifeL;
+
+	CCARRAY_FOREACH(arrChildren, pObj)
+	{
+		if( iTagForMarinelife == ((Node*)pObj)->getTag() )
+		{
+			marinelifeL = static_cast<MarineLifeLayer*>(pObj);
+
+			if(marinelifeL && marinelifeL->isAttachedToDiver)
+			{
+				MarineLifeLayer* marinelifeCloneL = marinelifeL->clone();
+				marinelifeCloneL->attachToDiver(marinelifeL->getPositionX(), marinelifeL->getPositionY());
+				lyr->addChild(marinelifeCloneL, 0, iTagForMarinelife);
+			}
+		}
+	}
 }
 
 void MainGameBaseLayer::goToNextGameScene()

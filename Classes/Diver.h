@@ -52,6 +52,9 @@ public:
 	Rect getDiverRect();
 	void refreshDiverPositionWithDolphin();
 	void actionDownMoveBy(int yDelta);
+
+	// refresh diver
+	void refreshDiver();
 };
 
 #endif

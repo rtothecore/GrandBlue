@@ -245,21 +245,23 @@ void DiverLayer::actionDownMoveBy(int yDelta)
 
 void DiverLayer::refreshLoveSprite()
 {
-	if(st_maxLovePoint >= lovePoint)
+	if(1 == lovePoint)
 	{
-		if(1 == lovePoint)
-		{
-			sprt_love->setVisible(true);
-		} else {
-			char chrCurrentLoveFrame[10] = {0};
-			sprintf(chrCurrentLoveFrame, "love%d.png", lovePoint-1);
+		sprt_love->setVisible(true);
+	}
+	else if( 1 < lovePoint && st_maxLovePoint >= lovePoint)
+	{
+		sprt_love->setVisible(true);
 
-			char chrNextLoveFrame[10] = {0};
-			sprintf(chrNextLoveFrame, "love%d.png", lovePoint);
+		char chrCurrentLoveFrame[10] = {0};
+		sprintf(chrCurrentLoveFrame, "love%d.png", lovePoint-1);
 
-			if( sprt_love->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(chrCurrentLoveFrame)) )
-				sprt_love->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(chrNextLoveFrame) );
-		}
+		char chrNextLoveFrame[10] = {0};
+		sprintf(chrNextLoveFrame, "love%d.png", lovePoint);
+
+		if( sprt_love->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Love)) ||
+			sprt_love->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(chrCurrentLoveFrame)) )
+			sprt_love->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(chrNextLoveFrame) );	
 	}
 }
 
@@ -286,4 +288,9 @@ void DiverLayer::runLoveAction()
 	auto actionMoveToLeft = MoveTo::create( 5, Point(0 - sprt_diver->getContentSize().width , getPositionY()) );
 	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
 	runAction( Sequence::create(actionMoveToLeft, actionMoveDone, NULL) );
+}
+
+void DiverLayer::refreshDiver()
+{
+	refreshLoveSprite();
 }

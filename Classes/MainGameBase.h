@@ -29,6 +29,10 @@ public:
 	// sound
 	void playBubbleEffect(float dt);
 
+	// save
+	void saveDiverData();
+	void addAttachedMarinelife(Layer* lyr);
+
 	// -- For Overriding --
 	int iMarineLifeBye;
 	int iMaxFeet;
