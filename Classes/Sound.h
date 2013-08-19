@@ -35,6 +35,11 @@ public:
 	// squid
 	static void playSquidEffectRand();
 	static void playSquidEffectWithType(int type);
+
+	// starfish
+	static void playStarfishEffectRand();
+	static void playStarfishEffectWithType(int type);
+	
 };
 
 #endif

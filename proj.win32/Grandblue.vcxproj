@@ -140,12 +140,14 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\MainGameData.cpp" />
     <ClCompile Include="..\Classes\MainGameScene2.cpp" />
     <ClCompile Include="..\Classes\MainGameScene3.cpp" />
+    <ClCompile Include="..\Classes\MainGameScene4.cpp" />
     <ClCompile Include="..\Classes\MarineLife.cpp" />
     <ClCompile Include="..\Classes\MenuLabel.cpp" />
     <ClCompile Include="..\Classes\Background.cpp" />
     <ClCompile Include="..\Classes\Diver.cpp" />
     <ClCompile Include="..\Classes\Dolphin.cpp" />
     <ClCompile Include="..\Classes\Squid.cpp" />
+    <ClCompile Include="..\Classes\Starfish.cpp" />
     <ClCompile Include="..\Classes\Turtle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Classes\MainGameScene.cpp" />
@@ -167,6 +169,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\MainGameData.h" />
     <ClInclude Include="..\Classes\MainGameScene2.h" />
     <ClInclude Include="..\Classes\MainGameScene3.h" />
+    <ClInclude Include="..\Classes\MainGameScene4.h" />
     <ClInclude Include="..\Classes\MarineLife.h" />
     <ClInclude Include="..\Classes\MenuLabel.h" />
     <ClInclude Include="..\Classes\Background.h" />
@@ -175,6 +178,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\ProgressBar.h" />
     <ClInclude Include="..\Classes\Resource.h" />
     <ClInclude Include="..\Classes\Squid.h" />
+    <ClInclude Include="..\Classes\Starfish.h" />
     <ClInclude Include="..\Classes\Tags.h" />
     <ClInclude Include="..\Classes\Turtle.h" />
     <ClInclude Include="main.h" />

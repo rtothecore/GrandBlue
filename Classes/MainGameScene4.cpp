@@ -1,5 +1,5 @@
-#include "MainGameScene3.h"
-#include "Squid.h"
+#include "MainGameScene4.h"
+#include "Starfish.h"
 #include "MenuLabel.h"
 #include "Resource.h"
 #include "SpriteRepeater.h"
@@ -11,30 +11,29 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
-#include "MainGameScene4.h"
 
 //------------------------------------------------------------------
 //
-// MainGameScene3
+// MainGameScene4
 //
 //------------------------------------------------------------------
-bool MainGameScene3::init()
+bool MainGameScene4::init()
 {
-	MainGameLayer3 *mainGameLayer3 = MainGameLayer3::create();
-    addChild(mainGameLayer3, 0, kTagGameSceneLayer);
+	MainGameLayer4 *mainGameLayer4 = MainGameLayer4::create();
+    addChild(mainGameLayer4, 0, kTagGameSceneLayer);
 
 	return true;
 }
 
 //------------------------------------------------------------------
 //
-// MainGameLayer3
+// MainGameLayer4
 //
 //------------------------------------------------------------------
-bool MainGameLayer3::init()
+bool MainGameLayer4::init()
 {
 	iMaxFeet = 60;
-	iTagForMarinelife = kTagLayerSquid;
+	iTagForMarinelife = kTagLayerStarfish;
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
@@ -43,7 +42,7 @@ bool MainGameLayer3::init()
 	MenuItemImage *diveItem = MenuItemImage::create(
 										"menu_dive.png", 
 										"menu_dive_selected.png", 
-										CC_CALLBACK_1(MainGameLayer3::menuBackCallback, this));
+										CC_CALLBACK_1(MainGameLayer4::menuBackCallback, this));
 
     Menu* menu = Menu::create(diveItem, NULL);
 	menu->setPosition( Point(origin.x + visibleSize.width/2, visibleSize.height - visibleSize.height/5) );
@@ -59,7 +58,7 @@ bool MainGameLayer3::init()
 	return true;
 }
 
-void MainGameLayer3::onEnterTransitionDidFinish()
+void MainGameLayer4::onEnterTransitionDidFinish()
 {
 	// Run Background effect
 	/*BackgroundLayer* bgLayer = (BackgroundLayer*)getChildByTag(kTagBackground);
@@ -75,21 +74,21 @@ void MainGameLayer3::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add turtle layer
-	schedule( schedule_selector(MainGameLayer3::addSquid), 3 );
+	schedule( schedule_selector(MainGameLayer4::addStarfish), 3 );
 
 	// Sound
 	Sound::playBackgroundMusic(true);
-	schedule( schedule_selector(MainGameLayer3::playBubbleEffect), 2);
+	schedule( schedule_selector(MainGameLayer4::playBubbleEffect), 2);
 
 	// Menu Label - bye
 	MenuLabelLayer* mLabel_Bye = MenuLabelLayer::create();
-	mLabel_Bye->initWithLabel("Squid's Bye", 1.0f);
+	mLabel_Bye->initWithLabel("Starfish's Bye", 1.0f);
 	mLabel_Bye->addMenuItem("0", 1.0f);
 	mLabel_Bye->createMenu();
 	mLabel_Bye->setZOrder(1);
 	mLabel_Bye->setPosition(0, -200);
 	addChild(mLabel_Bye, 1, kTagMainGameMenuLabel);
-	schedule(schedule_selector(MainGameLayer3::byeMenuLabelRefresh), 0.5);
+	schedule(schedule_selector(MainGameLayer4::byeMenuLabelRefresh), 0.5);
 
 	// Menu Label - dive feet
 	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();
@@ -101,19 +100,19 @@ void MainGameLayer3::onEnterTransitionDidFinish()
 	addChild(feverL, 1, kTagFever);
 
 	// collision detect 
-	schedule(schedule_selector(MainGameLayer3::detectCollision));
+	schedule(schedule_selector(MainGameLayer4::detectCollision));
 
 	// check feet
-	schedule( schedule_selector(MainGameLayer3::checkFeet), 1.0f );
+	schedule( schedule_selector(MainGameLayer4::checkFeet), 1.0f );
 }
 
-void MainGameLayer3::addBackground()
+void MainGameLayer4::addBackground()
 {
 	BackgroundLayer* bgLayer = BackgroundLayer::create();
 	addChild(bgLayer, 0, kTagBackground);
 }
 
-void MainGameLayer3::addRocks()
+void MainGameLayer4::addRocks()
 {
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
 	Rocks* rocks = Rocks::create();
@@ -121,7 +120,7 @@ void MainGameLayer3::addRocks()
 	addChild(rocks, 1, kTagRocks);
 }
 
-void MainGameLayer3::addRope()
+void MainGameLayer4::addRope()
 {
 	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
 	Rope* rope = Rope::create();
@@ -129,24 +128,24 @@ void MainGameLayer3::addRope()
 	addChild(rope, 0, kTagRope);
 }
 
-void MainGameLayer3::addSquid(float dt)
+void MainGameLayer4::addStarfish(float dt)
 {
 	for(int i=0; i<4; i++)
 	{
-		SquidLayer* squidL = SquidLayer::create();
-		addChild(squidL, 0, kTagLayerSquid);
+		StarfishLayer* starfishL = StarfishLayer::create();
+		addChild(starfishL, 0, kTagLayerStarfish);
 	}
 }
 
-void MainGameLayer3::addDiver()
+void MainGameLayer4::addDiver()
 {
 	DiverLayer* diverL = MainGameDataLayer::loadDiver();
 	addChild(diverL, 1, kTagLayerDiver);
 }
 
-void MainGameLayer3::goToNextGameScene()
+void MainGameLayer4::goToNextGameScene()
 {
-	Scene *scene = MainGameScene4::create();
+	/*Scene *scene = MainGameScene4::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(scene);*/
 }

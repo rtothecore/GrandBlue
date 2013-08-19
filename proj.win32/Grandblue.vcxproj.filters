@@ -81,6 +81,12 @@
     <ClCompile Include="..\Classes\MainGameScene3.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene4.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Starfish.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -162,6 +168,12 @@
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainGameScene3.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene4.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Starfish.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

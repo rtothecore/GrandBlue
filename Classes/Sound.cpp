@@ -28,6 +28,9 @@ Sound::Sound(void)
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SQUID1_FILE );
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SQUID2_FILE );
 	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SQUID3_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH1_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH2_FILE );
+	SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH3_FILE );
 	SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
 #endif
 }
@@ -161,6 +164,34 @@ void Sound::playSquidEffectWithType(int type)
 			break;
 		case 3:
 			SimpleAudioEngine::getInstance()->playEffect(EFFECT_SQUID3_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		default:
+			break;
+	}
+#endif
+}
+
+void Sound::playStarfishEffectRand()
+{
+#if (EFFECT_SOUND)
+	int typeVal = rand() % 2 + 1;
+	playStarfishEffectWithType(typeVal);
+#endif
+}
+
+void Sound::playStarfishEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	switch(type)
+	{
+		case 1:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_STARFISH1_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		case 2:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_STARFISH2_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		case 3:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_STARFISH3_FILE, false, pitchVal, panVal, gainVal);
 			break;
 		default:
 			break;
