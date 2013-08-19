@@ -233,7 +233,6 @@ void MainGameBaseLayer::toEndGameSceneWithLove()
 	//}
 
 	EndGameScene *scene = EndGameScene::create();
-	scene->initWithMarinelifeTag(iTagForMarinelife);
 
 	// clone Diver
 	DiverLayer* diverCloneL = ((DiverLayer*)getChildByTag(kTagLayerDiver))->clone();
@@ -246,7 +245,7 @@ void MainGameBaseLayer::toEndGameSceneWithLove()
 
 	CCARRAY_FOREACH(arrChildren, pObj)
 	{
-		if( iTagForMarinelife == ((Node*)pObj)->getTag() )
+		if( kTagForMarinelifes < ((Node*)pObj)->getTag() )
 		{
 			marinelifeL = static_cast<MarineLifeLayer*>(pObj);
 
@@ -254,7 +253,7 @@ void MainGameBaseLayer::toEndGameSceneWithLove()
 			{
 				MarineLifeLayer* marinelifeCloneL = marinelifeL->clone();
 				marinelifeCloneL->attachToDiver(marinelifeL->getPositionX(), marinelifeL->getPositionY());
-				scene->addChild(marinelifeCloneL, 0, iTagForMarinelife);
+				scene->addChild(marinelifeCloneL, 0, kTagForMarinelifes);
 			}
 		}
 	}

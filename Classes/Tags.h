@@ -6,7 +6,10 @@ enum {
 	kTagLayerDiveFeet = 5,
 	kTagRocks = 6,
 	kTagRope = 7,
-	kTagLayerDolphin = 8,
-	kTagLayerTurtle = 9,
+	
 	kTagGameSceneLayer = 10,
+
+	kTagForMarinelifes = 777,
+	kTagLayerDolphin = 778,
+	kTagLayerTurtle = 779,
 };
