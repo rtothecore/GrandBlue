@@ -11,9 +11,6 @@ public:
 	CREATE_FUNC(MainGameBaseLayer);
 	~MainGameBaseLayer();
 
-	// bye count
-	void increaseMarineLifeBye();
-
 	// touch event
 	bool containsMarinelifeLocation(Touch* touch);
 
@@ -30,11 +27,13 @@ public:
 	void playBubbleEffect(float dt);
 
 	// save
+	void saveAllGameData();
 	void saveDiverData();
 	void addAttachedMarinelife(Layer* lyr);
+	void saveDivedFeetData();
+	void saveFeverData();
 
 	// -- For Overriding --
-	int iMarineLifeBye;
 	int iMaxFeet;
 	int iTagForMarinelife;
 

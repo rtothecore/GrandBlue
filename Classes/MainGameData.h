@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 #include "Diver.h"
+#include "DiveFeet.h"
+#include "Fever.h"
 
 USING_NS_CC;
 
@@ -16,8 +18,16 @@ public:
 	static void saveDiver(DiverLayer* diverL);
 	static DiverLayer* loadDiver();
 
+	static bool isSaveDivedFeet;
+	static void saveDivedFeet(DiveFeetLayer* diveFeetL);
+	static DiveFeetLayer* loadDivedFeet();
+
+	static bool isSaveFever;
+	static void saveFever(FeverLayer* feverL);
+	static FeverLayer* loadFever();
+
 	//void saveAttachedMarinelife();
-	//void saveFeet();
+	
 };
 
 #endif

@@ -11,6 +11,8 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameScene2.h"
+#include "MainGameData.h"
+#include "UtilFunc.h"
 
 //------------------------------------------------------------------
 //
@@ -32,7 +34,6 @@ bool MainGameScene::init()
 //------------------------------------------------------------------
 bool MainGameLayer::init()
 {
-	iMarineLifeBye = 0;
 	iMaxFeet = 20;
 	iTagForMarinelife = kTagLayerDolphin;
 
@@ -87,17 +88,18 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	mLabel_DolphinBye->addMenuItem("0", 1.0f);
 	mLabel_DolphinBye->createMenu();
 	mLabel_DolphinBye->setZOrder(1);
-
+	mLabel_DolphinBye->setPosition(0, -200);
 	addChild(mLabel_DolphinBye, 1, kTagMainGameMenuLabel);
 	schedule(schedule_selector(MainGameLayer::byeMenuLabelRefresh), 0.5);
 
 	// Menu Label - dive feet
-	DiveFeetLayer* diveFeetL = DiveFeetLayer::create();
+	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();
 	diveFeetL->startDive();
 	addChild(diveFeetL, 1, kTagLayerDiveFeet);
 	
 	// Fever
-	FeverLayer* feverL = FeverLayer::create();
+	//FeverLayer* feverL = FeverLayer::create();
+	FeverLayer* feverL = MainGameDataLayer::loadFever();
 	addChild(feverL, 1, kTagFever);
 
 	// collision detect between Dolphin and Diver
@@ -140,13 +142,12 @@ void MainGameLayer::addDolphin(float dt)
 
 void MainGameLayer::addDiver()
 {
-	DiverLayer* diverL = DiverLayer::create();
+	DiverLayer* diverL = MainGameDataLayer::loadDiver();
 	addChild(diverL, 1, kTagLayerDiver);
 }
 
 void MainGameLayer::goToNextGameScene()
 {
-	//Scene *scene = TransitionSlideInB::create(2, MainGameScene2::create());
 	Scene *scene = MainGameScene2::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
 	Director::getInstance()->replaceScene(scene);

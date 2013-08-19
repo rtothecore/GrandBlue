@@ -10,6 +10,7 @@ enum {
 bool FeverLayer::init()
 {
 	bFeverMode = false;
+	iMarineLifeBye = 0;
 	iTouchCombo = 0;
 
 	initProgressBar();
@@ -98,4 +99,24 @@ int FeverLayer::getTouchComboForFever()
 int FeverLayer::getTouchCombo()
 {
 	return iTouchCombo;
+}
+
+void FeverLayer::increaseMarinelifeBye()
+{
+	iMarineLifeBye++;
+}
+
+int FeverLayer::getMarinelifeBye()
+{
+	return iMarineLifeBye;
+}
+
+void FeverLayer::setTouchCombo(int touchComboVal)
+{
+	iTouchCombo = touchComboVal;
+}
+
+void FeverLayer::setMarinelifeBye(int mlByeVal)
+{
+	iMarineLifeBye = mlByeVal;
 }

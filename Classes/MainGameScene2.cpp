@@ -32,7 +32,6 @@ bool MainGameScene2::init()
 //------------------------------------------------------------------
 bool MainGameLayer2::init()
 {
-	iMarineLifeBye = 0;
 	iMaxFeet = 40;
 	iTagForMarinelife = kTagLayerTurtle;
 
@@ -87,17 +86,18 @@ void MainGameLayer2::onEnterTransitionDidFinish()
 	mLabel_TurtleBye->addMenuItem("0", 1.0f);
 	mLabel_TurtleBye->createMenu();
 	mLabel_TurtleBye->setZOrder(1);
-
+	mLabel_TurtleBye->setPosition(0, -200);
 	addChild(mLabel_TurtleBye, 1, kTagMainGameMenuLabel);
 	schedule(schedule_selector(MainGameLayer2::byeMenuLabelRefresh), 0.5);
 
 	// Menu Label - dive feet
-	DiveFeetLayer* diveFeetL = DiveFeetLayer::create();
+	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();
 	diveFeetL->startDive();
 	addChild(diveFeetL, 1, kTagLayerDiveFeet);
 	
 	// Fever
-	FeverLayer* feverL = FeverLayer::create();
+	//FeverLayer* feverL = FeverLayer::create();
+	FeverLayer* feverL = MainGameDataLayer::loadFever();
 	addChild(feverL, 1, kTagFever);
 
 	// collision detect 
@@ -137,7 +137,6 @@ void MainGameLayer2::addTurtle(float dt)
 
 void MainGameLayer2::addDiver()
 {
-	//DiverLayer* diverL = DiverLayer::create();
 	DiverLayer* diverL = MainGameDataLayer::loadDiver();
 	addChild(diverL, 1, kTagLayerDiver);
 }

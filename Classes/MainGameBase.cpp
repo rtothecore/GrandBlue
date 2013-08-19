@@ -22,11 +22,6 @@ MainGameBaseLayer::~MainGameBaseLayer()
     director->getTouchDispatcher()->removeDelegate(this);
 }
 
-void MainGameBaseLayer::increaseMarineLifeBye()
-{
-	MainGameBaseLayer::iMarineLifeBye++;
-}
-
 void MainGameBaseLayer::onEnterTransitionDidFinish()
 {
 }
@@ -41,9 +36,9 @@ void MainGameBaseLayer::byeMenuLabelRefresh(float dt)
 {
 	MenuLabelLayer* mLabelL = (MenuLabelLayer*)getChildByTag(kTagMainGameMenuLabel);
 	char chrDolphinBye[12] = {0};
-	sprintf(chrDolphinBye, "%d/%d/%d", MainGameBaseLayer::iMarineLifeBye, 
-										((FeverLayer*)getChildByTag(kTagFever))->getTouchComboForFever(), 
-										((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
+	sprintf(chrDolphinBye, "%d/%d/%d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
+									   ((FeverLayer*)getChildByTag(kTagFever))->getTouchComboForFever(), 
+									   ((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
 
 	if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
 	{
@@ -272,17 +267,36 @@ void MainGameBaseLayer::playBubbleEffect(float dt)
 void MainGameBaseLayer::checkFeet(float dt)
 {
 	DiveFeetLayer* divefeetL = (DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet);
-	if( iMaxFeet <= divefeetL->getCurrentFeet() )
+	if( iMaxFeet <= divefeetL->getDivedFeet() )
 	{
-		saveDiverData();
+		saveAllGameData();
 		goToNextGameScene();
 	}
+}
+
+void MainGameBaseLayer::saveAllGameData()
+{
+	saveDiverData();
+	saveDivedFeetData();
+	saveFeverData();
 }
 
 void MainGameBaseLayer::saveDiverData()
 {
 	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
 	MainGameDataLayer::saveDiver(diverL);
+}
+
+void MainGameBaseLayer::saveDivedFeetData()
+{
+	DiveFeetLayer* diveFeetL = (DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet);
+	MainGameDataLayer::saveDivedFeet(diveFeetL);
+}
+
+void MainGameBaseLayer::saveFeverData()
+{
+	FeverLayer* feverL = (FeverLayer*)getChildByTag(kTagFever);
+	MainGameDataLayer::saveFever(feverL);
 }
 
 void MainGameBaseLayer::addAttachedMarinelife(Layer* lyr)

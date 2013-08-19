@@ -3,7 +3,7 @@
 
 
 #define BACKGROUND_MUSIC            0
-#define EFFECT_SOUND				0
+#define EFFECT_SOUND				1
 
 
 #endif  // __GRAND_BLUE_CONFIG_H__

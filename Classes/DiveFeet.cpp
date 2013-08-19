@@ -10,7 +10,7 @@ bool DiveFeetLayer::init()
 	currentDivedFeet = 0;
 	diveStep = 1;
 
-	initWithLabel();
+	//initWithLabel();
 
 	return true;
 }
@@ -19,13 +19,17 @@ void DiveFeetLayer::initWithLabel()
 {
 	// create menu label
 	MenuLabelLayer* ml_diveFeet = MenuLabelLayer::create();
-	ml_diveFeet->initWithLabel("0 Feet", 2.0f);
+	char chrFeet[9] = {0};
+	sprintf(chrFeet, "%d Feet", currentDivedFeet);
+	ml_diveFeet->initWithLabel(chrFeet, 2.0f);
 	ml_diveFeet->createMenu();
 	addChild(ml_diveFeet, 1, kTagMLDiveFeet);
 }
 
 void DiveFeetLayer::startDive()
 {
+	initWithLabel();
+
 	schedule( schedule_selector(DiveFeetLayer::incrementDiveFeet), 2.0f );
 }
 
@@ -55,8 +59,13 @@ void DiveFeetLayer::resetDiveStep(float dt)
 	diveStep = 1;
 }
 
-int DiveFeetLayer::getCurrentFeet()
+int DiveFeetLayer::getDivedFeet()
 {
 	return currentDivedFeet;
+}
+
+void DiveFeetLayer::setDivedFeet(int divedFeetValue)
+{
+	currentDivedFeet = divedFeetValue;
 }
 

@@ -147,7 +147,7 @@ void MarineLifeLayer::actionTint(Sprite* sprt)
 void MarineLifeLayer::comboForFeverUp()
 {
 	MainGameBaseLayer* parent = (MainGameBaseLayer*)getParent();
-	parent->increaseMarineLifeBye();
+	((FeverLayer*)parent->getChildByTag(kTagFever))->increaseMarinelifeBye();
 
 	// MainGameLayer dolphin touch for fever ++
 	((FeverLayer*)parent->getChildByTag(kTagFever))->increaseTouchCombo();	

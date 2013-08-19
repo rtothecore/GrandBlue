@@ -16,11 +16,11 @@ private:
 	static const int st_touchDamageFever = 3;
 	static const int st_feverTime = 10;
 
+	int iMarineLifeBye;
 	int iTouchCombo;
 
 	// ProgressBar
 	void initProgressBar();
-	void refreshProgressBar();
 
 	// Fever
 	void checkFever();
@@ -33,12 +33,21 @@ public:
 
 	int getTouchDamage();
 	bool isFever();
-	int getTouchComboForFever();
-	int getTouchCombo();
 
+	int getTouchComboForFever();
+	
 	// Touch Combo 
 	void increaseTouchCombo();
 	void resetTouchCombo();
+	int getTouchCombo();
+	void setTouchCombo(int touchComboVal);
+
+	// Marinelife bye
+	void increaseMarinelifeBye();
+	int getMarinelifeBye();
+	void setMarinelifeBye(int mlByeVal);
+	
+	void refreshProgressBar();
 };
 
 #endif
