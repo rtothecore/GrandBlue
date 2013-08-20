@@ -7,54 +7,54 @@
             <key>starfish1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{372,354}}</string>
+                <string>{{0,0},{206,195}}</string>
                 <key>offset</key>
-                <string>{-14,10}</string>
+                <string>{-7,5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,8},{372,354}}</string>
+                <string>{{0,5},{206,195}}</string>
                 <key>sourceSize</key>
-                <string>{400,390}</string>
+                <string>{220,215}</string>
             </dict>
             <key>starfish2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{374,0},{372,344}}</string>
+                <string>{{208,0},{206,191}}</string>
                 <key>offset</key>
-                <string>{14,5}</string>
+                <string>{7,3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{28,18},{372,344}}</string>
+                <string>{{14,9},{206,191}}</string>
                 <key>sourceSize</key>
-                <string>{400,390}</string>
+                <string>{220,215}</string>
             </dict>
             <key>starfish3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,356},{372,362}}</string>
+                <string>{{0,197},{206,201}}</string>
                 <key>offset</key>
-                <string>{14,14}</string>
+                <string>{7,7}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{28,0},{372,362}}</string>
+                <string>{{14,0},{206,201}}</string>
                 <key>sourceSize</key>
-                <string>{400,390}</string>
+                <string>{220,215}</string>
             </dict>
             <key>starfish4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{374,356},{344,362}}</string>
+                <string>{{208,197},{190,201}}</string>
                 <key>offset</key>
-                <string>{9,-14}</string>
+                <string>{5,-7}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{37,28},{344,362}}</string>
+                <string>{{20,14},{190,201}}</string>
                 <key>sourceSize</key>
-                <string>{400,390}</string>
+                <string>{220,215}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>starfish.png</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:78972d796f196004663751b73198d9f5:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:4fb453ab65d2bf9b63066a0f14ecd61f:1/1$</string>
             <key>textureFileName</key>
             <string>starfish.png</string>
         </dict>

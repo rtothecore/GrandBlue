@@ -73,7 +73,7 @@ void MainGameLayer4::onEnterTransitionDidFinish()
 	// Add diver layer
 	addDiver();
 
-	// Add turtle layer
+	// Add marinelife layer
 	schedule( schedule_selector(MainGameLayer4::addStarfish), 3 );
 
 	// Sound
@@ -130,7 +130,7 @@ void MainGameLayer4::addRope()
 
 void MainGameLayer4::addStarfish(float dt)
 {
-	for(int i=0; i<4; i++)
+	for(int i=0; i<7; i++)
 	{
 		StarfishLayer* starfishL = StarfishLayer::create();
 		addChild(starfishL, 0, kTagLayerStarfish);

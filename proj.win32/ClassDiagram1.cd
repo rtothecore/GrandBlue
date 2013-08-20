@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AppDelegate" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAACAAQAAAEAAAAAAAAAAAAg=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\AppDelegate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HelloWorld" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAABAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\HelloWorldScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shaky3DDemo" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Background.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LiquidDemo" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Background.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DiveFeetLayer" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAIAAAAARAAIEAAAAAAAABAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\DiveFeet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EndGameScene" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAABAAAAAAAAAAAIAABAAAAAAAEA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\EndGameScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeverLayer" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAEgAgABkEAAAAYAAAAAABQAAEQAIgABAAASAAAkA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Fever.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameBaseLayer" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAAAAAEAQEAAEAAABAEBAABIAAAAIQABQCAjAgQEA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameDataLayer" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAACAAAAAAAAEACAAADAAAAgAIAABAAAAIAAAE=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameScene2" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameLayer2" Collapsed="true">
+    <Position X="0.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAAAAAABACQAAEAAAAAAAAAAAAAAAIAARAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameScene3" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene3.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameLayer3" Collapsed="true">
+    <Position X="3" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAAQAAABACAAAEAAAAAAAAAAAAAAAIAARAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene3.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameScene4" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameLayer4" Collapsed="true">
+    <Position X="7.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAAAAAABACAAAEAAAAAAAAAAAAAAAIgARAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarineLifeLayer" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgCIBCAAGCAEACkIEQBAABAKhEACEgIEABACMACQABA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MarineLife.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuLabelLayer" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIgAAAAAggAAAAAAAIAgBAAAAAAAAE=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MenuLabel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackgroundLayer" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAABAAAAIAAIIAABAAAACAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Background.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DiverLayer" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgKIAWFACCAEAIAIEABAJRAAAACggAIAABAAMCCAABA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Diver.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DolphinLayer" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAACAAAAAAAAAAAAAAAAIAABAAEAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Dolphin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProgressBarLayer" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAABCAQAAAAAAIAAAAAAAAAAAAAKgIBAgAAwAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\ProgressBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SquidLayer" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAACAAAAAAAAAAAAAAAAIAABAAEAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Squid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StarfishLayer" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAACAAAAAAAAAAAAAAAAIAABAAEAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Starfish.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurtleLayer" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAACAAAAAAAAAAAAAAAAIAABAAEAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Turtle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameScene" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainGameLayer" Collapsed="true">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAAAAAABACAAAEAAAAAAAAAAAAAAAIAARAAABAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainGameScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainTitleScene" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainTitleScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainTitleLayer" Collapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAIAAhAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MainTitleScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sound" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACABAAADAEQAAAJAAgAAAUQEAAQAAAAwBAAAABAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Sound.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteRepeater" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAEAggAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\SpriteRepeater.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rope" Collapsed="true">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\SpriteRepeater.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rocks" Collapsed="true">
+    <Position X="2.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\SpriteRepeater.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UtilFunc" Collapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAACAAIEAAAAAAAAIAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\UtilFunc.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="tagResource" Collapsed="true">
+    <Position X="6.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\AppMacros.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="Resource" Collapsed="true">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\AppMacros.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="__unnamed_enum_0459_1" Collapsed="true">
+    <Position X="13.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\DiveFeet.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="__unnamed_enum_0444_1" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Fever.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="__unnamed_enum_0460_1" Collapsed="true">
+    <Position X="15.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\MarineLife.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="__unnamed_enum_044f_1" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\ProgressBar.cpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="__unnamed_enum_0467_1" Collapsed="true">
+    <Position X="17" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAgAIAAEAAAAAAAAAhABCAAgAAAQAAAABAAAAEAAAA=</HashCode>
+      <FileName>D:\cocos2dx_workspace\cocos2d-x-3.0alpha0-pre\projects\Grandblue\Classes\Tags.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Malgun Gothic" Size="9" />
+</ClassDiagram>
