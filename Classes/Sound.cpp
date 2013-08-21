@@ -198,3 +198,20 @@ void Sound::playStarfishEffectWithType(int type)
 	}
 #endif
 }
+
+void Sound::playSeahorseEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	switch(type)
+	{
+		case 1:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_SEAHORSE1_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		case 2:
+			SimpleAudioEngine::getInstance()->playEffect(EFFECT_SEAHORSE2_FILE, false, pitchVal, panVal, gainVal);
+			break;
+		default:
+			break;
+	}
+#endif
+}

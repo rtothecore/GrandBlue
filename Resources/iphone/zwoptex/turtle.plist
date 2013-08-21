@@ -9,11 +9,11 @@
                 <key>frame</key>
                 <string>{{0,0},{142,112}}</string>
                 <key>offset</key>
-                <string>{-1,2}</string>
+                <string>{1,2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,9},{142,112}}</string>
+                <string>{{2,9},{142,112}}</string>
                 <key>sourceSize</key>
                 <string>{144,134}</string>
             </dict>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:407c458202b04ac72a030a65f2481cbb:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:3971d1719e978a592784feca6208002f:1/1$</string>
             <key>textureFileName</key>
             <string>turtle.png</string>
         </dict>

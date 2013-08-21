@@ -10,6 +10,15 @@
     <Filter Include="MyClass">
       <UniqueIdentifier>{64b9b674-d331-4018-a831-f9ddf574a222}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\Marinelife">
+      <UniqueIdentifier>{1fb74f2d-d97e-46b0-9dee-cb198d57b727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\MainGameScene">
+      <UniqueIdentifier>{fe247bd7-502f-452f-bd58-91192e56cb66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Common">
+      <UniqueIdentifier>{7e68539f-706b-40b3-96b0-98e4cca7fc93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,13 +36,7 @@
     <ClCompile Include="..\Classes\Diver.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Dolphin.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Fever.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MainGameScene.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MainTitleScene.cpp">
@@ -51,41 +54,53 @@
     <ClCompile Include="..\Classes\SpriteRepeater.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\UtilFunc.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\DiveFeet.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\EndGameScene.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Turtle.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MarineLife.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MainGameScene2.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MainGameBase.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\MainGameData.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Squid.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MainGameScene3.cpp">
-      <Filter>MyClass</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MainGameScene4.cpp">
-      <Filter>MyClass</Filter>
+    <ClCompile Include="..\Classes\Dolphin.cpp">
+      <Filter>MyClass\Marinelife</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Starfish.cpp">
-      <Filter>MyClass</Filter>
+      <Filter>MyClass\Marinelife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Squid.cpp">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Turtle.cpp">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MarineLife.cpp">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameBase.cpp">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene.cpp">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene2.cpp">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene3.cpp">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene4.cpp">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UtilFunc.cpp">
+      <Filter>MyClass\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Seahorse.cpp">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene5.cpp">
+      <Filter>MyClass\MainGameScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,16 +119,7 @@
     <ClInclude Include="..\Classes\Diver.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Dolphin.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Fever.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GrandBlueConfig.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MainGameScene.h">
       <Filter>MyClass</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainTitleScene.h">
@@ -134,9 +140,6 @@
     <ClInclude Include="..\Classes\SpriteRepeater.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\UtilFunc.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\AppMacros.h">
       <Filter>Classes</Filter>
     </ClInclude>
@@ -146,35 +149,53 @@
     <ClInclude Include="..\Classes\EndGameScene.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Turtle.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MarineLife.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MainGameScene2.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MainGameBase.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Tags.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\MainGameData.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Squid.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MainGameScene3.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MainGameScene4.h">
-      <Filter>MyClass</Filter>
+    <ClInclude Include="..\Classes\Dolphin.h">
+      <Filter>MyClass\Marinelife</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Starfish.h">
-      <Filter>MyClass</Filter>
+      <Filter>MyClass\Marinelife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Squid.h">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Turtle.h">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MarineLife.h">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameBase.h">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene.h">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene2.h">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene3.h">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene4.h">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tags.h">
+      <Filter>MyClass\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UtilFunc.h">
+      <Filter>MyClass\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GrandBlueConfig.h">
+      <Filter>MyClass\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Seahorse.h">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene5.h">
+      <Filter>MyClass\MainGameScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

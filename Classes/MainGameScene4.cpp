@@ -11,6 +11,7 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
+#include "MainGameScene5.h"
 
 //------------------------------------------------------------------
 //
@@ -32,7 +33,7 @@ bool MainGameScene4::init()
 //------------------------------------------------------------------
 bool MainGameLayer4::init()
 {
-	iMaxFeet = 60;
+	iMaxFeet = 80;
 	iTagForMarinelife = kTagLayerStarfish;
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -145,7 +146,7 @@ void MainGameLayer4::addDiver()
 
 void MainGameLayer4::goToNextGameScene()
 {
-	/*Scene *scene = MainGameScene4::create();
+	Scene *scene = MainGameScene5::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
-	Director::getInstance()->replaceScene(scene);*/
+	Director::getInstance()->replaceScene(scene);
 }

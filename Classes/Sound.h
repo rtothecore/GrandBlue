@@ -39,6 +39,9 @@ public:
 	// starfish
 	static void playStarfishEffectRand();
 	static void playStarfishEffectWithType(int type);
+
+	// seahorse
+	static void playSeahorseEffectWithType(int type);
 	
 };
 
