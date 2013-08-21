@@ -81,7 +81,6 @@ bool HelloWorld::init()
 void HelloWorld::menuCloseCallback(Object* pSender)
 {
     //Director::getInstance()->end();
-	//Scene *scene = MainTitle::scene();
 	Scene *scene = MainTitleScene::create();
 	Director::getInstance()->pushScene(scene);
 

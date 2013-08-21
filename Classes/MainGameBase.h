@@ -33,6 +33,10 @@ public:
 	void saveDivedFeetData();
 	void saveFeverData();
 
+	// ready go to next scene
+	bool existUnattachedMarinlife();
+	void checkRemainUnattachedMarinlife(float dt);
+
 	// -- For Overriding --
 	int iMaxFeet;
 	int iTagForMarinelife;
@@ -40,14 +44,18 @@ public:
 	virtual bool init();
 
 	virtual void onEnterTransitionDidFinish();
-	virtual void menuBackCallback(Object* pSender);
-	virtual void byeMenuLabelRefresh(float dt);
+	virtual void addComboLabel();
+	virtual void addMarinelife(float dt);
+	virtual void comboLabelRefresh(float dt);
 
 	virtual bool ccTouchBegan(Touch* touch, Event* event);
     virtual void ccTouchMoved(Touch* touch, Event* event);
     virtual void ccTouchEnded(Touch* touch, Event* event);
 
+	virtual void readyToGoNextScene();
 	virtual void goToNextGameScene();
+
+
 };
 
 #endif

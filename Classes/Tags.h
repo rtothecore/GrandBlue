@@ -6,8 +6,12 @@ enum {
 	kTagLayerDiveFeet = 5,
 	kTagRocks = 6,
 	kTagRope = 7,
+	kTagLabelDiveFeet = 8,
+	kTagLabelFever = 9,
 	
 	kTagGameSceneLayer = 10,
+	kTagMLTitleMain = 11,
+	kTagMLTitleOption = 12,
 
 	kTagForMarinelifes = 777,
 	kTagLayerDolphin = 778,

@@ -27,6 +27,9 @@ private:
 	void intoTheFever();
 	void endFever(float dt);
 
+	// label
+	void addFeverLabel();
+
 public:
 	virtual bool init();
 	CREATE_FUNC(FeverLayer);

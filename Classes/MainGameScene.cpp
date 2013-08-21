@@ -37,19 +37,6 @@ bool MainGameLayer::init()
 	iMaxFeet = 20;
 	iTagForMarinelife = kTagLayerDolphin;
 
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
-
-	// Menu
-	MenuItemImage *diveItem = MenuItemImage::create(
-										"menu_dive.png", 
-										"menu_dive_selected.png", 
-										CC_CALLBACK_1(MainGameLayer::menuBackCallback, this));
-
-    Menu* menu = Menu::create(diveItem, NULL);
-	menu->setPosition( Point(origin.x + visibleSize.width/2, visibleSize.height - visibleSize.height/5) );
-    this->addChild(menu, 1);
-
 	// Add background sprite
 	addBackground();
 
@@ -76,23 +63,16 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add dolphin layer
-	schedule( schedule_selector(MainGameLayer::addDolphin), 3 );
+	schedule( schedule_selector(MainGameLayer::addMarinelife), 3 );
 
 	// Sound
 	Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
 
-	// Menu Label - dolphin bye
-	MenuLabelLayer* mLabel_DolphinBye = MenuLabelLayer::create();
-	mLabel_DolphinBye->initWithLabel("Dolphin's Bye", 1.0f);
-	mLabel_DolphinBye->addMenuItem("0", 1.0f);
-	mLabel_DolphinBye->createMenu();
-	mLabel_DolphinBye->setZOrder(1);
-	mLabel_DolphinBye->setPosition(0, -200);
-	addChild(mLabel_DolphinBye, 1, kTagMainGameMenuLabel);
-	schedule(schedule_selector(MainGameLayer::byeMenuLabelRefresh), 0.5);
+	// Combo Label
+	addComboLabel();
 
-	// Menu Label - dive feet
+	// Dive feet Label
 	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();
 	diveFeetL->startDive();
 	addChild(diveFeetL, 1, kTagLayerDiveFeet);
@@ -130,7 +110,7 @@ void MainGameLayer::addRope()
 	addChild(rope, 0, kTagRope);
 }
 
-void MainGameLayer::addDolphin(float dt)
+void MainGameLayer::addMarinelife(float dt)
 {
 	for(int i=0; i<4; i++)
 	{
@@ -150,4 +130,12 @@ void MainGameLayer::goToNextGameScene()
 	Scene *scene = MainGameScene2::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
 	Director::getInstance()->replaceScene(scene);
+}
+
+void MainGameLayer::readyToGoNextScene()
+{
+	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
+	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );
+
+	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.2f);
 }

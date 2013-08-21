@@ -2,6 +2,7 @@
 #include "Sound.h"
 #include "ProgressBar.h"
 #include "UtilFunc.h"
+#include "Tags.h"
 
 enum {
 	kTagFeverProgressBar = 1,
@@ -66,8 +67,27 @@ void FeverLayer::intoTheFever()
 
 	bFeverMode = true;
 
+	// add fever label
+	addFeverLabel();
+
 	// fever music
 	Sound::playFeverMusic(true);
+}
+
+void FeverLayer::addFeverLabel()
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+
+	auto labelFever = LabelBMFont::create("Fever Time!!!!", "fonts/Blippo.fnt");
+	labelFever->setScale(4.0f);
+
+	Point dstPoint = Point(visibleSize.width/4, visibleSize.height/2 + labelFever->getContentSize().height*2);
+	int offset = (int) (visibleSize.width/2 + 50);
+
+	labelFever->setPosition(  Point( dstPoint.x + offset, dstPoint.y) );
+	labelFever->runAction( EaseElasticOut::create(MoveBy::create(2, Point(dstPoint.x - offset,0)), 0.35f) );
+
+	addChild(labelFever, 1, kTagLabelFever);
 }
 
 void FeverLayer::endFever(float dt)
@@ -76,6 +96,9 @@ void FeverLayer::endFever(float dt)
 
 	bFeverMode = false;
 	resetTouchCombo();
+
+	// remove fever label
+	removeChildByTag(kTagLabelFever);
 
 	// background music
 	Sound::playBackgroundMusic(true);

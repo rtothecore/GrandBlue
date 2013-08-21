@@ -20,13 +20,14 @@ public:
 	CREATE_FUNC(MainGameLayer);
 	void onEnterTransitionDidFinish();
 
-	void addDolphin(float dt);
+	void addMarinelife(float dt);
 	void addDiver();
 	void addRocks();
 	void addRope();
 	void addBackground();
 
 	void goToNextGameScene();
+	void readyToGoNextScene();
 };
 
 #endif // __MAINTITLE_SCENE_H__

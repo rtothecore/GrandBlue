@@ -12,9 +12,18 @@ private:
     static float panVal;
     static float gainVal;
 
+	static bool bMusic;
+	static bool bEffect;
+
 public:
 	Sound(void);
 	~Sound(void);
+
+	static bool isMusicOn();
+	static bool isEffectOn();
+	
+	static void toggleMusic();
+	static void toggleEffect();
 
 	static void playBackgroundMusic(bool loop);
 	static void stopBackgroundMusic();

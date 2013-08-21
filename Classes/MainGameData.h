@@ -17,17 +17,20 @@ public:
 	static bool isSaveDiver;
 	static void saveDiver(DiverLayer* diverL);
 	static DiverLayer* loadDiver();
+	static void resetDiver();
 
 	static bool isSaveDivedFeet;
 	static void saveDivedFeet(DiveFeetLayer* diveFeetL);
 	static DiveFeetLayer* loadDivedFeet();
+	static void resetDivedFeet();
 
 	static bool isSaveFever;
 	static void saveFever(FeverLayer* feverL);
 	static FeverLayer* loadFever();
+	static void resetFever();
 
-	//void saveAttachedMarinelife();
-	
+	//reset
+	static void resetAllData();
 };
 
 #endif

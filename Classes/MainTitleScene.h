@@ -19,6 +19,13 @@ public:
     
     void menuCloseCallback(Object* pSender);
 	void menuDiveCallback(Object* pSender);
+	void menuOptionCallback(Object* pSender);
+
+	void backToMainMenuCallback(Object* pSender);
+
+	//sound
+	void togglMusicCallback(Object* pSender);
+	void togglEffectCallback(Object* pSender);
     
     CREATE_FUNC(MainTitleLayer);
 };

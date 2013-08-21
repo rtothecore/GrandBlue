@@ -36,19 +36,6 @@ bool MainGameLayer4::init()
 	iMaxFeet = 80;
 	iTagForMarinelife = kTagLayerStarfish;
 
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
-
-	// Menu
-	MenuItemImage *diveItem = MenuItemImage::create(
-										"menu_dive.png", 
-										"menu_dive_selected.png", 
-										CC_CALLBACK_1(MainGameLayer4::menuBackCallback, this));
-
-    Menu* menu = Menu::create(diveItem, NULL);
-	menu->setPosition( Point(origin.x + visibleSize.width/2, visibleSize.height - visibleSize.height/5) );
-    this->addChild(menu, 1);
-
 	// Add background sprite
 	addBackground();
 
@@ -75,21 +62,14 @@ void MainGameLayer4::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add marinelife layer
-	schedule( schedule_selector(MainGameLayer4::addStarfish), 3 );
+	schedule( schedule_selector(MainGameLayer4::addMarinelife), 3 );
 
 	// Sound
 	Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer4::playBubbleEffect), 2);
 
-	// Menu Label - bye
-	MenuLabelLayer* mLabel_Bye = MenuLabelLayer::create();
-	mLabel_Bye->initWithLabel("Starfish's Bye", 1.0f);
-	mLabel_Bye->addMenuItem("0", 1.0f);
-	mLabel_Bye->createMenu();
-	mLabel_Bye->setZOrder(1);
-	mLabel_Bye->setPosition(0, -200);
-	addChild(mLabel_Bye, 1, kTagMainGameMenuLabel);
-	schedule(schedule_selector(MainGameLayer4::byeMenuLabelRefresh), 0.5);
+	// Combo Label
+	addComboLabel();
 
 	// Menu Label - dive feet
 	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();
@@ -129,7 +109,7 @@ void MainGameLayer4::addRope()
 	addChild(rope, 0, kTagRope);
 }
 
-void MainGameLayer4::addStarfish(float dt)
+void MainGameLayer4::addMarinelife(float dt)
 {
 	for(int i=0; i<7; i++)
 	{
@@ -149,4 +129,12 @@ void MainGameLayer4::goToNextGameScene()
 	Scene *scene = MainGameScene5::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
 	Director::getInstance()->replaceScene(scene);
+}
+
+void MainGameLayer4::readyToGoNextScene()
+{
+	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
+	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );
+
+	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.2f);
 }

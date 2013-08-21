@@ -43,6 +43,20 @@ DiverLayer* MainGameDataLayer::loadDiver()
 	return ret;
 }
 
+void MainGameDataLayer::resetDiver()
+{
+	UserDefault::getInstance()->setFloatForKey("diverPosX", 0);
+	UserDefault::getInstance()->setFloatForKey("diverPosY", 0);
+
+	UserDefault::getInstance()->setFloatForKey("diverAncX", 0);
+	UserDefault::getInstance()->setFloatForKey("diverAncY", 0);
+
+	UserDefault::getInstance()->setIntegerForKey("diverLovePoint", 0);
+	UserDefault::getInstance()->setBoolForKey("diverIsLove", 0);
+
+	MainGameDataLayer::isSaveDiver = false;
+}
+
 bool MainGameDataLayer::isSaveDivedFeet;
 
 void MainGameDataLayer::saveDivedFeet(DiveFeetLayer* diveFeetL)
@@ -63,6 +77,13 @@ DiveFeetLayer* MainGameDataLayer::loadDivedFeet()
 	}
 
 	return ret;
+}
+
+void MainGameDataLayer::resetDivedFeet()
+{
+	UserDefault::getInstance()->setIntegerForKey("divedFeet", 0);
+
+	MainGameDataLayer::isSaveDivedFeet = false;
 }
 
 bool MainGameDataLayer::isSaveFever;
@@ -88,4 +109,19 @@ FeverLayer* MainGameDataLayer::loadFever()
 	}
 
 	return ret;
+}
+
+void MainGameDataLayer::resetFever()
+{
+	UserDefault::getInstance()->setIntegerForKey("marinelifeBye", 0);
+	UserDefault::getInstance()->setIntegerForKey("touchCombo", 0);
+
+	MainGameDataLayer::isSaveFever = false;
+}
+
+void MainGameDataLayer::resetAllData()
+{
+	resetDiver();
+	resetDivedFeet();
+	resetFever();
 }

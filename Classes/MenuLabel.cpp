@@ -2,7 +2,7 @@
 
 bool MenuLabelLayer::init()
 {
-	fontFile = "fonts/Courier.fnt";
+	fontFile = "fonts/Fixedsys.fnt";
 
 	return true;
 }
@@ -58,7 +58,7 @@ void MenuLabelLayer::createMenu()
     }
 
 	// add menu
-	addChild(menu);
+	addChild(menu, 0, 0);
 }
 
 void MenuLabelLayer::renameMenuItem(int itemIndex, char* chrLabel)

@@ -26,52 +26,34 @@ void MainGameBaseLayer::onEnterTransitionDidFinish()
 {
 }
 
-void MainGameBaseLayer::menuBackCallback(Object* pSender) 
+void MainGameBaseLayer::addComboLabel()
 {
-	Scene *scene = TransitionSlideInT::create(2, MainTitleScene::create());
-	Director::getInstance()->pushScene(scene);
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+
+	// combo label
+	auto labelCombo = LabelBMFont::create("Bye:999\nCombo:999", "fonts/Blippo.fnt");
+	labelCombo->setPosition(visibleSize.width - labelCombo->getContentSize().width*2, labelCombo->getContentSize().height*2 );
+	labelCombo->setScale(2.0f);
+    addChild(labelCombo, 2, kTagMainGameMenuLabel);
+	schedule(schedule_selector(MainGameBaseLayer::comboLabelRefresh), 0.5);
 }
 
-void MainGameBaseLayer::byeMenuLabelRefresh(float dt)
+void MainGameBaseLayer::addMarinelife(float dt)
 {
-	MenuLabelLayer* mLabelL = (MenuLabelLayer*)getChildByTag(kTagMainGameMenuLabel);
-	char chrDolphinBye[12] = {0};
-	sprintf(chrDolphinBye, "%d/%d/%d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
-									   ((FeverLayer*)getChildByTag(kTagFever))->getTouchComboForFever(), 
-									   ((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
+}
 
-	if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
-	{
-		mLabelL->renameMenuItem(0, "Fever Time!!!!");
-	} else {
-		mLabelL->renameMenuItem(0, "MarineLife's Bye");
-	}
+void MainGameBaseLayer::comboLabelRefresh(float dt)
+{
+	LabelBMFont* labelCombo = (LabelBMFont*)getChildByTag(kTagMainGameMenuLabel);
+	char chrMarinelifeBye[30] = {0};
 
-	mLabelL->renameMenuItem(1, chrDolphinBye);
+	sprintf(chrMarinelifeBye, "Bye:%d\nCombo:%d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
+			((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
+	labelCombo->setString(chrMarinelifeBye);
 }
 
 bool MainGameBaseLayer::containsMarinelifeLocation(Touch* touch)
 {
-	/* ORIGINAL
-	Array *arrChildren = getChildren();
-	Object* pObj = NULL;
-	DolphinLayer* dolphinL;
-	
-
-	CCARRAY_FOREACH(arrChildren, pObj)
-	{
-		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
-		{
-			dolphinL = static_cast<DolphinLayer*>(pObj);
-
-			if(!dolphinL)
-				break;
-
-			if( !dolphinL->getRect().containsPoint(convertTouchToNodeSpaceAR(touch)) )
-				return false;
-		}
-	}*/
-
 	Array *arrChildren = getChildren();
 	Object* pObj = NULL;
 	MarineLifeLayer* marinelifeL;
@@ -122,43 +104,6 @@ void MainGameBaseLayer::detectCollision(float dt)
 
 bool MainGameBaseLayer::checkCollision()
 {
-	/* ORIGINAL
-	DolphinLayer* dolphinL;
-	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
-	Object* pObj = NULL;
-
-	Array *arrChildren = getChildren();
-
-	CCARRAY_FOREACH(arrChildren, pObj)
-	{
-		if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
-		{
-			dolphinL = static_cast<DolphinLayer*>(pObj);
-
-			if(!dolphinL)
-				break;
-
-			if( !diverL->isLove
-				&& !dolphinL->isBye
-				&& !dolphinL->isAttachedToDiver 
-				&& dolphinL->getMarineLifeRect().intersectsRect(diverL->getDiverRect()) )
-			{
-				log("Dolphin meet diver~^^");
-
-				dolphinL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
-				diverL->refreshDiverPositionWithDolphin();
-				((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(5, 5);
-
-				if(diverL->isLove)
-				{
-					toEndGameSceneWithLove();
-				}
-
-				return true;
-			}
-		}
-	}*/
-
 	MarineLifeLayer* marinelifeL;
 	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
 	Object* pObj = NULL;
@@ -200,33 +145,6 @@ bool MainGameBaseLayer::checkCollision()
 
 void MainGameBaseLayer::toEndGameSceneWithLove()
 {
-	// ORIGINAL
-	//EndGameScene *scene = EndGameScene::create();
-
-	//// clone Diver
-	//DiverLayer* diverCloneL = ((DiverLayer*)getChildByTag(kTagLayerDiver))->clone();
-	//scene->addChild(diverCloneL, 1, kTagLayerDiver);
-
-	//// clone Dolphin
-	//Array *arrChildren = getChildren();
-	//Object* pObj = NULL;
-	//DolphinLayer* dolphinL;
-
-	//CCARRAY_FOREACH(arrChildren, pObj)
-	//{
-	//	if( kTagLayerDolphin == ((Node*)pObj)->getTag() )
-	//	{
-	//		dolphinL = static_cast<DolphinLayer*>(pObj);
-
-	//		if(dolphinL && dolphinL->isAttachedToDiver)
-	//		{
-	//			DolphinLayer* dolphinCloneL = dolphinL->clone();
-	//			dolphinCloneL->attachToDiver(dolphinL->getPositionX(), dolphinL->getPositionY());
-	//			scene->addChild(dolphinCloneL, 0, kTagLayerDolphin);
-	//		}
-	//	}
-	//}
-
 	EndGameScene *scene = EndGameScene::create();
 
 	// clone Diver
@@ -269,9 +187,48 @@ void MainGameBaseLayer::checkFeet(float dt)
 	DiveFeetLayer* divefeetL = (DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet);
 	if( iMaxFeet <= divefeetL->getDivedFeet() )
 	{
+		readyToGoNextScene();
+	}
+}
+
+void MainGameBaseLayer::readyToGoNextScene()
+{
+	// ---- WARNING : Can't call child class's addMarinelife()  -----
+	/*unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
+	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );
+
+	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.2f);*/
+}
+
+void MainGameBaseLayer::checkRemainUnattachedMarinlife(float dt)
+{
+	if(!existUnattachedMarinlife())
+	{
 		saveAllGameData();
 		goToNextGameScene();
+	} 
+}
+
+bool MainGameBaseLayer::existUnattachedMarinlife()
+{
+	Array *arrChildren = getChildren();
+	Object* pObj = NULL;
+	MarineLifeLayer* marinelifeL;
+
+	CCARRAY_FOREACH(arrChildren, pObj)
+	{
+		if( kTagForMarinelifes < ((Node*)pObj)->getTag() )
+		{
+			marinelifeL = static_cast<MarineLifeLayer*>(pObj);
+
+			if(marinelifeL && !marinelifeL->isAttachedToDiver)
+			{
+				return true;
+			}
+		}
 	}
+
+	return false;
 }
 
 void MainGameBaseLayer::saveAllGameData()

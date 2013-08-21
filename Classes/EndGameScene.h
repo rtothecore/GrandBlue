@@ -16,6 +16,11 @@ public:
 	// end game with love
 	void runLoveEvent();
 	void actionLove(float dt);
+
+	// continue
+	void addContinueMenu(float dt);
+	void continueGameCallback(Object* pSender);
+	void endGameCallback(Object* pSender);
 };
 
 #endif
