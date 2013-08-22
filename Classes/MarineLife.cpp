@@ -164,17 +164,6 @@ void MarineLifeLayer::actionBlinkAndRemove(Sprite* sprt)
 
 void MarineLifeLayer::playMarineLifeSound()
 {
-	/*switch(byePoint)
-	{
-		case 1:
-		case 2:
-			Sound::playDolphinEffectRand();
-			break;
-		case 3:
-		default:
-			Sound::playDolphinEffectWithType(3);
-			break;
-	}*/
 }
 
 void MarineLifeLayer::spriteFlipY(Object* pSender)

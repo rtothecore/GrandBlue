@@ -16,7 +16,7 @@ public:
 
 	// collision check
 	void detectCollision(float dt);
-	bool checkCollision();
+	void checkCollision();
 
 	// falled in love event
 	void toEndGameSceneWithLove();
@@ -36,6 +36,9 @@ public:
 	// ready go to next scene
 	bool existUnattachedMarinlife();
 	void checkRemainUnattachedMarinlife(float dt);
+
+	// dive control
+	void diveWithTimes(int timesValue);
 
 	// -- For Overriding --
 	int iMaxFeet;

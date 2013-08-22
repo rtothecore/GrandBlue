@@ -22,7 +22,8 @@ public:
 
 	void startDive();
 	void stopDive();
-	void setDiveStep(int diveStepVal, float timeVal);
+	void setDiveStepWithTime(int diveStepVal, float timeVal);
+	void setDiveStep(int diveStepVal);
 	int getDivedFeet();
 	void setDivedFeet(int divedFeetValue);
 };

@@ -40,7 +40,6 @@ protected:
 	bool ccTouchBegan(Touch* touch, Event* event);
     void ccTouchMoved(Touch* touch, Event* event);
     void ccTouchEnded(Touch* touch, Event* event);
-	void aliveMarineLifeTouched();
 
 	// bye
 	void byePointUp();
@@ -50,6 +49,8 @@ protected:
 	void actionBlinkAndRemove(Sprite* sprt);
 		
 public:
+	void aliveMarineLifeTouched();
+
 	// attach to diver
 	Rect getMarineLifeRect();
 	void attachToDiver(int diverPosX, int diverPosY);

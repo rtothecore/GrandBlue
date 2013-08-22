@@ -33,7 +33,7 @@ bool MainGameScene4::init()
 //------------------------------------------------------------------
 bool MainGameLayer4::init()
 {
-	iMaxFeet = 80;
+	iMaxFeet = 160;
 	iTagForMarinelife = kTagLayerStarfish;
 
 	// Add background sprite
@@ -65,7 +65,7 @@ void MainGameLayer4::onEnterTransitionDidFinish()
 	schedule( schedule_selector(MainGameLayer4::addMarinelife), 3 );
 
 	// Sound
-	Sound::playBackgroundMusic(true);
+	//Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer4::playBubbleEffect), 2);
 
 	// Combo Label
@@ -97,7 +97,7 @@ void MainGameLayer4::addRocks()
 {
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
 	Rocks* rocks = Rocks::create();
-	rocks->initWithTexture(rocksTexture, 1, 3);
+	rocks->initWithTexture(rocksTexture, 1);
 	addChild(rocks, 1, kTagRocks);
 }
 
@@ -105,7 +105,7 @@ void MainGameLayer4::addRope()
 {
 	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
 	Rope* rope = Rope::create();
-	rope->initWithTexture(ropeTexture, 0, 15);
+	rope->initWithTexture(ropeTexture, 0);
 	addChild(rope, 0, kTagRope);
 }
 

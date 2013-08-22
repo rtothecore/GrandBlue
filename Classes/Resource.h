@@ -27,13 +27,13 @@ static const char p_Seahorse[]				= "zwoptex/seahorse.plist";
 static const char s_Seahorse[]				= "seahorse1.png";
 
 // Image
-static const char s_UnderSea[]				   = "underTheSea_light.png";
+static const char s_UnderSea[]			   = "underTheSea_light.png";
 static const char s_Rocks[]				   = "underTheSea_rocks.png";
 static const char s_Rope[]				   = "rope.png";
 
 // Sound
-#define MUSIC_FILE        "sound/TheBigBlueOverture.mp3"
-#define FEVER_FILE        "sound/boom.mp3"
+#define MUSIC_FILE        "sound/grandblue.wav"
+#define FEVER_FILE        "sound/grandblue_fever.wav"
 
 #define EFFECT_BUBBLE_FILE        "sound/bubble.wav"
 
@@ -55,6 +55,8 @@ static const char s_Rope[]				   = "rope.png";
 
 #define EFFECT_SEAHORSE1_FILE        "sound/seahorse1.wav"
 #define EFFECT_SEAHORSE2_FILE        "sound/seahorse2.wav"
+
+#define EFFECT_DIVER_MEET_MARINELIFE_FILE        "sound/diver1.wav"
 
 
 #endif

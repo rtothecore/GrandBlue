@@ -12,6 +12,8 @@ enum {
 	kTagGameSceneLayer = 10,
 	kTagMLTitleMain = 11,
 	kTagMLTitleOption = 12,
+	kTagSpriteRepeatImg = 13,
+	kTagActionDiverFever = 14,
 
 	kTagForMarinelifes = 777,
 	kTagLayerDolphin = 778,

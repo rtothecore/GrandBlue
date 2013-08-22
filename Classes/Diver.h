@@ -55,6 +55,10 @@ public:
 
 	// refresh diver
 	void refreshDiver();
+
+	void runFevermodeAction();
+	void exitFevermodeAction();
+	void runMeetMarinelifeAction();
 };
 
 #endif

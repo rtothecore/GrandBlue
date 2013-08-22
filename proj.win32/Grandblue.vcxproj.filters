@@ -131,9 +131,6 @@
     <ClInclude Include="..\Classes\ProgressBar.h">
       <Filter>MyClass</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Resource.h">
-      <Filter>MyClass</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Sound.h">
       <Filter>MyClass</Filter>
     </ClInclude>
@@ -196,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MainGameScene5.h">
       <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Resource.h">
+      <Filter>MyClass\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

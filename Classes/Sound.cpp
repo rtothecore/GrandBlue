@@ -39,6 +39,7 @@ Sound::Sound(void)
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH1_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH2_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH3_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DIVER_MEET_MARINELIFE_FILE );
 		SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
 	}
 #endif
@@ -66,10 +67,7 @@ void Sound::playBackgroundMusic(bool loop)
 void Sound::stopBackgroundMusic()
 {
 #if (BACKGROUND_MUSIC)
-	if(bMusic)
-	{
-		SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-	}
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 #endif
 }
 
@@ -90,10 +88,7 @@ void Sound::playFeverMusic(bool loop)
 void Sound::stopFeverMusic()
 {
 #if (BACKGROUND_MUSIC)
-	if(bMusic)
-	{
-		SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-	}
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 #endif
 }
 
@@ -267,6 +262,26 @@ void Sound::playSeahorseEffectWithType(int type)
 #endif
 }
 
+void Sound::playDiverEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		switch(type)
+		{
+			case 1:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_DIVER_MEET_MARINELIFE_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 2:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_DIVER_MEET_MARINELIFE_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			default:
+				break;
+		}
+	}
+#endif
+}
+
 bool Sound::isMusicOn()
 {
 	return bMusic;
@@ -284,6 +299,8 @@ void Sound::toggleMusic()
 	if(!bMusic)
 	{
 		Sound::stopBackgroundMusic();
+	} else {
+		Sound::playBackgroundMusic(true);
 	}
 }
 

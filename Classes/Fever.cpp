@@ -3,6 +3,7 @@
 #include "ProgressBar.h"
 #include "UtilFunc.h"
 #include "Tags.h"
+#include "Diver.h"
 
 enum {
 	kTagFeverProgressBar = 1,
@@ -72,6 +73,9 @@ void FeverLayer::intoTheFever()
 
 	// fever music
 	Sound::playFeverMusic(true);
+
+	// run Diver's fever mode
+	((DiverLayer*)getParent()->getChildByTag(kTagLayerDiver))->runFevermodeAction();
 }
 
 void FeverLayer::addFeverLabel()
@@ -102,6 +106,9 @@ void FeverLayer::endFever(float dt)
 
 	// background music
 	Sound::playBackgroundMusic(true);
+
+	// exit Diver's fever mode
+	((DiverLayer*)getParent()->getChildByTag(kTagLayerDiver))->exitFevermodeAction();
 }
 
 int FeverLayer::getTouchDamage()

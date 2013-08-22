@@ -7,15 +7,24 @@ USING_NS_CC;
 
 class SpriteRepeater : public Sprite
 {
-
 public:
 	virtual bool init();
 	CREATE_FUNC(SpriteRepeater);
 
-	virtual bool initWithTexture(Texture2D* aTexture, int zValue, int durValue);
-	virtual void actionSequence(Sprite* spr, int destX, int destY, int actualDuration);
+	float actionDurVal;
+
+	Scheduler* schedRepeatMove;
+	void createActionManager();
+	void setTimeScale(float scale);
+
+	Rect getSpriteRepeaterRect();
+	void setColorToAllSprite(Color3B colorValue);
+
+	// -- For Overriding --
+	virtual bool initWithTexture(Texture2D* aTexture, int zValue);
+	virtual void actionSequence(Sprite* spr, int destX, int destY);
 	virtual void moveFinished(Object* pSender);
-	virtual void stopMoveActions();
+	
 };
 
 class Rope : public SpriteRepeater

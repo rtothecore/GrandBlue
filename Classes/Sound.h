@@ -51,6 +51,9 @@ public:
 
 	// seahorse
 	static void playSeahorseEffectWithType(int type);
+
+	// diver
+	static void playDiverEffectWithType(int type);
 	
 };
 

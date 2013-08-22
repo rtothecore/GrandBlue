@@ -33,13 +33,14 @@ bool MainTitleLayer::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
+	Size winSize = Director::getInstance()->getWinSize();
 
 	// Title Label
     auto labelTitle = LabelBMFont::create("Grand Blue", "fonts/Blippo.fnt");
 	labelTitle->setColor(Color3B::BLUE);
 	labelTitle->setScale(8.0f);
 	labelTitle->setZOrder(1);
-	labelTitle->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+	labelTitle->setPosition(Point(winSize.width/2, winSize.height/2));
     addChild(labelTitle);
 
 	// ----- main menu -----
@@ -109,6 +110,9 @@ bool MainTitleLayer::init()
     Sprite* sprite = Sprite::create("title_grandBlue.png");
     sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(sprite, 0);
+
+	// background music
+	Sound::playBackgroundMusic(true);
     
     return true;
 }

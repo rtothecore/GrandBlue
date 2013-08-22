@@ -1,6 +1,8 @@
 #include "Diver.h"
 #include "Resource.h"
 #include "UtilFunc.h"
+#include "Tags.h"
+#include "Sound.h"
 
 bool DiverLayer::init()
 {
@@ -276,6 +278,12 @@ void DiverLayer::increaseLovePoint()
 			isLove = true;
 			CCLog("Diver is falling in love with dolphin");
 		}
+
+		// sprite action
+		runMeetMarinelifeAction();
+
+		// sound
+		Sound::playDiverEffectWithType(1);
 	}
 }
 
@@ -288,6 +296,37 @@ void DiverLayer::runLoveAction()
 	auto actionMoveToLeft = MoveTo::create( 5, Point(0 - sprt_diver->getContentSize().width , getPositionY()) );
 	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
 	runAction( Sequence::create(actionMoveToLeft, actionMoveDone, NULL) );
+}
+
+void DiverLayer::runFevermodeAction()
+{
+	auto tintred = TintBy::create(0.1f, 0, -255, -255);
+    auto tintred_back = tintred->reverse();
+
+	auto tintgreen = TintBy::create(0.1f, -255, 0, -255);
+    auto tintgreen_back = tintgreen->reverse();
+    
+    auto tintblue = TintBy::create(0.1f, -255, -255, 0);
+    auto tintblue_back = tintblue->reverse();
+
+    auto diverFeverAction = RepeatForever::create( Sequence::create( tintred, tintred_back, 
+																tintgreen, tintgreen_back, 
+																tintblue, tintblue_back, NULL) );
+	diverFeverAction->setTag(kTagActionDiverFever);
+	sprt_diver->runAction(diverFeverAction);
+}
+
+void DiverLayer::runMeetMarinelifeAction()
+{
+	auto tintred = TintBy::create(0.2f, 0, -255, -255);
+    auto tintred_back = tintred->reverse();
+
+	sprt_diver->runAction( Sequence::create( tintred, tintred_back, NULL) );
+}
+
+void DiverLayer::exitFevermodeAction()
+{
+	sprt_diver->stopActionByTag(kTagActionDiverFever);
 }
 
 void DiverLayer::refreshDiver()

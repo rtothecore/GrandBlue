@@ -9,6 +9,7 @@
 #include "Tags.h"
 #include "Sound.h"
 #include "MainGameData.h"
+#include "SpriteRepeater.h"
 
 bool MainGameBaseLayer::init()
 {
@@ -102,16 +103,18 @@ void MainGameBaseLayer::detectCollision(float dt)
 	checkCollision();
 }
 
-bool MainGameBaseLayer::checkCollision()
+void MainGameBaseLayer::checkCollision()
 {
 	MarineLifeLayer* marinelifeL;
 	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
+	Rope* ropeL = (Rope*)getChildByTag(kTagRope);
 	Object* pObj = NULL;
 
 	Array *arrChildren = getChildren();
 
 	CCARRAY_FOREACH(arrChildren, pObj)
 	{
+		// Check between "diver" and "marinelife"
 		if( iTagForMarinelife == ((Node*)pObj)->getTag() )
 		{
 			marinelifeL = static_cast<MarineLifeLayer*>(pObj);
@@ -124,23 +127,56 @@ bool MainGameBaseLayer::checkCollision()
 				&& !marinelifeL->isAttachedToDiver 
 				&& marinelifeL->getMarineLifeRect().intersectsRect(diverL->getDiverRect()) )
 			{
-				log("Marinelife meet diver~^^");
-
-				marinelifeL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
-				diverL->refreshDiverPositionWithDolphin();
-				((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(5, 5);
-
-				if(diverL->isLove)
+				if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
 				{
-					toEndGameSceneWithLove();
-				}
+					marinelifeL->aliveMarineLifeTouched();
+				} 
+				else
+				{
+					marinelifeL->attachToDiver(diverL->getPosition().x, diverL->getPosition().y);
+					diverL->refreshDiverPositionWithDolphin();
 
-				return true;
+					if(diverL->isLove)
+					{
+						toEndGameSceneWithLove();
+					}
+				}
+			}
+		}
+		// Check between "diver" and "rope"
+		else if( kTagRope == ((Node*)pObj)->getTag() )
+		{
+			ropeL = static_cast<Rope*>(pObj);
+
+			if(!ropeL)
+				break;
+
+			if( ropeL->getSpriteRepeaterRect().intersectsRect(diverL->getDiverRect()) )
+			{
+				if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
+					diveWithTimes(2);
+				else
+					diveWithTimes(1);
+			} else {
+				diveWithTimes(0);
 			}
 		}
 	}
+}
 
-	return false;
+void MainGameBaseLayer::diveWithTimes(int timesValue)
+{
+	Color3B colorRope;
+	Rope* ropeL = (Rope*)getChildByTag(kTagRope);
+	Rocks* rocks = (Rocks*)getChildByTag(kTagRocks);
+
+	((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(timesValue);
+
+	(1 == timesValue) ? colorRope = Color3B::RED : colorRope = Color3B::ORANGE;
+	ropeL->setColorToAllSprite(colorRope);
+
+	ropeL->setTimeScale(timesValue);
+	rocks->setTimeScale(timesValue);
 }
 
 void MainGameBaseLayer::toEndGameSceneWithLove()

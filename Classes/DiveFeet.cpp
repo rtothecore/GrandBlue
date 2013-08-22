@@ -27,7 +27,7 @@ void DiveFeetLayer::startDive()
 {
 	initWithLabel();
 
-	schedule( schedule_selector(DiveFeetLayer::incrementDiveFeet), 2.0f );
+	schedule( schedule_selector(DiveFeetLayer::incrementDiveFeet), 1.0f );
 }
 
 void DiveFeetLayer::stopDive()
@@ -45,7 +45,7 @@ void DiveFeetLayer::incrementDiveFeet(float dt)
 	((LabelBMFont*)getChildByTag(kTagLabelDiveFeet))->setString(chrDiveFeet);
 }
 
-void DiveFeetLayer::setDiveStep(int diveStepVal, float timeVal)
+void DiveFeetLayer::setDiveStepWithTime(int diveStepVal, float timeVal)
 {
 	diveStep = diveStepVal;
 	scheduleOnce( schedule_selector(DiveFeetLayer::resetDiveStep), timeVal );
@@ -54,6 +54,11 @@ void DiveFeetLayer::setDiveStep(int diveStepVal, float timeVal)
 void DiveFeetLayer::resetDiveStep(float dt)
 {
 	diveStep = 1;
+}
+
+void DiveFeetLayer::setDiveStep(int diveStepVal)
+{
+	diveStep = diveStepVal;
 }
 
 int DiveFeetLayer::getDivedFeet()
