@@ -7,54 +7,54 @@
             <key>turtle1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{424,335}}</string>
-                <key>offset</key>
-                <string>{4,5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{8,29},{424,335}}</string>
-                <key>sourceSize</key>
-                <string>{432,403}</string>
-            </dict>
-            <key>turtle2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{426,0},{432,395}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,8},{432,395}}</string>
-                <key>sourceSize</key>
-                <string>{432,403}</string>
-            </dict>
-            <key>turtle3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{0,397},{432,395}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,8},{432,395}}</string>
-                <key>sourceSize</key>
-                <string>{432,403}</string>
-            </dict>
-            <key>turtle4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{434,397},{432,395}}</string>
+                <string>{{0,0},{420,383}}</string>
                 <key>offset</key>
                 <string>{0,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{432,395}}</string>
+                <string>{{0,0},{420,383}}</string>
                 <key>sourceSize</key>
-                <string>{432,403}</string>
+                <string>{420,391}</string>
+            </dict>
+            <key>turtle2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{422,0},{420,383}}</string>
+                <key>offset</key>
+                <string>{0,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,8},{420,383}}</string>
+                <key>sourceSize</key>
+                <string>{420,391}</string>
+            </dict>
+            <key>turtle3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0,385},{420,383}}</string>
+                <key>offset</key>
+                <string>{0,-4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,8},{420,383}}</string>
+                <key>sourceSize</key>
+                <string>{420,391}</string>
+            </dict>
+            <key>turtle4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{422,385},{412,325}}</string>
+                <key>offset</key>
+                <string>{4,5}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,28},{412,325}}</string>
+                <key>sourceSize</key>
+                <string>{420,391}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:0aa399401288d63b8ddf1e8787f6d4fa:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:1fbea94d2d03f5d71ec09ba3aafb6500:1/1$</string>
             <key>textureFileName</key>
             <string>turtle.png</string>
         </dict>

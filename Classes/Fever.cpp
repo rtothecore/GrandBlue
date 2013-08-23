@@ -4,6 +4,7 @@
 #include "UtilFunc.h"
 #include "Tags.h"
 #include "Diver.h"
+#include "Resource.h"
 
 enum {
 	kTagFeverProgressBar = 1,
@@ -82,8 +83,12 @@ void FeverLayer::addFeverLabel()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	auto labelFever = LabelBMFont::create("Fever Time!!!!", "fonts/Blippo.fnt");
-	labelFever->setScale(4.0f);
+	Size winSize = Director::getInstance()->getWinSize();
+	Size blockSize = Size(winSize.width/2, winSize.height/20);
+    float fontSize = 18;
+
+	auto labelFever = LabelTTF::create("Fever Time!!!!", FONT_MENU_FILE, fontSize, 
+										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	Point dstPoint = Point(visibleSize.width/4, visibleSize.height/2 + labelFever->getContentSize().height*2);
 	int offset = (int) (visibleSize.width/2 + 50);

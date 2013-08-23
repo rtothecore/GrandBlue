@@ -125,3 +125,42 @@ void MainGameDataLayer::resetAllData()
 	resetDivedFeet();
 	resetFever();
 }
+
+void MainGameDataLayer::saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint)
+{
+	UserDefault::getInstance()->setIntegerForKey("divedFeet", DivedFeet);
+	UserDefault::getInstance()->setIntegerForKey("marinelifeBye", ByeCount);
+	UserDefault::getInstance()->setIntegerForKey("diverLovePoint", LovePoint);
+}
+
+int MainGameDataLayer::getDivedFeet()
+{
+	if( UserDefault::getInstance()->getIntegerForKey("divedFeet") )
+		return UserDefault::getInstance()->getIntegerForKey("divedFeet");
+	else
+		return 0;
+}
+
+int MainGameDataLayer::getByeCount()
+{
+	if( UserDefault::getInstance()->getIntegerForKey("marinelifeBye") )
+		return UserDefault::getInstance()->getIntegerForKey("marinelifeBye");
+	else
+		return 0;
+}
+
+int MainGameDataLayer::getLovePoint()
+{
+	if( UserDefault::getInstance()->getIntegerForKey("diverLovePoint") )
+		return UserDefault::getInstance()->getIntegerForKey("diverLovePoint");
+	else
+		return 0;
+}
+
+int MainGameDataLayer::getComboCount()
+{
+	if( UserDefault::getInstance()->getIntegerForKey("touchCombo") )
+		return UserDefault::getInstance()->getIntegerForKey("touchCombo");
+	else
+		0;
+}

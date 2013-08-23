@@ -54,6 +54,9 @@ public:
 
 	// diver
 	static void playDiverEffectWithType(int type);
+
+	// score
+	static void playScoreEffect();
 	
 };
 

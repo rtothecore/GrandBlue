@@ -40,6 +40,7 @@ Sound::Sound(void)
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH2_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH3_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DIVER_MEET_MARINELIFE_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SCORE_FILE );
 		SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
 	}
 #endif
@@ -278,6 +279,16 @@ void Sound::playDiverEffectWithType(int type)
 			default:
 				break;
 		}
+	}
+#endif
+}
+
+void Sound::playScoreEffect()
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		SimpleAudioEngine::getInstance()->playEffect(EFFECT_SCORE_FILE, false, pitchVal, panVal, gainVal);
 	}
 #endif
 }

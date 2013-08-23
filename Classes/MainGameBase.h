@@ -40,6 +40,9 @@ public:
 	// dive control
 	void diveWithTimes(int timesValue);
 
+	// for score
+	void saveAllGameResult();
+
 	// -- For Overriding --
 	int iMaxFeet;
 	int iTagForMarinelife;

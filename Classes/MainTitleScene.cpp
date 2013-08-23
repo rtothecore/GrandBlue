@@ -5,6 +5,7 @@
 #include "MenuLabel.h"
 #include "Sound.h"
 #include "Tags.h"
+#include "Resource.h"
 
 //------------------------------------------------------------------
 //
@@ -36,12 +37,14 @@ bool MainTitleLayer::init()
 	Size winSize = Director::getInstance()->getWinSize();
 
 	// Title Label
-    auto labelTitle = LabelBMFont::create("Grand Blue", "fonts/Blippo.fnt");
+    Size blockSize = Size(winSize.width, 200);
+    float fontSize = 40;
+	LabelTTF *labelTitle = LabelTTF::create("Grand Blue", FONT_TITLE_FILE, fontSize, 
+										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 	labelTitle->setColor(Color3B::BLUE);
-	labelTitle->setScale(8.0f);
 	labelTitle->setZOrder(1);
 	labelTitle->setPosition(Point(winSize.width/2, winSize.height/2));
-    addChild(labelTitle);
+	addChild(labelTitle);
 
 	// ----- main menu -----
 	MenuLabelLayer* labelMainLayer = MenuLabelLayer::create();

@@ -10,6 +10,7 @@
 #include "Sound.h"
 #include "MainGameData.h"
 #include "SpriteRepeater.h"
+#include "Resource.h"
 
 bool MainGameBaseLayer::init()
 {
@@ -29,12 +30,16 @@ void MainGameBaseLayer::onEnterTransitionDidFinish()
 
 void MainGameBaseLayer::addComboLabel()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-
 	// combo label
-	auto labelCombo = LabelBMFont::create("Bye:999\nCombo:999", "fonts/Blippo.fnt");
-	labelCombo->setPosition(visibleSize.width - labelCombo->getContentSize().width*2, labelCombo->getContentSize().height*2 );
-	labelCombo->setScale(2.0f);
+	Size winSize = Director::getInstance()->getWinSize();
+	Size blockSize = Size(winSize.width/2, winSize.height/4);
+    float fontSize = 18;
+
+	char chrComboLabel[20] = {0};
+	sprintf(chrComboLabel, "Bye: %d\nCombo: %d", MainGameDataLayer::getByeCount(), MainGameDataLayer::getComboCount());
+	auto labelCombo = LabelTTF::create(chrComboLabel, FONT_MENU_FILE, fontSize, 
+										blockSize, Label::HAlignment::LEFT, Label::VAlignment::CENTER);
+	labelCombo->setPosition( Point(winSize.width - labelCombo->getContentSize().width/4, labelCombo->getContentSize().height/4) );
     addChild(labelCombo, 2, kTagMainGameMenuLabel);
 	schedule(schedule_selector(MainGameBaseLayer::comboLabelRefresh), 0.5);
 }
@@ -45,10 +50,9 @@ void MainGameBaseLayer::addMarinelife(float dt)
 
 void MainGameBaseLayer::comboLabelRefresh(float dt)
 {
-	LabelBMFont* labelCombo = (LabelBMFont*)getChildByTag(kTagMainGameMenuLabel);
+	LabelTTF* labelCombo = (LabelTTF*)getChildByTag(kTagMainGameMenuLabel);
 	char chrMarinelifeBye[30] = {0};
-
-	sprintf(chrMarinelifeBye, "Bye:%d\nCombo:%d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
+	sprintf(chrMarinelifeBye, "Bye: %d\nCombo: %d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
 			((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
 	labelCombo->setString(chrMarinelifeBye);
 }
@@ -138,6 +142,7 @@ void MainGameBaseLayer::checkCollision()
 
 					if(diverL->isLove)
 					{
+						saveAllGameResult();
 						toEndGameSceneWithLove();
 					}
 				}
@@ -265,6 +270,13 @@ bool MainGameBaseLayer::existUnattachedMarinlife()
 	}
 
 	return false;
+}
+
+void MainGameBaseLayer::saveAllGameResult()
+{
+	MainGameDataLayer::saveAllGameResult( ((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->getDivedFeet(), 
+										  ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
+										  ((DiverLayer*)getChildByTag(kTagLayerDiver))->lovePoint );
 }
 
 void MainGameBaseLayer::saveAllGameData()

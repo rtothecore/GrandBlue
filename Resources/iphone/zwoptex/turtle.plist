@@ -7,54 +7,54 @@
             <key>turtle1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{142,112}}</string>
-                <key>offset</key>
-                <string>{1,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{2,9},{142,112}}</string>
-                <key>sourceSize</key>
-                <string>{144,134}</string>
-            </dict>
-            <key>turtle2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{144,0},{144,132}}</string>
-                <key>offset</key>
-                <string>{0,-1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,2},{144,132}}</string>
-                <key>sourceSize</key>
-                <string>{144,134}</string>
-            </dict>
-            <key>turtle3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{290,0},{144,132}}</string>
-                <key>offset</key>
-                <string>{0,-1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,2},{144,132}}</string>
-                <key>sourceSize</key>
-                <string>{144,134}</string>
-            </dict>
-            <key>turtle4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{0,134},{144,132}}</string>
+                <string>{{0,0},{100,91}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{144,132}}</string>
+                <string>{{0,0},{100,91}}</string>
                 <key>sourceSize</key>
-                <string>{144,134}</string>
+                <string>{100,93}</string>
+            </dict>
+            <key>turtle2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{102,0},{100,91}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{100,91}}</string>
+                <key>sourceSize</key>
+                <string>{100,93}</string>
+            </dict>
+            <key>turtle3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0,93},{100,91}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{100,91}}</string>
+                <key>sourceSize</key>
+                <string>{100,93}</string>
+            </dict>
+            <key>turtle4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{102,93},{98,79}}</string>
+                <key>offset</key>
+                <string>{1,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,5},{98,79}}</string>
+                <key>sourceSize</key>
+                <string>{100,93}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>turtle.png</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3971d1719e978a592784feca6208002f:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:0ca14c7569474acd8f2c405bdd5f3aa1:1/1$</string>
             <key>textureFileName</key>
             <string>turtle.png</string>
         </dict>

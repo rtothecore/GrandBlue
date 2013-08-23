@@ -102,6 +102,9 @@
     <ClCompile Include="..\Classes\MainGameScene5.cpp">
       <Filter>MyClass\MainGameScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Score.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Resource.h">
       <Filter>MyClass\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Score.h">
+      <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

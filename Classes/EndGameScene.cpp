@@ -7,6 +7,7 @@
 #include "MainGameScene.h"
 #include "MainGameData.h"
 #include "MainTitleScene.h"
+#include "Score.h"
 
 bool EndGameScene::init()
 {
@@ -42,6 +43,10 @@ void EndGameScene::actionLove(float dt)
 	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
 	diverL->runLoveAction();
 
+	// score
+	addScoreLabel();
+
+	// continue menu
 	scheduleOnce( schedule_selector(EndGameScene::addContinueMenu), 2.0f );
 }
 
@@ -54,16 +59,23 @@ void EndGameScene::addContinueMenu(float dt)
 	labelContinue->setZOrder(1);
 	labelContinue->setPosition(0, -100);
 
-	//set "continue" callback
+	// set "continue" callback
 	Menu* labelMenu = (Menu*)labelContinue->getChildByTag(0);
 	MenuItemLabel* labelMenuItem = (MenuItemLabel*)labelMenu->getChildByTag(0);
 	labelMenuItem->setCallback( CC_CALLBACK_1(EndGameScene::continueGameCallback, this) );
 
-	//set "exit" callback
+	// set "exit" callback
 	labelMenuItem = (MenuItemLabel*)labelMenu->getChildByTag(1);
 	labelMenuItem->setCallback( CC_CALLBACK_1(EndGameScene::endGameCallback, this) );
 
 	addChild(labelContinue);
+}
+
+void EndGameScene::addScoreLabel()
+{
+	// score
+	ScoreLayer* scoreL = ScoreLayer::create();
+	addChild(scoreL);
 }
 
 void EndGameScene::continueGameCallback(Object* pSender)

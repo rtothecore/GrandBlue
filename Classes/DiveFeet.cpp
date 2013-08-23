@@ -1,6 +1,7 @@
 #include "DiveFeet.h"
 #include "MenuLabel.h"
 #include "Tags.h"
+#include "Resource.h"
 
 bool DiveFeetLayer::init()
 {
@@ -12,14 +13,18 @@ bool DiveFeetLayer::init()
 
 void DiveFeetLayer::initWithLabel()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-
 	// create feet label
 	char chrDiveFeet[9] = {0};
 	sprintf(chrDiveFeet, "%d Feet", currentDivedFeet);
-	auto labelFeet = LabelBMFont::create(chrDiveFeet, "fonts/Blippo.fnt");
-	labelFeet->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
-	labelFeet->setScale(3.0f);
+
+	Size winSize = Director::getInstance()->getWinSize();
+	Size blockSize = Size(winSize.width/2, winSize.height/20);
+    float fontSize = 18;
+	auto labelFeet = LabelTTF::create(chrDiveFeet, FONT_MENU_FILE, fontSize, 
+										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
+
+	labelFeet->setPosition(Point(winSize.width/2, winSize.height/2));
+
     addChild(labelFeet, 1, kTagLabelDiveFeet);
 }
 
@@ -42,7 +47,7 @@ void DiveFeetLayer::incrementDiveFeet(float dt)
 	// rename menu label
 	char chrDiveFeet[9] = {0};
 	sprintf(chrDiveFeet, "%d Feet", currentDivedFeet);
-	((LabelBMFont*)getChildByTag(kTagLabelDiveFeet))->setString(chrDiveFeet);
+	((LabelTTF*)getChildByTag(kTagLabelDiveFeet))->setString(chrDiveFeet);
 }
 
 void DiveFeetLayer::setDiveStepWithTime(int diveStepVal, float timeVal)

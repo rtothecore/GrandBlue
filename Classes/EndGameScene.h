@@ -21,6 +21,9 @@ public:
 	void addContinueMenu(float dt);
 	void continueGameCallback(Object* pSender);
 	void endGameCallback(Object* pSender);
+
+	// score
+	void addScoreLabel();
 };
 
 #endif
