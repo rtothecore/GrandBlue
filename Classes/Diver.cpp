@@ -69,9 +69,7 @@ bool DiverLayer::initWithPlist(const char* plist)
 		//int actualDuration = UtilFunc::getRandomRangeValue(2.0, 4.0);
 
 		// Action
-		//int actionIndex = (rand() % 2);
-		//actionIndex>0 ? Diver::actionSequence(this, actualY, actualDuration) : Diver::actionBezier(this, actualY);
-		actionMoveStacked(this, 50, 0);
+		actionMoveStacked(this, 0, 10);
 
 		// Love sprite
 		Size diverSize = frm_diver->getOriginalSize();
@@ -157,59 +155,9 @@ void DiverLayer::ccTouchEnded(Touch* touch, Event* event)
 {    
 }
 
-void DiverLayer::spriteFlipY(Object* pSender)
-{
-	Layer *layer = (Layer *)pSender;
-	layer->setScaleX(-1);
-}
-
-void DiverLayer::spriteUnflipY(Object* pSender)
-{
-	Layer *layer = (Layer *)pSender;
-	layer->setScaleX(1);
-}
-
-void DiverLayer::removeMyself(float dt) 
-{
-	this->removeFromParentAndCleanup(true);
-}
-
 void DiverLayer::spriteMoveFinished(Object* pSender)
 {
-	//Sprite *sprite = (Sprite *)pSender;
 	this->removeFromParentAndCleanup(true);
-}
-
-void DiverLayer::actionSequence(Layer* lyr, int actualY, int actualDuration)
-{
-	auto actionMoveToLeftBefore = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteFlipY, this) );
-	auto actionMoveToLeft = MoveTo::create( (float)actualDuration, Point(0 - lyr->getContentSize().width/2, actualY) );
-	auto actionMoveToLeftEaseInOut = EaseInOut::create(actionMoveToLeft, 1.2);
-	auto actionPause = DelayTime::create(0.5);
-	auto actionPauseDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteUnflipY, this) );
-	auto actionBackToRight = MoveTo::create( (float)actualDuration, Point(lyr->getPosition().x, actualY) );
-	auto actionBackToRightEaseIn = EaseIn::create(actionBackToRight, 1.2);
-	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
-
-    lyr->runAction( CCSequence::create(actionMoveToLeftBefore, actionMoveToLeftEaseInOut, actionPause, actionPauseDone, actionBackToRightEaseIn, actionMoveDone, NULL) );
-}
-
-void DiverLayer::actionBezier(Layer* lyr, int actualY)
-{
-    ccBezierConfig bezier;
-	
-    bezier.controlPoint_1 = Point(0, actualY + 200);
-    bezier.controlPoint_2 = Point(-250, actualY - 200);
-    bezier.endPosition = Point(-500, actualY);
-	
-	auto towardToLeft = CallFuncN::create(CC_CALLBACK_1(DiverLayer::spriteFlipY, this));
-	auto towardToRight = CallFuncN::create(CC_CALLBACK_1(DiverLayer::spriteUnflipY, this));
-    auto bezierForward = BezierBy::create(3, bezier);
-    auto bezierBack = bezierForward->reverse();
-	auto bezierEnd = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
-    auto rep = RepeatForever::create(Sequence::create( towardToLeft, bezierForward, towardToRight, bezierBack, bezierEnd, NULL));
-
-    lyr->runAction(rep);
 }
 
 // WARNING : Rect's anchor point is not (0.5, 0.5) but (0, 0) !!!!
@@ -332,4 +280,17 @@ void DiverLayer::exitFevermodeAction()
 void DiverLayer::refreshDiver()
 {
 	refreshLoveSprite();
+}
+
+void DiverLayer::moveByDisplacement(Point displace)
+{
+	Point pExpectedDest = getPosition() + displace;
+
+	Rect moveLimitRect = Rect( getContentSize().width, 
+							   getContentSize().height, 
+							   UtilFunc::getWinSize().width - getContentSize().width,
+							   UtilFunc::getWinSize().height - getContentSize().height );
+
+	if( moveLimitRect.containsPoint(pExpectedDest) )
+		setPosition(pExpectedDest);
 }

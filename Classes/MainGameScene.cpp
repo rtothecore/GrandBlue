@@ -66,7 +66,6 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	schedule( schedule_selector(MainGameLayer::addMarinelife), 3 );
 
 	// Sound
-	//Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
 
 	// Combo Label

@@ -111,6 +111,12 @@
     <ClCompile Include="..\Classes\MainGameScene6.cpp">
       <Filter>MyClass\MainGameScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ray.cpp">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene7.cpp">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -213,6 +219,12 @@
       <Filter>MyClass\Marinelife</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainGameScene6.h">
+      <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ray.h">
+      <Filter>MyClass\Marinelife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene7.h">
       <Filter>MyClass\MainGameScene</Filter>
     </ClInclude>
   </ItemGroup>

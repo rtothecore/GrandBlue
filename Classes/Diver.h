@@ -14,19 +14,13 @@ public:
 	~DiverLayer(void);
 	virtual DiverLayer* clone() const;
 	bool initWithPlist(const char* plist);
-	void removeMyself(float dt);
 
 	// sprite
 	SpriteFrame *frm_diver;
 	Sprite *sprt_diver;
 
 	// action
-	void spriteFlipY(Object* pSender);
-	void spriteUnflipY(Object* pSender);
 	void spriteMoveFinished(Object* pSender);
-
-	void actionSequence(Layer* spr, int actualY, int actualDuration);
-	void actionBezier(Layer* spr, int actualY);
 	void actionMoveStacked(Layer *lyr, int destX, int destY);
 
 	// touch event
@@ -59,6 +53,9 @@ public:
 	void runFevermodeAction();
 	void exitFevermodeAction();
 	void runMeetMarinelifeAction();
+
+	//
+	void moveByDisplacement(Point displace);
 };
 
 #endif

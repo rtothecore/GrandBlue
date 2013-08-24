@@ -77,7 +77,7 @@ bool MarineLifeLayer::ccTouchBegan(Touch* touch, Event* event)
 }
 
 void MarineLifeLayer::ccTouchMoved(Touch* touch, Event* event)
-{   
+{
 }
 
 void MarineLifeLayer::ccTouchEnded(Touch* touch, Event* event)

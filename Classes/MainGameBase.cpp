@@ -11,9 +11,13 @@
 #include "MainGameData.h"
 #include "SpriteRepeater.h"
 #include "Resource.h"
+#include "UtilFunc.h"
 
 bool MainGameBaseLayer::init()
 {
+	pOldTouched = Point(0, 0);
+	bTouchNMoved = false;
+
 	return true;
 }
 
@@ -82,24 +86,37 @@ bool MainGameBaseLayer::containsMarinelifeLocation(Touch* touch)
 
 bool MainGameBaseLayer::ccTouchBegan(Touch* touch, Event* event)
 {
-	if ( !containsMarinelifeLocation(touch) )
-	{
-		// reset Touch Combo
-		log("TOUCH MISS!!!!");
-		((FeverLayer*)getChildByTag(kTagFever))->resetTouchCombo();
+	// save old touch point
+	pOldTouched = Point( touch->getLocation().x, touch->getLocation().y );
 
-		return false;
-	}
+	bTouchNMoved = false;
 
     return true;
 }
 
 void MainGameBaseLayer::ccTouchMoved(Touch* touch, Event* event)
 {
+	// calculate displacement (old touch point - new touch point)
+	Point pDisplacement = Point( touch->getLocation().x - pOldTouched.x, 
+		                         touch->getLocation().y - pOldTouched.y );
+
+	// Diver move by pDispalcement
+	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
+	diverL->moveByDisplacement(pDisplacement);
+
+	// save old touch point
+	pOldTouched = Point( touch->getLocation().x, touch->getLocation().y );
+
+	bTouchNMoved = true;
 }
 
 void MainGameBaseLayer::ccTouchEnded(Touch* touch, Event* event)
 {    
+	if ( !bTouchNMoved && !containsMarinelifeLocation(touch) )
+	{
+		log("TOUCH MISS!!!!");
+		((FeverLayer*)getChildByTag(kTagFever))->resetTouchCombo();
+	}
 }
 
 void MainGameBaseLayer::detectCollision(float dt)

@@ -11,6 +11,7 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
+#include "MainGameScene7.h"
 
 //------------------------------------------------------------------
 //
@@ -124,9 +125,9 @@ void MainGameLayer6::addDiver()
 
 void MainGameLayer6::goToNextGameScene()
 {
-	/*Scene *scene = MainGameScene7::create();
+	Scene *scene = MainGameScene7::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
-	Director::getInstance()->replaceScene(scene);*/
+	Director::getInstance()->replaceScene(scene);
 }
 
 void MainGameLayer6::readyToGoNextScene()

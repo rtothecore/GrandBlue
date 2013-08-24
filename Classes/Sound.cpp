@@ -39,6 +39,14 @@ Sound::Sound(void)
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH1_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH2_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_STARFISH3_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SEAHORSE1_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SEAHORSE2_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_MERMAID1_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_MERMAID2_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_MERMAID3_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_RAY1_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_RAY2_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_RAY3_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DIVER_MEET_MARINELIFE_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SCORE_FILE );
 		SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
@@ -297,7 +305,39 @@ void Sound::playMermaidEffectWithType(int type)
 #endif
 }
 
+void Sound::playRayEffectRand()
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		int typeVal = rand() % 2 + 1;
+		playRayEffectWithType(typeVal);
+	}
+#endif
+}
 
+void Sound::playRayEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		switch(type)
+		{
+			case 1:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_RAY1_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 2:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_RAY2_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 3:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_RAY3_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			default:
+				break;
+		}
+	}
+#endif
+}
 
 void Sound::playDiverEffectWithType(int type)
 {

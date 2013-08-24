@@ -46,6 +46,10 @@ public:
 	// fever
 	void addFever();
 
+	// touch for diver move
+	Point pOldTouched;
+	bool bTouchNMoved;
+
 	// -- For Overriding --
 	int iMaxFeet;
 	int iTagForMarinelife;

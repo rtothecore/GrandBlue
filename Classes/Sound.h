@@ -56,6 +56,10 @@ public:
 	static void playMermaidEffectRand();
 	static void playMermaidEffectWithType(int type);
 
+	// ray
+	static void playRayEffectRand();
+	static void playRayEffectWithType(int type);
+
 	// diver
 	static void playDiverEffectWithType(int type);
 
