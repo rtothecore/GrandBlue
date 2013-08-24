@@ -61,7 +61,12 @@ static const char s_Rope[]				   = "rope.png";
 #define EFFECT_SCORE_FILE							"sound/score.wav"
 
 // fonts
-#define FONT_TITLE_FILE		"fonts/American Captain Patrius 02 FRE.ttf"				
-#define FONT_MENU_FILE      "fonts/AVENGEANCE MIGHTIEST AVENGER.ttf"
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    #define FONT_TITLE_FILE		"American Captain Patrius 02 FRE"
+    #define FONT_MENU_FILE      "Avengeance Mightiest Avenger"
+#else
+    #define FONT_TITLE_FILE		"fonts/American Captain Patrius 02 FRE.ttf"
+    #define FONT_MENU_FILE      "fonts/AVENGEANCE MIGHTIEST AVENGER.ttf"
+#endif
 
 #endif

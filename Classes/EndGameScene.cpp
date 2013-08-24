@@ -26,8 +26,6 @@ void EndGameScene::actionLove(float dt)
 	Object* pObj = NULL;
 	MarineLifeLayer* marinelifeL;
 
-	MainGameBaseLayer* parent = (MainGameBaseLayer*)getParent();
-
 	CCARRAY_FOREACH(arrChildren, pObj)
 	{
 		if( kTagForMarinelifes == ((Node*)pObj)->getTag() )

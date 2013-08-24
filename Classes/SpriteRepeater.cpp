@@ -48,7 +48,8 @@ void SpriteRepeater::createActionManager()
 	// Create a new scheduler, and link it to the main scheduler
 	schedRepeatMove = new Scheduler();	
 
-	Scheduler* defaultScheduler = Director::sharedDirector()->getScheduler();
+	//Scheduler* defaultScheduler = Director::sharedDirector()->getScheduler();
+    Scheduler* defaultScheduler = Director::getInstance()->getScheduler();
 	defaultScheduler->scheduleUpdateForTarget(schedRepeatMove, 0, false);
 
 	// Create anew AcitonManager, and link it to the new scheduler

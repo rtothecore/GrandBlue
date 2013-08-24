@@ -5,11 +5,7 @@
 #include "MainGameBase.h"
 #include "Fever.h"
 #include "Diver.h"
-
-enum {
-	kTagFever = 3,
-	kTagLayerDiver = 4,
-};
+#include "Tags.h"
 
 bool MarineLifeLayer::init()
 {
@@ -185,7 +181,6 @@ void MarineLifeLayer::spriteUnflipY(Object* pSender)
 
 void MarineLifeLayer::spriteMoveFinished(Object* pSender)
 {
-	Sprite *sprite = (Sprite *)pSender;
 	this->removeFromParentAndCleanup(true);
 }
 

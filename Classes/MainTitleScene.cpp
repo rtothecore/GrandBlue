@@ -165,7 +165,6 @@ void MainTitleLayer::togglMusicCallback(Object* pSender)
 
 	// refresh option music label
 	MenuLabelLayer* lyr = (MenuLabelLayer*)getChildByTag(kTagMLTitleOption);
-	MenuItemLabel* labelMenuItem = (MenuItemLabel*)lyr->getChildByTag(1);
 
 	char chrMusic[12] = {0};
 	if(Sound::isMusicOn())
@@ -182,7 +181,6 @@ void MainTitleLayer::togglEffectCallback(Object* pSender)
 
 	// refresh option music label
 	MenuLabelLayer* lyr = (MenuLabelLayer*)getChildByTag(kTagMLTitleOption);
-	MenuItemLabel* labelMenuItem = (MenuItemLabel*)lyr->getChildByTag(2);
 
 	char chrEffect[12] = {0};
 	if(Sound::isEffectOn())

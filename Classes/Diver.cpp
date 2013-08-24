@@ -66,7 +66,7 @@ bool DiverLayer::initWithPlist(const char* plist)
 		setPosition( Point(UtilFunc::getWinSize().width / 2, UtilFunc::getWinSize().height-(UtilFunc::getWinSize().height/5)) );
 
 		// Velocity
-		int actualDuration = UtilFunc::getRandomRangeValue(2.0, 4.0);
+		//int actualDuration = UtilFunc::getRandomRangeValue(2.0, 4.0);
 
 		// Action
 		//int actionIndex = (rand() % 2);
@@ -176,7 +176,7 @@ void DiverLayer::removeMyself(float dt)
 
 void DiverLayer::spriteMoveFinished(Object* pSender)
 {
-	Sprite *sprite = (Sprite *)pSender;
+	//Sprite *sprite = (Sprite *)pSender;
 	this->removeFromParentAndCleanup(true);
 }
 
@@ -276,7 +276,7 @@ void DiverLayer::increaseLovePoint()
 		if(st_maxLovePoint == lovePoint)
 		{
 			isLove = true;
-			CCLog("Diver is falling in love with dolphin");
+			log("Diver is falling in love with dolphin");
 		}
 
 		// sprite action

@@ -81,7 +81,7 @@ void FeverLayer::intoTheFever()
 
 void FeverLayer::addFeverLabel()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
+	//Size visibleSize = Director::getInstance()->getVisibleSize();
 
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width/2, winSize.height/20);
@@ -90,8 +90,8 @@ void FeverLayer::addFeverLabel()
 	auto labelFever = LabelTTF::create("Fever Time!!!!", FONT_MENU_FILE, fontSize, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
-	Point dstPoint = Point(visibleSize.width/4, visibleSize.height/2 + labelFever->getContentSize().height*2);
-	int offset = (int) (visibleSize.width/2 + 50);
+	Point dstPoint = Point(winSize.width/4, winSize.height/2 + labelFever->getContentSize().height*2);
+	int offset = (int) (winSize.width/2 + 50);
 
 	labelFever->setPosition(  Point( dstPoint.x + offset, dstPoint.y) );
 	labelFever->runAction( EaseElasticOut::create(MoveBy::create(2, Point(dstPoint.x - offset,0)), 0.35f) );

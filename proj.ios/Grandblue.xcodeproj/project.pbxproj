@@ -24,6 +24,36 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		452F610917C85FAF00A6191A /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 452F610417C85FAF00A6191A /* fonts */; };
+		452F610A17C85FAF00A6191A /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = 452F610517C85FAF00A6191A /* ipad */; };
+		452F610B17C85FAF00A6191A /* ipadhd in Resources */ = {isa = PBXBuildFile; fileRef = 452F610617C85FAF00A6191A /* ipadhd */; };
+		452F610C17C85FAF00A6191A /* iphone in Resources */ = {isa = PBXBuildFile; fileRef = 452F610717C85FAF00A6191A /* iphone */; };
+		452F610D17C85FAF00A6191A /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 452F610817C85FAF00A6191A /* sound */; };
+		452F614F17C8600D00A6191A /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F611A17C8600D00A6191A /* Background.cpp */; };
+		452F615017C8600D00A6191A /* DiveFeet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F611C17C8600D00A6191A /* DiveFeet.cpp */; };
+		452F615117C8600D00A6191A /* Diver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F611E17C8600D00A6191A /* Diver.cpp */; };
+		452F615217C8600D00A6191A /* Dolphin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612017C8600D00A6191A /* Dolphin.cpp */; };
+		452F615317C8600D00A6191A /* EndGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612217C8600D00A6191A /* EndGameScene.cpp */; };
+		452F615417C8600D00A6191A /* Fever.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612417C8600D00A6191A /* Fever.cpp */; };
+		452F615517C8600D00A6191A /* MainGameBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612717C8600D00A6191A /* MainGameBase.cpp */; };
+		452F615617C8600D00A6191A /* MainGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612917C8600D00A6191A /* MainGameData.cpp */; };
+		452F615717C8600D00A6191A /* MainGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612B17C8600D00A6191A /* MainGameScene.cpp */; };
+		452F615817C8600D00A6191A /* MainGameScene2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612D17C8600D00A6191A /* MainGameScene2.cpp */; };
+		452F615917C8600D00A6191A /* MainGameScene3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F612F17C8600D00A6191A /* MainGameScene3.cpp */; };
+		452F615A17C8600D00A6191A /* MainGameScene4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F613117C8600D00A6191A /* MainGameScene4.cpp */; };
+		452F615B17C8600D00A6191A /* MainGameScene5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F613317C8600D00A6191A /* MainGameScene5.cpp */; };
+		452F615C17C8600D00A6191A /* MainTitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F613517C8600D00A6191A /* MainTitleScene.cpp */; };
+		452F615D17C8600D00A6191A /* MarineLife.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F613717C8600D00A6191A /* MarineLife.cpp */; };
+		452F615E17C8600D00A6191A /* MenuLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F613917C8600D00A6191A /* MenuLabel.cpp */; };
+		452F615F17C8600D00A6191A /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F613B17C8600D00A6191A /* ProgressBar.cpp */; };
+		452F616017C8600D00A6191A /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F613E17C8600D00A6191A /* Score.cpp */; };
+		452F616117C8600D00A6191A /* Seahorse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F614017C8600D00A6191A /* Seahorse.cpp */; };
+		452F616217C8600D00A6191A /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F614217C8600D00A6191A /* Sound.cpp */; };
+		452F616317C8600D00A6191A /* SpriteRepeater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F614417C8600D00A6191A /* SpriteRepeater.cpp */; };
+		452F616417C8600D00A6191A /* Squid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F614617C8600D00A6191A /* Squid.cpp */; };
+		452F616517C8600D00A6191A /* Starfish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F614817C8600D00A6191A /* Starfish.cpp */; };
+		452F616617C8600D00A6191A /* Turtle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F614B17C8600D00A6191A /* Turtle.cpp */; };
+		452F616717C8600D00A6191A /* UtilFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452F614D17C8600D00A6191A /* UtilFunc.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -195,6 +225,65 @@
 		1D6058910D05DD3D006BFB54 /* Grandblue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grandblue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		452F610417C85FAF00A6191A /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		452F610517C85FAF00A6191A /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipad; sourceTree = "<group>"; };
+		452F610617C85FAF00A6191A /* ipadhd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipadhd; sourceTree = "<group>"; };
+		452F610717C85FAF00A6191A /* iphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphone; sourceTree = "<group>"; };
+		452F610817C85FAF00A6191A /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
+		452F611917C8600D00A6191A /* AppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppMacros.h; path = ../Classes/AppMacros.h; sourceTree = "<group>"; };
+		452F611A17C8600D00A6191A /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Background.cpp; path = ../Classes/Background.cpp; sourceTree = "<group>"; };
+		452F611B17C8600D00A6191A /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Background.h; path = ../Classes/Background.h; sourceTree = "<group>"; };
+		452F611C17C8600D00A6191A /* DiveFeet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DiveFeet.cpp; path = ../Classes/DiveFeet.cpp; sourceTree = "<group>"; };
+		452F611D17C8600D00A6191A /* DiveFeet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiveFeet.h; path = ../Classes/DiveFeet.h; sourceTree = "<group>"; };
+		452F611E17C8600D00A6191A /* Diver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Diver.cpp; path = ../Classes/Diver.cpp; sourceTree = "<group>"; };
+		452F611F17C8600D00A6191A /* Diver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Diver.h; path = ../Classes/Diver.h; sourceTree = "<group>"; };
+		452F612017C8600D00A6191A /* Dolphin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dolphin.cpp; path = ../Classes/Dolphin.cpp; sourceTree = "<group>"; };
+		452F612117C8600D00A6191A /* Dolphin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dolphin.h; path = ../Classes/Dolphin.h; sourceTree = "<group>"; };
+		452F612217C8600D00A6191A /* EndGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EndGameScene.cpp; path = ../Classes/EndGameScene.cpp; sourceTree = "<group>"; };
+		452F612317C8600D00A6191A /* EndGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EndGameScene.h; path = ../Classes/EndGameScene.h; sourceTree = "<group>"; };
+		452F612417C8600D00A6191A /* Fever.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Fever.cpp; path = ../Classes/Fever.cpp; sourceTree = "<group>"; };
+		452F612517C8600D00A6191A /* Fever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fever.h; path = ../Classes/Fever.h; sourceTree = "<group>"; };
+		452F612617C8600D00A6191A /* GrandBlueConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrandBlueConfig.h; path = ../Classes/GrandBlueConfig.h; sourceTree = "<group>"; };
+		452F612717C8600D00A6191A /* MainGameBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainGameBase.cpp; path = ../Classes/MainGameBase.cpp; sourceTree = "<group>"; };
+		452F612817C8600D00A6191A /* MainGameBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainGameBase.h; path = ../Classes/MainGameBase.h; sourceTree = "<group>"; };
+		452F612917C8600D00A6191A /* MainGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainGameData.cpp; path = ../Classes/MainGameData.cpp; sourceTree = "<group>"; };
+		452F612A17C8600D00A6191A /* MainGameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainGameData.h; path = ../Classes/MainGameData.h; sourceTree = "<group>"; };
+		452F612B17C8600D00A6191A /* MainGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainGameScene.cpp; path = ../Classes/MainGameScene.cpp; sourceTree = "<group>"; };
+		452F612C17C8600D00A6191A /* MainGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainGameScene.h; path = ../Classes/MainGameScene.h; sourceTree = "<group>"; };
+		452F612D17C8600D00A6191A /* MainGameScene2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainGameScene2.cpp; path = ../Classes/MainGameScene2.cpp; sourceTree = "<group>"; };
+		452F612E17C8600D00A6191A /* MainGameScene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainGameScene2.h; path = ../Classes/MainGameScene2.h; sourceTree = "<group>"; };
+		452F612F17C8600D00A6191A /* MainGameScene3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainGameScene3.cpp; path = ../Classes/MainGameScene3.cpp; sourceTree = "<group>"; };
+		452F613017C8600D00A6191A /* MainGameScene3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainGameScene3.h; path = ../Classes/MainGameScene3.h; sourceTree = "<group>"; };
+		452F613117C8600D00A6191A /* MainGameScene4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainGameScene4.cpp; path = ../Classes/MainGameScene4.cpp; sourceTree = "<group>"; };
+		452F613217C8600D00A6191A /* MainGameScene4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainGameScene4.h; path = ../Classes/MainGameScene4.h; sourceTree = "<group>"; };
+		452F613317C8600D00A6191A /* MainGameScene5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainGameScene5.cpp; path = ../Classes/MainGameScene5.cpp; sourceTree = "<group>"; };
+		452F613417C8600D00A6191A /* MainGameScene5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainGameScene5.h; path = ../Classes/MainGameScene5.h; sourceTree = "<group>"; };
+		452F613517C8600D00A6191A /* MainTitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainTitleScene.cpp; path = ../Classes/MainTitleScene.cpp; sourceTree = "<group>"; };
+		452F613617C8600D00A6191A /* MainTitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTitleScene.h; path = ../Classes/MainTitleScene.h; sourceTree = "<group>"; };
+		452F613717C8600D00A6191A /* MarineLife.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MarineLife.cpp; path = ../Classes/MarineLife.cpp; sourceTree = "<group>"; };
+		452F613817C8600D00A6191A /* MarineLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarineLife.h; path = ../Classes/MarineLife.h; sourceTree = "<group>"; };
+		452F613917C8600D00A6191A /* MenuLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuLabel.cpp; path = ../Classes/MenuLabel.cpp; sourceTree = "<group>"; };
+		452F613A17C8600D00A6191A /* MenuLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuLabel.h; path = ../Classes/MenuLabel.h; sourceTree = "<group>"; };
+		452F613B17C8600D00A6191A /* ProgressBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProgressBar.cpp; path = ../Classes/ProgressBar.cpp; sourceTree = "<group>"; };
+		452F613C17C8600D00A6191A /* ProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressBar.h; path = ../Classes/ProgressBar.h; sourceTree = "<group>"; };
+		452F613D17C8600D00A6191A /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Resource.h; path = ../Classes/Resource.h; sourceTree = "<group>"; };
+		452F613E17C8600D00A6191A /* Score.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Score.cpp; path = ../Classes/Score.cpp; sourceTree = "<group>"; };
+		452F613F17C8600D00A6191A /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = ../Classes/Score.h; sourceTree = "<group>"; };
+		452F614017C8600D00A6191A /* Seahorse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Seahorse.cpp; path = ../Classes/Seahorse.cpp; sourceTree = "<group>"; };
+		452F614117C8600D00A6191A /* Seahorse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Seahorse.h; path = ../Classes/Seahorse.h; sourceTree = "<group>"; };
+		452F614217C8600D00A6191A /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sound.cpp; path = ../Classes/Sound.cpp; sourceTree = "<group>"; };
+		452F614317C8600D00A6191A /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sound.h; path = ../Classes/Sound.h; sourceTree = "<group>"; };
+		452F614417C8600D00A6191A /* SpriteRepeater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpriteRepeater.cpp; path = ../Classes/SpriteRepeater.cpp; sourceTree = "<group>"; };
+		452F614517C8600D00A6191A /* SpriteRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteRepeater.h; path = ../Classes/SpriteRepeater.h; sourceTree = "<group>"; };
+		452F614617C8600D00A6191A /* Squid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Squid.cpp; path = ../Classes/Squid.cpp; sourceTree = "<group>"; };
+		452F614717C8600D00A6191A /* Squid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Squid.h; path = ../Classes/Squid.h; sourceTree = "<group>"; };
+		452F614817C8600D00A6191A /* Starfish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Starfish.cpp; path = ../Classes/Starfish.cpp; sourceTree = "<group>"; };
+		452F614917C8600D00A6191A /* Starfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Starfish.h; path = ../Classes/Starfish.h; sourceTree = "<group>"; };
+		452F614A17C8600D00A6191A /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tags.h; path = ../Classes/Tags.h; sourceTree = "<group>"; };
+		452F614B17C8600D00A6191A /* Turtle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Turtle.cpp; path = ../Classes/Turtle.cpp; sourceTree = "<group>"; };
+		452F614C17C8600D00A6191A /* Turtle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Turtle.h; path = ../Classes/Turtle.h; sourceTree = "<group>"; };
+		452F614D17C8600D00A6191A /* UtilFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UtilFunc.cpp; path = ../Classes/UtilFunc.cpp; sourceTree = "<group>"; };
+		452F614E17C8600D00A6191A /* UtilFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilFunc.h; path = ../Classes/UtilFunc.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -255,6 +344,60 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				452F611917C8600D00A6191A /* AppMacros.h */,
+				452F611A17C8600D00A6191A /* Background.cpp */,
+				452F611B17C8600D00A6191A /* Background.h */,
+				452F611C17C8600D00A6191A /* DiveFeet.cpp */,
+				452F611D17C8600D00A6191A /* DiveFeet.h */,
+				452F611E17C8600D00A6191A /* Diver.cpp */,
+				452F611F17C8600D00A6191A /* Diver.h */,
+				452F612017C8600D00A6191A /* Dolphin.cpp */,
+				452F612117C8600D00A6191A /* Dolphin.h */,
+				452F612217C8600D00A6191A /* EndGameScene.cpp */,
+				452F612317C8600D00A6191A /* EndGameScene.h */,
+				452F612417C8600D00A6191A /* Fever.cpp */,
+				452F612517C8600D00A6191A /* Fever.h */,
+				452F612617C8600D00A6191A /* GrandBlueConfig.h */,
+				452F612717C8600D00A6191A /* MainGameBase.cpp */,
+				452F612817C8600D00A6191A /* MainGameBase.h */,
+				452F612917C8600D00A6191A /* MainGameData.cpp */,
+				452F612A17C8600D00A6191A /* MainGameData.h */,
+				452F612B17C8600D00A6191A /* MainGameScene.cpp */,
+				452F612C17C8600D00A6191A /* MainGameScene.h */,
+				452F612D17C8600D00A6191A /* MainGameScene2.cpp */,
+				452F612E17C8600D00A6191A /* MainGameScene2.h */,
+				452F612F17C8600D00A6191A /* MainGameScene3.cpp */,
+				452F613017C8600D00A6191A /* MainGameScene3.h */,
+				452F613117C8600D00A6191A /* MainGameScene4.cpp */,
+				452F613217C8600D00A6191A /* MainGameScene4.h */,
+				452F613317C8600D00A6191A /* MainGameScene5.cpp */,
+				452F613417C8600D00A6191A /* MainGameScene5.h */,
+				452F613517C8600D00A6191A /* MainTitleScene.cpp */,
+				452F613617C8600D00A6191A /* MainTitleScene.h */,
+				452F613717C8600D00A6191A /* MarineLife.cpp */,
+				452F613817C8600D00A6191A /* MarineLife.h */,
+				452F613917C8600D00A6191A /* MenuLabel.cpp */,
+				452F613A17C8600D00A6191A /* MenuLabel.h */,
+				452F613B17C8600D00A6191A /* ProgressBar.cpp */,
+				452F613C17C8600D00A6191A /* ProgressBar.h */,
+				452F613D17C8600D00A6191A /* Resource.h */,
+				452F613E17C8600D00A6191A /* Score.cpp */,
+				452F613F17C8600D00A6191A /* Score.h */,
+				452F614017C8600D00A6191A /* Seahorse.cpp */,
+				452F614117C8600D00A6191A /* Seahorse.h */,
+				452F614217C8600D00A6191A /* Sound.cpp */,
+				452F614317C8600D00A6191A /* Sound.h */,
+				452F614417C8600D00A6191A /* SpriteRepeater.cpp */,
+				452F614517C8600D00A6191A /* SpriteRepeater.h */,
+				452F614617C8600D00A6191A /* Squid.cpp */,
+				452F614717C8600D00A6191A /* Squid.h */,
+				452F614817C8600D00A6191A /* Starfish.cpp */,
+				452F614917C8600D00A6191A /* Starfish.h */,
+				452F614A17C8600D00A6191A /* Tags.h */,
+				452F614B17C8600D00A6191A /* Turtle.cpp */,
+				452F614C17C8600D00A6191A /* Turtle.h */,
+				452F614D17C8600D00A6191A /* UtilFunc.cpp */,
+				452F614E17C8600D00A6191A /* UtilFunc.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
@@ -326,6 +469,11 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				452F610417C85FAF00A6191A /* fonts */,
+				452F610517C85FAF00A6191A /* ipad */,
+				452F610617C85FAF00A6191A /* ipadhd */,
+				452F610717C85FAF00A6191A /* iphone */,
+				452F610817C85FAF00A6191A /* sound */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
@@ -515,6 +663,11 @@
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
+				452F610917C85FAF00A6191A /* fonts in Resources */,
+				452F610A17C85FAF00A6191A /* ipad in Resources */,
+				452F610B17C85FAF00A6191A /* ipadhd in Resources */,
+				452F610C17C85FAF00A6191A /* iphone in Resources */,
+				452F610D17C85FAF00A6191A /* sound in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +683,31 @@
 				1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */,
 				1AC3624B16D4A1E8000847F2 /* main.m in Sources */,
 				1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */,
+				452F614F17C8600D00A6191A /* Background.cpp in Sources */,
+				452F615017C8600D00A6191A /* DiveFeet.cpp in Sources */,
+				452F615117C8600D00A6191A /* Diver.cpp in Sources */,
+				452F615217C8600D00A6191A /* Dolphin.cpp in Sources */,
+				452F615317C8600D00A6191A /* EndGameScene.cpp in Sources */,
+				452F615417C8600D00A6191A /* Fever.cpp in Sources */,
+				452F615517C8600D00A6191A /* MainGameBase.cpp in Sources */,
+				452F615617C8600D00A6191A /* MainGameData.cpp in Sources */,
+				452F615717C8600D00A6191A /* MainGameScene.cpp in Sources */,
+				452F615817C8600D00A6191A /* MainGameScene2.cpp in Sources */,
+				452F615917C8600D00A6191A /* MainGameScene3.cpp in Sources */,
+				452F615A17C8600D00A6191A /* MainGameScene4.cpp in Sources */,
+				452F615B17C8600D00A6191A /* MainGameScene5.cpp in Sources */,
+				452F615C17C8600D00A6191A /* MainTitleScene.cpp in Sources */,
+				452F615D17C8600D00A6191A /* MarineLife.cpp in Sources */,
+				452F615E17C8600D00A6191A /* MenuLabel.cpp in Sources */,
+				452F615F17C8600D00A6191A /* ProgressBar.cpp in Sources */,
+				452F616017C8600D00A6191A /* Score.cpp in Sources */,
+				452F616117C8600D00A6191A /* Seahorse.cpp in Sources */,
+				452F616217C8600D00A6191A /* Sound.cpp in Sources */,
+				452F616317C8600D00A6191A /* SpriteRepeater.cpp in Sources */,
+				452F616417C8600D00A6191A /* Squid.cpp in Sources */,
+				452F616517C8600D00A6191A /* Starfish.cpp in Sources */,
+				452F616617C8600D00A6191A /* Turtle.cpp in Sources */,
+				452F616717C8600D00A6191A /* UtilFunc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

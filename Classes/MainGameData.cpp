@@ -162,5 +162,5 @@ int MainGameDataLayer::getComboCount()
 	if( UserDefault::getInstance()->getIntegerForKey("touchCombo") )
 		return UserDefault::getInstance()->getIntegerForKey("touchCombo");
 	else
-		0;
+		return 0;
 }
