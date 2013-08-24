@@ -263,6 +263,42 @@ void Sound::playSeahorseEffectWithType(int type)
 #endif
 }
 
+void Sound::playMermaidEffectRand()
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		int typeVal = rand() % 2 + 1;
+		playMermaidEffectWithType(typeVal);
+	}
+#endif
+}
+
+void Sound::playMermaidEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		switch(type)
+		{
+			case 1:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_MERMAID1_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 2:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_MERMAID2_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 3:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_MERMAID3_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			default:
+				break;
+		}
+	}
+#endif
+}
+
+
+
 void Sound::playDiverEffectWithType(int type)
 {
 #if (EFFECT_SOUND)

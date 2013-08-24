@@ -43,6 +43,9 @@ public:
 	// for score
 	void saveAllGameResult();
 
+	// fever
+	void addFever();
+
 	// -- For Overriding --
 	int iMaxFeet;
 	int iTagForMarinelife;

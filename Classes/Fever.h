@@ -23,7 +23,6 @@ private:
 	void initProgressBar();
 
 	// Fever
-	void checkFever();
 	void intoTheFever();
 	void endFever(float dt);
 
@@ -35,9 +34,12 @@ public:
 	CREATE_FUNC(FeverLayer);
 
 	int getTouchDamage();
-	bool isFever();
 
-	int getTouchComboForFever();
+	// fever
+	bool isFever();
+	void setFever(bool isFever);
+	void checkFever();
+	void checkFeverOnNewScene();
 	
 	// Touch Combo 
 	void increaseTouchCombo();

@@ -1,5 +1,5 @@
-#include "MainGameScene5.h"
-#include "Seahorse.h"
+#include "MainGameScene6.h"
+#include "Mermaid.h"
 #include "MenuLabel.h"
 #include "Resource.h"
 #include "SpriteRepeater.h"
@@ -11,30 +11,29 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
-#include "MainGameScene6.h"
 
 //------------------------------------------------------------------
 //
-// MainGameScene5
+// MainGameScene6
 //
 //------------------------------------------------------------------
-bool MainGameScene5::init()
+bool MainGameScene6::init()
 {
-	MainGameLayer5 *mainGameLayer5 = MainGameLayer5::create();
-    addChild(mainGameLayer5, 0, kTagGameSceneLayer);
+	MainGameLayer6 *MainGameLayer6 = MainGameLayer6::create();
+    addChild(MainGameLayer6, 0, kTagGameSceneLayer);
 
 	return true;
 }
 
 //------------------------------------------------------------------
 //
-// MainGameLayer5
+// MainGameLayer6
 //
 //------------------------------------------------------------------
-bool MainGameLayer5::init()
+bool MainGameLayer6::init()
 {
-	iMaxFeet = 200;
-	iTagForMarinelife = kTagLayerSeahorse;
+	iMaxFeet = 240;
+	iTagForMarinelife = kTagLayerMermaid;
 
 	// Add background sprite
 	addBackground();
@@ -46,7 +45,7 @@ bool MainGameLayer5::init()
 	return true;
 }
 
-void MainGameLayer5::onEnterTransitionDidFinish()
+void MainGameLayer6::onEnterTransitionDidFinish()
 {
 	// Run Background effect
 	/*BackgroundLayer* bgLayer = (BackgroundLayer*)getChildByTag(kTagBackground);
@@ -62,11 +61,11 @@ void MainGameLayer5::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add marinelife layer
-	schedule( schedule_selector(MainGameLayer5::addMarinelife), 3 );
+	schedule( schedule_selector(MainGameLayer6::addMarinelife), 3 );
 
 	// Sound
 	//Sound::playBackgroundMusic(true);
-	schedule( schedule_selector(MainGameLayer5::playBubbleEffect), 2);
+	schedule( schedule_selector(MainGameLayer6::playBubbleEffect), 2);
 
 	// Combo Label
 	addComboLabel();
@@ -80,19 +79,19 @@ void MainGameLayer5::onEnterTransitionDidFinish()
 	addFever();
 
 	// collision detect 
-	schedule(schedule_selector(MainGameLayer5::detectCollision));
+	schedule(schedule_selector(MainGameLayer6::detectCollision));
 
 	// check feet
-	schedule( schedule_selector(MainGameLayer5::checkFeet), 1.0f );
+	schedule( schedule_selector(MainGameLayer6::checkFeet), 1.0f );
 }
 
-void MainGameLayer5::addBackground()
+void MainGameLayer6::addBackground()
 {
 	BackgroundLayer* bgLayer = BackgroundLayer::create();
 	addChild(bgLayer, 0, kTagBackground);
 }
 
-void MainGameLayer5::addRocks()
+void MainGameLayer6::addRocks()
 {
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
 	Rocks* rocks = Rocks::create();
@@ -100,7 +99,7 @@ void MainGameLayer5::addRocks()
 	addChild(rocks, 1, kTagRocks);
 }
 
-void MainGameLayer5::addRope()
+void MainGameLayer6::addRope()
 {
 	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
 	Rope* rope = Rope::create();
@@ -108,29 +107,29 @@ void MainGameLayer5::addRope()
 	addChild(rope, 0, kTagRope);
 }
 
-void MainGameLayer5::addMarinelife(float dt)
+void MainGameLayer6::addMarinelife(float dt)
 {
-	for(int i=0; i<4; i++)
+	for(int i=0; i<7; i++)
 	{
-		SeahorseLayer* seahorseL = SeahorseLayer::create();
-		addChild(seahorseL, 0, kTagLayerSeahorse);
+		MermaidLayer* seahorseL = MermaidLayer::create();
+		addChild(seahorseL, 0, kTagLayerMermaid);
 	}
 }
 
-void MainGameLayer5::addDiver()
+void MainGameLayer6::addDiver()
 {
 	DiverLayer* diverL = MainGameDataLayer::loadDiver();
 	addChild(diverL, 1, kTagLayerDiver);
 }
 
-void MainGameLayer5::goToNextGameScene()
+void MainGameLayer6::goToNextGameScene()
 {
-	Scene *scene = MainGameScene6::create();
+	/*Scene *scene = MainGameScene7::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(scene);*/
 }
 
-void MainGameLayer5::readyToGoNextScene()
+void MainGameLayer6::readyToGoNextScene()
 {
 	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
 	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );

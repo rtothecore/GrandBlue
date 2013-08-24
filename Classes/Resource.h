@@ -26,6 +26,9 @@ static const char s_Starfish[]              = "starfish1.png";
 static const char p_Seahorse[]				= "zwoptex/seahorse.plist";
 static const char s_Seahorse[]				= "seahorse1.png";
 
+static const char p_Mermaid[]				= "zwoptex/mermaid.plist";
+static const char s_Mermaid[]				= "mermaid1.png";
+
 // Image
 static const char s_UnderSea[]			   = "underTheSea_light.png";
 static const char s_Rocks[]				   = "underTheSea_rocks.png";
@@ -55,6 +58,10 @@ static const char s_Rope[]				   = "rope.png";
 
 #define EFFECT_SEAHORSE1_FILE						"sound/seahorse1.wav"
 #define EFFECT_SEAHORSE2_FILE						"sound/seahorse2.wav"
+
+#define EFFECT_MERMAID1_FILE						"sound/mermaid1.wav"
+#define EFFECT_MERMAID2_FILE						"sound/mermaid2.wav"
+#define EFFECT_MERMAID3_FILE						"sound/mermaid3.wav"
 
 #define EFFECT_DIVER_MEET_MARINELIFE_FILE			"sound/diver1.wav"
 

@@ -52,6 +52,10 @@ public:
 	// seahorse
 	static void playSeahorseEffectWithType(int type);
 
+	// mermaid
+	static void playMermaidEffectRand();
+	static void playMermaidEffectWithType(int type);
+
 	// diver
 	static void playDiverEffectWithType(int type);
 

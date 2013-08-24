@@ -160,10 +160,13 @@ void MainGameBaseLayer::checkCollision()
 			{
 				if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
 					diveWithTimes(2);
+					//diveWithTimes(8);
 				else
 					diveWithTimes(1);
+					//diveWithTimes(4);
 			} else {
 				diveWithTimes(0);
+				//diveWithTimes(2);
 			}
 		}
 	}
@@ -329,4 +332,11 @@ void MainGameBaseLayer::addAttachedMarinelife(Layer* lyr)
 
 void MainGameBaseLayer::goToNextGameScene()
 {
+}
+
+void MainGameBaseLayer::addFever()
+{
+	FeverLayer* feverL = MainGameDataLayer::loadFever();
+	addChild(feverL, 1, kTagFever);
+	feverL->checkFeverOnNewScene();
 }

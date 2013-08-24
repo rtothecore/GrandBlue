@@ -77,8 +77,7 @@ void MainGameLayer3::onEnterTransitionDidFinish()
 	addChild(diveFeetL, 1, kTagLayerDiveFeet);
 	
 	// Fever
-	FeverLayer* feverL = MainGameDataLayer::loadFever();
-	addChild(feverL, 1, kTagFever);
+	addFever();
 
 	// collision detect 
 	schedule(schedule_selector(MainGameLayer3::detectCollision));

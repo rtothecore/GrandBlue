@@ -21,6 +21,11 @@ bool FeverLayer::init()
 	return true;
 }
 
+void FeverLayer::setFever(bool isFever)
+{
+	bFeverMode = isFever;
+}
+
 void FeverLayer::initProgressBar()
 {
 	ProgressBarLayer* pbLayer = ProgressBarLayer::create();
@@ -63,6 +68,19 @@ void FeverLayer::checkFever()
 	} 
 }
 
+void FeverLayer::checkFeverOnNewScene()
+{
+	if(st_touchComboForFever <= iTouchCombo)
+	{
+		intoTheFever();
+
+		LabelTTF* labelFever = (LabelTTF*)getChildByTag(kTagLabelFever);
+		labelFever->setString("Fever Time x2!!!!");
+
+		scheduleOnce( schedule_selector(FeverLayer::endFever), st_feverTime );
+	} 
+}
+
 void FeverLayer::intoTheFever()
 {
 	log("Fever Time!!!");
@@ -81,10 +99,8 @@ void FeverLayer::intoTheFever()
 
 void FeverLayer::addFeverLabel()
 {
-	//Size visibleSize = Director::getInstance()->getVisibleSize();
-
 	Size winSize = Director::getInstance()->getWinSize();
-	Size blockSize = Size(winSize.width/2, winSize.height/20);
+	Size blockSize = Size(winSize.width, winSize.height/20);
     float fontSize = 18;
 
 	auto labelFever = LabelTTF::create("Fever Time!!!!", FONT_MENU_FILE, fontSize, 
@@ -94,6 +110,7 @@ void FeverLayer::addFeverLabel()
 	int offset = (int) (winSize.width/2 + 50);
 
 	labelFever->setPosition(  Point( dstPoint.x + offset, dstPoint.y) );
+	labelFever->setColor(Color3B::YELLOW);
 	labelFever->runAction( EaseElasticOut::create(MoveBy::create(2, Point(dstPoint.x - offset,0)), 0.35f) );
 
 	addChild(labelFever, 1, kTagLabelFever);
@@ -124,11 +141,6 @@ int FeverLayer::getTouchDamage()
 bool FeverLayer::isFever()
 {
 	return bFeverMode;
-}
-
-int FeverLayer::getTouchComboForFever()
-{
-	return st_touchComboForFever;
 }
 
 int FeverLayer::getTouchCombo()

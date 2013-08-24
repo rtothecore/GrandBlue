@@ -92,6 +92,7 @@ void MainGameDataLayer::saveFever(FeverLayer* feverL)
 {
 	UserDefault::getInstance()->setIntegerForKey("marinelifeBye", feverL->getMarinelifeBye());
 	UserDefault::getInstance()->setIntegerForKey("touchCombo", feverL->getTouchCombo());
+	UserDefault::getInstance()->setBoolForKey("feverMode", feverL->isFever());
 
 	MainGameDataLayer::isSaveFever = true;
 }
@@ -104,6 +105,7 @@ FeverLayer* MainGameDataLayer::loadFever()
 	{
 		ret->setMarinelifeBye( UserDefault::getInstance()->getIntegerForKey("marinelifeBye") );
 		ret->setTouchCombo( UserDefault::getInstance()->getIntegerForKey("touchCombo") );
+		ret->setFever( UserDefault::getInstance()->getBoolForKey("feverMode") );
 
 		ret->refreshProgressBar();
 	}
