@@ -68,6 +68,10 @@ public:
 	static void playOrcaEffectRand();
 	static void playOrcaEffectWithType(int type);
 
+	// brain	
+	static void playBrainEffectRand();
+	static void playBrainEffectWithType(int type);
+
 	// diver
 	static void playDiverEffectWithType(int type);
 

@@ -26,4 +26,5 @@ enum {
 	kTagLayerRay = 784,
 	kTagLayerJellyfish = 785,
 	kTagLayerOrca = 786,
+	kTagLayerBrain = 787,
 };

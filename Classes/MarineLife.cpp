@@ -229,6 +229,20 @@ void MarineLifeLayer::actionSequenceBottomToTop(Layer* lyr, int actualX, int act
 	lyr->runAction( CCSequence::create(actionMoveToTopEaseInOut, actionPause, actionBackToBottomEaseIn, actionMoveDone, NULL) );
 }
 
+void MarineLifeLayer::actionSequenceTopToBottom(Layer* lyr, int actualX, int actualDuration)
+{
+	//auto actionMoveToTopBefore = CallFuncN::create( CC_CALLBACK_1(MarineLifeLayer::spriteFlipX, this) );
+	auto actionMoveToBottom = MoveTo::create( (float)actualDuration, Point(actualX, lyr->getContentSize().height/2) );
+	auto actionMoveToBottomEaseInOut = EaseInOut::create(actionMoveToBottom, 1.2);
+	auto actionPause = DelayTime::create(0.5);
+	//auto actionPauseDone = CallFuncN::create( CC_CALLBACK_1(MarineLifeLayer::spriteUnflipY, this) );
+	auto actionBackToTop = MoveTo::create( (float)actualDuration, Point(actualX, lyr->getPosition().y) );
+	auto actionBackToTopEaseIn = EaseIn::create(actionBackToTop, 1.2);
+	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(MarineLifeLayer::spriteMoveFinished, this) );
+
+	lyr->runAction( CCSequence::create(actionMoveToBottomEaseInOut, actionPause, actionBackToTopEaseIn, actionMoveDone, NULL) );
+}
+
 void MarineLifeLayer::actionBezier(Layer* lyr, int actualY)
 {
     ccBezierConfig bezier;
@@ -253,6 +267,23 @@ void MarineLifeLayer::actionBezierBottomToTop(Layer* lyr, int actualX)
     bezier.controlPoint_1 = Point(actualX + 200, 0);
     bezier.controlPoint_2 = Point(actualX - 200, 250);
     bezier.endPosition = Point(actualX, 500);
+
+	//auto towardToTop = CallFuncN::create(CC_CALLBACK_1(MarineLifeLayer::spriteFlipY, this));
+	//auto towardToBottom = CallFuncN::create(CC_CALLBACK_1(MarineLifeLayer::spriteUnflipY, this));
+    auto bezierForward = BezierBy::create(3, bezier);
+    auto bezierBack = bezierForward->reverse();
+	auto bezierEnd = CallFuncN::create( CC_CALLBACK_1(MarineLifeLayer::spriteMoveFinished, this) );
+    auto rep = RepeatForever::create(Sequence::create( bezierForward, bezierBack, bezierEnd, NULL));
+
+    lyr->runAction(rep);
+}
+
+void MarineLifeLayer::actionBezierTopToBottom(Layer* lyr, int actualX)
+{
+	ccBezierConfig bezier;
+    bezier.controlPoint_1 = Point(actualX + 200, 0);
+    bezier.controlPoint_2 = Point(actualX - 200, -250);
+    bezier.endPosition = Point(actualX, -500);
 
 	//auto towardToTop = CallFuncN::create(CC_CALLBACK_1(MarineLifeLayer::spriteFlipY, this));
 	//auto towardToBottom = CallFuncN::create(CC_CALLBACK_1(MarineLifeLayer::spriteUnflipY, this));

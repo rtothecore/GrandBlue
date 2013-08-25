@@ -31,8 +31,10 @@ protected:
 	// action
 	void actionSequence(Layer* spr, int actualY, int actualDuration);
 	void actionSequenceBottomToTop(Layer* lyr, int actualX, int actualDuration);
+	void actionSequenceTopToBottom(Layer* lyr, int actualX, int actualDuration);
 	void actionBezier(Layer* spr, int actualY);
 	void actionBezierBottomToTop(Layer* lyr, int actualX);
+	void actionBezierTopToBottom(Layer* lyr, int actualX);
 	void spriteFlipY(Object* pSender);
 	void spriteUnflipY(Object* pSender);
 	void spriteFlipX(Object* pSender);

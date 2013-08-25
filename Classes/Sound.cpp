@@ -47,6 +47,15 @@ Sound::Sound(void)
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_RAY1_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_RAY2_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_RAY3_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_JELLYFISH1_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_JELLYFISH2_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_JELLYFISH3_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_ORCA1_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_ORCA2_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_ORCA3_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BRAIN1_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BRAIN2_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BRAIN3_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DIVER_MEET_MARINELIFE_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SCORE_FILE );
 		SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
@@ -399,6 +408,40 @@ void Sound::playOrcaEffectWithType(int type)
 				break;
 			case 3:
 				SimpleAudioEngine::getInstance()->playEffect(EFFECT_ORCA3_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			default:
+				break;
+		}
+	}
+#endif
+}
+
+void Sound::playBrainEffectRand()
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		int typeVal = rand() % 2 + 1;
+		playBrainEffectWithType(typeVal);
+	}
+#endif
+}
+
+void Sound::playBrainEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		switch(type)
+		{
+			case 1:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_BRAIN1_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 2:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_BRAIN2_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 3:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_BRAIN3_FILE, false, pitchVal, panVal, gainVal);
 				break;
 			default:
 				break;

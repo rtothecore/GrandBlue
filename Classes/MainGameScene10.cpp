@@ -1,5 +1,5 @@
-#include "MainGameScene9.h"
-#include "Orca.h"
+#include "MainGameScene10.h"
+#include "Brain.h"
 #include "MenuLabel.h"
 #include "Resource.h"
 #include "SpriteRepeater.h"
@@ -11,30 +11,29 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
-#include "MainGameScene10.h"
 
 //------------------------------------------------------------------
 //
-// MainGameScene9
+// MainGameScene10
 //
 //------------------------------------------------------------------
-bool MainGameScene9::init()
+bool MainGameScene10::init()
 {
-	MainGameLayer9 *MainGameLayer9 = MainGameLayer9::create();
-    addChild(MainGameLayer9, 0, kTagGameSceneLayer);
+	MainGameLayer10 *MainGameLayer10 = MainGameLayer10::create();
+    addChild(MainGameLayer10, 0, kTagGameSceneLayer);
 
 	return true;
 }
 
 //------------------------------------------------------------------
 //
-// MainGameLayer9
+// MainGameLayer10
 //
 //------------------------------------------------------------------
-bool MainGameLayer9::init()
+bool MainGameLayer10::init()
 {
-	iMaxFeet = 360;
-	iTagForMarinelife = kTagLayerOrca;
+	iMaxFeet = 400;
+	iTagForMarinelife = kTagLayerBrain;
 
 	// Add background sprite
 	addBackground();
@@ -46,7 +45,7 @@ bool MainGameLayer9::init()
 	return true;
 }
 
-void MainGameLayer9::onEnterTransitionDidFinish()
+void MainGameLayer10::onEnterTransitionDidFinish()
 {
 	// Run Background effect
 	/*BackgroundLayer* bgLayer = (BackgroundLayer*)getChildByTag(kTagBackground);
@@ -62,10 +61,10 @@ void MainGameLayer9::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add marinelife layer
-	schedule( schedule_selector(MainGameLayer9::addMarinelife), 3 );
+	schedule( schedule_selector(MainGameLayer10::addMarinelife), 3 );
 
 	// Sound
-	schedule( schedule_selector(MainGameLayer9::playBubbleEffect), 2);
+	schedule( schedule_selector(MainGameLayer10::playBubbleEffect), 2);
 
 	// Combo Label
 	addComboLabel();
@@ -79,19 +78,19 @@ void MainGameLayer9::onEnterTransitionDidFinish()
 	addFever();
 
 	// collision detect 
-	schedule(schedule_selector(MainGameLayer9::detectCollision));
+	schedule(schedule_selector(MainGameLayer10::detectCollision));
 
 	// check feet
-	schedule( schedule_selector(MainGameLayer9::checkFeet), 1.0f );
+	schedule( schedule_selector(MainGameLayer10::checkFeet), 1.0f );
 }
 
-void MainGameLayer9::addBackground()
+void MainGameLayer10::addBackground()
 {
 	BackgroundLayer* bgLayer = BackgroundLayer::create();
 	addChild(bgLayer, 0, kTagBackground);
 }
 
-void MainGameLayer9::addRocks()
+void MainGameLayer10::addRocks()
 {
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
 	Rocks* rocks = Rocks::create();
@@ -99,7 +98,7 @@ void MainGameLayer9::addRocks()
 	addChild(rocks, 1, kTagRocks);
 }
 
-void MainGameLayer9::addRope()
+void MainGameLayer10::addRope()
 {
 	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
 	Rope* rope = Rope::create();
@@ -107,29 +106,29 @@ void MainGameLayer9::addRope()
 	addChild(rope, 0, kTagRope);
 }
 
-void MainGameLayer9::addMarinelife(float dt)
+void MainGameLayer10::addMarinelife(float dt)
 {
-	for(int i=0; i<3; i++)
+	for(int i=0; i<4; i++)
 	{
-		OrcaLayer* orcaL = OrcaLayer::create();
-		addChild(orcaL, 0, kTagLayerOrca);
+		BrainLayer* brainL = BrainLayer::create();
+		addChild(brainL, 0, kTagLayerBrain);
 	}
 }
 
-void MainGameLayer9::addDiver()
+void MainGameLayer10::addDiver()
 {
 	DiverLayer* diverL = MainGameDataLayer::loadDiver();
 	addChild(diverL, 1, kTagLayerDiver);
 }
 
-void MainGameLayer9::goToNextGameScene()
+void MainGameLayer10::goToNextGameScene()
 {
-	Scene *scene = MainGameScene10::create();
+	/*Scene *scene = MainGameScene10::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(scene);*/
 }
 
-void MainGameLayer9::readyToGoNextScene()
+void MainGameLayer10::readyToGoNextScene()
 {
 	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
 	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );
