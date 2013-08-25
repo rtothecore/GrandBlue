@@ -373,6 +373,40 @@ void Sound::playJellyfishEffectWithType(int type)
 #endif
 }
 
+void Sound::playOrcaEffectRand()
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		int typeVal = rand() % 2 + 1;
+		playOrcaEffectWithType(typeVal);
+	}
+#endif
+}
+
+void Sound::playOrcaEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		switch(type)
+		{
+			case 1:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_ORCA1_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 2:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_ORCA2_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 3:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_ORCA3_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			default:
+				break;
+		}
+	}
+#endif
+}
+
 void Sound::playDiverEffectWithType(int type)
 {
 #if (EFFECT_SOUND)

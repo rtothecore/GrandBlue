@@ -64,6 +64,10 @@ public:
 	static void playJellyfishEffectRand();
 	static void playJellyfishEffectWithType(int type);
 
+	// orca
+	static void playOrcaEffectRand();
+	static void playOrcaEffectWithType(int type);
+
 	// diver
 	static void playDiverEffectWithType(int type);
 
