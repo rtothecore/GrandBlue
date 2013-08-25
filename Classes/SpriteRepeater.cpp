@@ -19,19 +19,12 @@ bool SpriteRepeater::initWithTexture(Texture2D* aTexture, int zValue)
     {
 		// coordinates
 		int orgX = UtilFunc::getWinSize().width / 2;
-		int orgY = UtilFunc::getWinSize().height / 2;
-
-		int destY = getContentSize().height + (getContentSize().height/2);
+		int orgY = 0;
+		int destY = UtilFunc::getWinSize().height;
 
 		// set position
 		setPosition(Point(orgX, orgY));
 		setZOrder(zValue);
-
-		// add repeat image
-		Sprite *repeatImage = Sprite::createWithTexture(aTexture);
-		repeatImage->setPosition(Point(getContentSize().width / 2, -getContentSize().height/2));
-		repeatImage->setZOrder(zValue);
-		this->addChild(repeatImage, zValue, kTagSpriteRepeatImg);
 
 		// set action manager
 		createActionManager();
@@ -48,7 +41,6 @@ void SpriteRepeater::createActionManager()
 	// Create a new scheduler, and link it to the main scheduler
 	schedRepeatMove = new Scheduler();	
 
-	//Scheduler* defaultScheduler = Director::sharedDirector()->getScheduler();
     Scheduler* defaultScheduler = Director::getInstance()->getScheduler();
 	defaultScheduler->scheduleUpdateForTarget(schedRepeatMove, 0, false);
 
@@ -74,26 +66,18 @@ void SpriteRepeater::actionSequence(Sprite* spr, int destX, int destY)
 void SpriteRepeater::moveFinished(Object* pSender)
 {
 	int orgX = UtilFunc::getWinSize().width / 2;
-	int orgY = UtilFunc::getWinSize().height / 2;
+	int orgY = 0;
 
 	setPosition(Point(orgX, orgY));
 }
 
 Rect SpriteRepeater::getSpriteRepeaterRect()
 {
-	return Rect( this->getPosition().x - (getContentSize().width/2),
-				 //this->getPosition().y - (getContentSize().height/2),
+	return Rect( this->getPosition().x - (getContentSize().width/2), 
 				 0,
 				 getContentSize().width,
 				 getContentSize().height );
 }
-
-void SpriteRepeater::setColorToAllSprite(Color3B colorValue)
-{
-	setColor(colorValue);
-	((Sprite*)(getChildByTag(kTagSpriteRepeatImg)))->setColor(colorValue);
-}
-
 
 //------------------------------------------------------------------
 //

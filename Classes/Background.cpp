@@ -1,6 +1,7 @@
 #include "Background.h"
 #include "Resource.h"
 #include "UtilFunc.h"
+#include "Tags.h"
 
 //------------------------------------------------------------------
 //
@@ -90,20 +91,33 @@ void BackgroundLayer::onExit()
 void BackgroundLayer::initWithSprite(const char* chrSprt)
 {
 	// Effect
-	effectNode = Node::create();
-    addChild(effectNode, 0, 1);
+	/*effectNode = Node::create();
+    addChild(effectNode, 0, 1);*/
 
 	// Sprite
 	Sprite* sprt = Sprite::create(chrSprt);
 	sprt->setPosition(Point(UtilFunc::getWinSize().width / 2, UtilFunc::getWinSize().height / 2));
-	effectNode->addChild(sprt);
+	addChild(sprt, 0, kTagSprtBackground);
+
+	//effectNode->addChild(sprt, 0, kTagSprtBackground);
 }
 
-void BackgroundLayer::runEffect()
+void BackgroundLayer::incrementBlue(short blueOffset)
 {
-	ActionInterval* effect = getAction();
-	//effectNode->runAction(effect);
-	auto repEffect = RepeatForever::create(effect);
+	short notBlueColorsOffset = 0 - ((255 / 10) * (blueOffset-1));
 
-	effectNode->runAction(repEffect);	
+	//auto tintblue = TintBy::create(2, -255, -255, 0);
+	auto tintblue = TintBy::create(1, notBlueColorsOffset, notBlueColorsOffset, 0);
+    //auto tintblue_back = tintblue->reverse();
+    //auto blue = RepeatForever::create( Sequence::create( tintblue, tintblue_back, NULL) );
+
+	((Sprite*)getChildByTag(kTagSprtBackground))->runAction(tintblue);
 }
+
+//void BackgroundLayer::runEffect()
+//{
+//	ActionInterval* effect = getAction();
+//	auto repEffect = RepeatForever::create(effect);
+//
+//	effectNode->runAction(repEffect);	
+//}

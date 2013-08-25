@@ -196,9 +196,8 @@ void MainGameBaseLayer::diveWithTimes(int timesValue)
 	Rocks* rocks = (Rocks*)getChildByTag(kTagRocks);
 
 	((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->setDiveStep(timesValue);
-
-	(1 == timesValue) ? colorRope = Color3B::RED : colorRope = Color3B::ORANGE;
-	ropeL->setColorToAllSprite(colorRope);
+	
+	(0 == timesValue) ? ropeL->setColor(Color3B::RED) :ropeL->setColor(Color3B::ORANGE);
 
 	ropeL->setTimeScale(timesValue);
 	rocks->setTimeScale(timesValue);
@@ -210,6 +209,7 @@ void MainGameBaseLayer::toEndGameSceneWithLove()
 
 	// clone Diver
 	DiverLayer* diverCloneL = ((DiverLayer*)getChildByTag(kTagLayerDiver))->clone();
+	diverCloneL->refreshLoveSprite();
 	scene->addChild(diverCloneL, 1, kTagLayerDiver);
 
 	// clone Marinelife

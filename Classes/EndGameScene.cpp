@@ -73,7 +73,7 @@ void EndGameScene::addScoreLabel()
 {
 	// score
 	ScoreLayer* scoreL = ScoreLayer::create();
-	addChild(scoreL);
+	addChild(scoreL, 2);
 }
 
 void EndGameScene::continueGameCallback(Object* pSender)

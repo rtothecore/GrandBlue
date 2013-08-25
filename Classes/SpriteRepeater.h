@@ -18,7 +18,6 @@ public:
 	void setTimeScale(float scale);
 
 	Rect getSpriteRepeaterRect();
-	void setColorToAllSprite(Color3B colorValue);
 
 	// -- For Overriding --
 	virtual bool initWithTexture(Texture2D* aTexture, int zValue);

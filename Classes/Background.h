@@ -14,10 +14,11 @@ public:
 	virtual void onEnter();
     virtual void onExit();
 
-	Node* effectNode;
+	//Node* effectNode;
 
 	void initWithSprite(const char* chrSprt);
-	void runEffect();
+	void incrementBlue(short blueOffset);
+	//void runEffect();
 };
 
 #endif

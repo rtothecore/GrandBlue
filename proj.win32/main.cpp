@@ -22,6 +22,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	eglView->setFrameZoomFactor(0.8f);
 
 	//eglView->setFrameSize(320, 480);
+	//eglView->setFrameSize(640, 960);
 
     return Application::getInstance()->run();
 }

@@ -90,6 +90,7 @@ void MainGameLayer5::addBackground()
 {
 	BackgroundLayer* bgLayer = BackgroundLayer::create();
 	addChild(bgLayer, 0, kTagBackground);
+	bgLayer->incrementBlue(5);
 }
 
 void MainGameLayer5::addRocks()

@@ -240,6 +240,9 @@ void DiverLayer::runLoveAction()
 	// rotate 90
 	sprt_diver->setRotation(90);
 
+	// show love sprite
+	refreshLoveSprite();
+
 	// move to left screen edge
 	auto actionMoveToLeft = MoveTo::create( 5, Point(0 - sprt_diver->getContentSize().width , getPositionY()) );
 	auto actionMoveDone = CallFuncN::create( CC_CALLBACK_1(DiverLayer::spriteMoveFinished, this) );
