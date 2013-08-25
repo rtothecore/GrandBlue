@@ -14,6 +14,7 @@ public:
 	static const int st_byePoint = 3;
 	int byePoint;
 	bool isHeadToLeft;
+	bool isHeadToTop;
 	bool isAttachedToDiver;
 
 	Rect getRect();
@@ -29,9 +30,13 @@ protected:
 
 	// action
 	void actionSequence(Layer* spr, int actualY, int actualDuration);
+	void actionSequenceBottomToTop(Layer* lyr, int actualX, int actualDuration);
 	void actionBezier(Layer* spr, int actualY);
+	void actionBezierBottomToTop(Layer* lyr, int actualX);
 	void spriteFlipY(Object* pSender);
 	void spriteUnflipY(Object* pSender);
+	void spriteFlipX(Object* pSender);
+	void spriteUnflipX(Object* pSender);
 	void spriteMoveFinished(Object* pSender);
 
 	// touch event

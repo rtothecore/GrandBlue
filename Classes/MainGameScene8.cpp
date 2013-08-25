@@ -1,5 +1,5 @@
-#include "MainGameScene7.h"
-#include "Ray.h"
+#include "MainGameScene8.h"
+#include "Jellyfish.h"
 #include "MenuLabel.h"
 #include "Resource.h"
 #include "SpriteRepeater.h"
@@ -11,30 +11,29 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
-#include "MainGameScene8.h"
 
 //------------------------------------------------------------------
 //
-// MainGameScene7
+// MainGameScene8
 //
 //------------------------------------------------------------------
-bool MainGameScene7::init()
+bool MainGameScene8::init()
 {
-	MainGameLayer7 *MainGameLayer7 = MainGameLayer7::create();
-    addChild(MainGameLayer7, 0, kTagGameSceneLayer);
+	MainGameLayer8 *MainGameLayer8 = MainGameLayer8::create();
+    addChild(MainGameLayer8, 0, kTagGameSceneLayer);
 
 	return true;
 }
 
 //------------------------------------------------------------------
 //
-// MainGameLayer7
+// MainGameLayer8
 //
 //------------------------------------------------------------------
-bool MainGameLayer7::init()
+bool MainGameLayer8::init()
 {
-	iMaxFeet = 280;
-	iTagForMarinelife = kTagLayerRay;
+	iMaxFeet = 320;
+	iTagForMarinelife = kTagLayerJellyfish;
 
 	// Add background sprite
 	addBackground();
@@ -46,7 +45,7 @@ bool MainGameLayer7::init()
 	return true;
 }
 
-void MainGameLayer7::onEnterTransitionDidFinish()
+void MainGameLayer8::onEnterTransitionDidFinish()
 {
 	// Run Background effect
 	/*BackgroundLayer* bgLayer = (BackgroundLayer*)getChildByTag(kTagBackground);
@@ -62,10 +61,10 @@ void MainGameLayer7::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add marinelife layer
-	schedule( schedule_selector(MainGameLayer7::addMarinelife), 3 );
+	schedule( schedule_selector(MainGameLayer8::addMarinelife), 3 );
 
 	// Sound
-	schedule( schedule_selector(MainGameLayer7::playBubbleEffect), 2);
+	schedule( schedule_selector(MainGameLayer8::playBubbleEffect), 2);
 
 	// Combo Label
 	addComboLabel();
@@ -79,19 +78,19 @@ void MainGameLayer7::onEnterTransitionDidFinish()
 	addFever();
 
 	// collision detect 
-	schedule(schedule_selector(MainGameLayer7::detectCollision));
+	schedule(schedule_selector(MainGameLayer8::detectCollision));
 
 	// check feet
-	schedule( schedule_selector(MainGameLayer7::checkFeet), 1.0f );
+	schedule( schedule_selector(MainGameLayer8::checkFeet), 1.0f );
 }
 
-void MainGameLayer7::addBackground()
+void MainGameLayer8::addBackground()
 {
 	BackgroundLayer* bgLayer = BackgroundLayer::create();
 	addChild(bgLayer, 0, kTagBackground);
 }
 
-void MainGameLayer7::addRocks()
+void MainGameLayer8::addRocks()
 {
 	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
 	Rocks* rocks = Rocks::create();
@@ -99,7 +98,7 @@ void MainGameLayer7::addRocks()
 	addChild(rocks, 1, kTagRocks);
 }
 
-void MainGameLayer7::addRope()
+void MainGameLayer8::addRope()
 {
 	Texture2D* ropeTexture = TextureCache::getInstance()->addImage(s_Rope);
 	Rope* rope = Rope::create();
@@ -107,29 +106,29 @@ void MainGameLayer7::addRope()
 	addChild(rope, 0, kTagRope);
 }
 
-void MainGameLayer7::addMarinelife(float dt)
+void MainGameLayer8::addMarinelife(float dt)
 {
 	for(int i=0; i<5; i++)
 	{
-		RayLayer* rayL = RayLayer::create();
-		addChild(rayL, 0, kTagLayerRay);
+		JellyfishLayer* jellyfishL = JellyfishLayer::create();
+		addChild(jellyfishL, 0, kTagLayerJellyfish);
 	}
 }
 
-void MainGameLayer7::addDiver()
+void MainGameLayer8::addDiver()
 {
 	DiverLayer* diverL = MainGameDataLayer::loadDiver();
 	addChild(diverL, 1, kTagLayerDiver);
 }
 
-void MainGameLayer7::goToNextGameScene()
+void MainGameLayer8::goToNextGameScene()
 {
-	Scene *scene = MainGameScene8::create();
+	/*Scene *scene = MainGameScene8::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(scene);*/
 }
 
-void MainGameLayer7::readyToGoNextScene()
+void MainGameLayer8::readyToGoNextScene()
 {
 	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
 	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );

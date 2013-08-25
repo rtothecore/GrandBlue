@@ -32,6 +32,9 @@ static const char s_Mermaid[]				= "mermaid1.png";
 static const char p_Ray[]				= "zwoptex/ray.plist";
 static const char s_Ray[]				= "ray1.png";
 
+static const char p_Jellyfish[]				= "zwoptex/jellyfish.plist";
+static const char s_Jellyfish[]				= "jellyfish1.png";
+
 // Image
 static const char s_UnderSea[]			   = "underTheSea_light.png";
 static const char s_Rocks[]				   = "underTheSea_rocks.png";
@@ -69,6 +72,10 @@ static const char s_Rope[]				   = "rope.png";
 #define EFFECT_RAY1_FILE							"sound/ray1.wav"
 #define EFFECT_RAY2_FILE							"sound/ray2.wav"
 #define EFFECT_RAY3_FILE							"sound/ray3.wav"
+
+#define EFFECT_JELLYFISH1_FILE							"sound/jellyfish1.wav"
+#define EFFECT_JELLYFISH2_FILE							"sound/jellyfish2.wav"
+#define EFFECT_JELLYFISH3_FILE							"sound/jellyfish3.wav"
 
 #define EFFECT_DIVER_MEET_MARINELIFE_FILE			"sound/diver1.wav"
 

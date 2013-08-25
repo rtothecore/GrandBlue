@@ -339,6 +339,40 @@ void Sound::playRayEffectWithType(int type)
 #endif
 }
 
+void Sound::playJellyfishEffectRand()
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		int typeVal = rand() % 2 + 1;
+		playJellyfishEffectWithType(typeVal);
+	}
+#endif
+}
+
+void Sound::playJellyfishEffectWithType(int type)
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		switch(type)
+		{
+			case 1:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_JELLYFISH1_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 2:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_JELLYFISH2_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			case 3:
+				SimpleAudioEngine::getInstance()->playEffect(EFFECT_JELLYFISH3_FILE, false, pitchVal, panVal, gainVal);
+				break;
+			default:
+				break;
+		}
+	}
+#endif
+}
+
 void Sound::playDiverEffectWithType(int type)
 {
 #if (EFFECT_SOUND)
