@@ -6,6 +6,7 @@
 #include "Sound.h"
 #include "Tags.h"
 #include "Resource.h"
+#include "ScoreRecord.h"
 
 //------------------------------------------------------------------
 //
@@ -36,14 +37,17 @@ bool MainTitleLayer::init()
     Point origin = Director::getInstance()->getVisibleOrigin();
 	Size winSize = Director::getInstance()->getWinSize();
 
-	// Title Label
+	// High Score label
+	ScoreRecordLayer::addHighScoreLabel(this, Color3B::WHITE);
+
+	// Title label
     Size blockSize = Size(winSize.width, 200);
     float fontSize = 40;
 	LabelTTF *labelTitle = LabelTTF::create("Grand Blue", FONT_TITLE_FILE, fontSize, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 	labelTitle->setColor(Color3B::BLUE);
 	labelTitle->setZOrder(1);
-	labelTitle->setPosition(Point(winSize.width/2, winSize.height/2));
+	labelTitle->setPosition(Point(winSize.width/2, winSize.height/2 + (winSize.height/20)));
 	addChild(labelTitle);
 
 	// ----- main menu -----
@@ -53,7 +57,8 @@ bool MainTitleLayer::init()
 	labelMainLayer->addMenuItem("Exit", 2.0f);
 	labelMainLayer->createMenu();
 	labelMainLayer->setZOrder(1);
-	labelMainLayer->setPosition(0, -100);
+	//labelMainLayer->setPosition(0, -100);
+	labelMainLayer->setPosition(0, -(winSize.height/5));
 
 	// set "Dive!" callback
 	Menu* labelMainMenu = (Menu*)labelMainLayer->getChildByTag(0);
@@ -110,7 +115,7 @@ bool MainTitleLayer::init()
 	addChild(labelOptionLayer, 1, kTagMLTitleOption);
 
     // Background Sprite
-    Sprite* sprite = Sprite::create("title_grandBlue.png");
+    Sprite* sprite = Sprite::create(s_Title);
     sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(sprite, 0);
 

@@ -12,6 +12,7 @@
 #include "SpriteRepeater.h"
 #include "Resource.h"
 #include "UtilFunc.h"
+#include "ScoreRecord.h"
 
 bool MainGameBaseLayer::init()
 {
@@ -40,12 +41,15 @@ void MainGameBaseLayer::addComboLabel()
     float fontSize = 18;
 
 	char chrComboLabel[20] = {0};
-	sprintf(chrComboLabel, "Bye: %d\nCombo: %d", MainGameDataLayer::getByeCount(), MainGameDataLayer::getComboCount());
+	sprintf(chrComboLabel, "Bye: %d\nFever: %d", MainGameDataLayer::getByeCount(), MainGameDataLayer::getFeverCount());
 	auto labelCombo = LabelTTF::create(chrComboLabel, FONT_MENU_FILE, fontSize, 
 										blockSize, Label::HAlignment::LEFT, Label::VAlignment::CENTER);
-	labelCombo->setPosition( Point(winSize.width - labelCombo->getContentSize().width/4, labelCombo->getContentSize().height/4) );
+	labelCombo->setPosition( Point(winSize.width - labelCombo->getContentSize().width/6, labelCombo->getContentSize().height/4) );
     addChild(labelCombo, 2, kTagMainGameMenuLabel);
 	schedule(schedule_selector(MainGameBaseLayer::comboLabelRefresh), 0.5);
+
+	// High Score label
+	ScoreRecordLayer::addHighScoreLabel(this, Color3B::BLUE);
 }
 
 void MainGameBaseLayer::addMarinelife(float dt)
@@ -56,8 +60,8 @@ void MainGameBaseLayer::comboLabelRefresh(float dt)
 {
 	LabelTTF* labelCombo = (LabelTTF*)getChildByTag(kTagMainGameMenuLabel);
 	char chrMarinelifeBye[30] = {0};
-	sprintf(chrMarinelifeBye, "Bye: %d\nCombo: %d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
-			((FeverLayer*)getChildByTag(kTagFever))->getTouchCombo() );
+	sprintf(chrMarinelifeBye, "Bye: %d\nFever: %d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
+			((FeverLayer*)getChildByTag(kTagFever))->getFeverCount() );
 	labelCombo->setString(chrMarinelifeBye);
 }
 
@@ -296,7 +300,8 @@ void MainGameBaseLayer::saveAllGameResult()
 {
 	MainGameDataLayer::saveAllGameResult( ((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->getDivedFeet(), 
 										  ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
-										  ((DiverLayer*)getChildByTag(kTagLayerDiver))->lovePoint );
+										  ((DiverLayer*)getChildByTag(kTagLayerDiver))->lovePoint, 
+										  ((FeverLayer*)getChildByTag(kTagFever))->getFeverCount());
 }
 
 void MainGameBaseLayer::saveAllGameData()

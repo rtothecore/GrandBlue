@@ -41,11 +41,17 @@ static const char s_Orca[]				= "orca1.png";
 static const char p_Brain[]				= "zwoptex/brain.plist";
 static const char s_Brain[]				= "brain1.png";
 
+static const char p_Score[]				= "score.plist";
+
+// Key for plist
+static const char k_1stScore[]			= "1st_Score";
+
 
 // Image
 static const char s_UnderSea[]			   = "underTheSea_light.png";
 static const char s_Rocks[]				   = "underTheSea_rocks.png";
 static const char s_Rope[]				   = "rope.png";
+static const char s_Title[]				   = "title.png";
 
 // Sound
 #define MUSIC_FILE									"sound/grandblue.wav"

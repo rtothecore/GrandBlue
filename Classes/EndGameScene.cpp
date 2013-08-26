@@ -8,9 +8,15 @@
 #include "MainGameData.h"
 #include "MainTitleScene.h"
 #include "Score.h"
+#include "ScoreRecord.h"
 
 bool EndGameScene::init()
 {
+	// High Score label
+	Layer* lyr = Layer::create();
+	ScoreRecordLayer::addHighScoreLabel(lyr, Color3B::WHITE);
+	addChild(lyr, 2);
+
 	return true;
 }
 

@@ -14,6 +14,7 @@ bool FeverLayer::init()
 {
 	bFeverMode = false;
 	iMarineLifeBye = 0;
+	iFeverCount = 0;
 	iTouchCombo = 0;
 
 	initProgressBar();
@@ -93,6 +94,9 @@ void FeverLayer::intoTheFever()
 	// fever music
 	Sound::playFeverMusic(true);
 
+	// fever count++
+	iFeverCount++;
+
 	// run Diver's fever mode
 	((DiverLayer*)getParent()->getChildByTag(kTagLayerDiver))->runFevermodeAction();
 }
@@ -166,4 +170,14 @@ void FeverLayer::setTouchCombo(int touchComboVal)
 void FeverLayer::setMarinelifeBye(int mlByeVal)
 {
 	iMarineLifeBye = mlByeVal;
+}
+
+int FeverLayer::getFeverCount()
+{
+	return iFeverCount;
+}
+
+void FeverLayer::setFeverCount(int feverVal)
+{
+	iFeverCount = feverVal;
 }

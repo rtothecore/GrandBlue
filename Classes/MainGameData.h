@@ -33,11 +33,11 @@ public:
 	static void resetAllData();
 
 	// for score
-	static void saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint);
+	static void saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint, int FeverCount);
 	static int getDivedFeet();
 	static int getByeCount();
 	static int getLovePoint();
-	static int getComboCount();
+	static int getFeverCount();
 };
 
 #endif

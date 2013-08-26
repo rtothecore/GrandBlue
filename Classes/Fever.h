@@ -17,6 +17,7 @@ private:
 	static const int st_feverTime = 10;
 
 	int iMarineLifeBye;
+	int iFeverCount;
 	int iTouchCombo;
 
 	// ProgressBar
@@ -51,6 +52,10 @@ public:
 	void increaseMarinelifeBye();
 	int getMarinelifeBye();
 	void setMarinelifeBye(int mlByeVal);
+
+	// Combo Count
+	int getFeverCount();
+	void setFeverCount(int comboVal);
 	
 	void refreshProgressBar();
 };

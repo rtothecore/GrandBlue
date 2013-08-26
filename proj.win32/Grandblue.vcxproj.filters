@@ -135,6 +135,9 @@
     <ClCompile Include="..\Classes\MainGameScene10.cpp">
       <Filter>MyClass\MainGameScene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ScoreRecord.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MainGameScene10.h">
       <Filter>MyClass\MainGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScoreRecord.h">
+      <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

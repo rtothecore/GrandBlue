@@ -13,16 +13,22 @@ public:
 
 	static const int divedFeet_score = 10;
 	static const int byeCount_score = 100;
-	static const int attachedMarinelifeCount_score = 1000;
+	static const int feverCount_score = 1000;
+	//static const int attachedMarinelifeCount_score = 1000;
+
+	bool isNewRecord;
 
 	int resultScore;
 	int countedResultScore;
 	int countStep;
 
 	void initWithGameResult();
-	void showGameResult(int divedFeet, int byeCount, int attachedMLCount);
+	void showGameResult(int divedFeet, int byeCount, int attachedMLCount, int feverCount);
 	void startScoreAction();
 	void countingScore(float dt);
+
+	void addResultScoreLabel(int resultScore);
+	void addNewRecordLabel(int newRecordScore);
 };
 
 #endif

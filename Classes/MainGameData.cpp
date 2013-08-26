@@ -93,6 +93,7 @@ void MainGameDataLayer::saveFever(FeverLayer* feverL)
 	UserDefault::getInstance()->setIntegerForKey("marinelifeBye", feverL->getMarinelifeBye());
 	UserDefault::getInstance()->setIntegerForKey("touchCombo", feverL->getTouchCombo());
 	UserDefault::getInstance()->setBoolForKey("feverMode", feverL->isFever());
+	UserDefault::getInstance()->setIntegerForKey("feverCount", feverL->getFeverCount());
 
 	MainGameDataLayer::isSaveFever = true;
 }
@@ -106,6 +107,7 @@ FeverLayer* MainGameDataLayer::loadFever()
 		ret->setMarinelifeBye( UserDefault::getInstance()->getIntegerForKey("marinelifeBye") );
 		ret->setTouchCombo( UserDefault::getInstance()->getIntegerForKey("touchCombo") );
 		ret->setFever( UserDefault::getInstance()->getBoolForKey("feverMode") );
+		ret->setFeverCount( UserDefault::getInstance()->getIntegerForKey("feverCount") );
 
 		ret->refreshProgressBar();
 	}
@@ -117,6 +119,7 @@ void MainGameDataLayer::resetFever()
 {
 	UserDefault::getInstance()->setIntegerForKey("marinelifeBye", 0);
 	UserDefault::getInstance()->setIntegerForKey("touchCombo", 0);
+	UserDefault::getInstance()->setIntegerForKey("feverCount", 0);
 
 	MainGameDataLayer::isSaveFever = false;
 }
@@ -128,11 +131,12 @@ void MainGameDataLayer::resetAllData()
 	resetFever();
 }
 
-void MainGameDataLayer::saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint)
+void MainGameDataLayer::saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint, int FeverCount)
 {
 	UserDefault::getInstance()->setIntegerForKey("divedFeet", DivedFeet);
 	UserDefault::getInstance()->setIntegerForKey("marinelifeBye", ByeCount);
 	UserDefault::getInstance()->setIntegerForKey("diverLovePoint", LovePoint);
+	UserDefault::getInstance()->setIntegerForKey("feverCount", FeverCount);
 }
 
 int MainGameDataLayer::getDivedFeet()
@@ -159,10 +163,10 @@ int MainGameDataLayer::getLovePoint()
 		return 0;
 }
 
-int MainGameDataLayer::getComboCount()
+int MainGameDataLayer::getFeverCount()
 {
-	if( UserDefault::getInstance()->getIntegerForKey("touchCombo") )
-		return UserDefault::getInstance()->getIntegerForKey("touchCombo");
+	if( UserDefault::getInstance()->getIntegerForKey("feverCount") )
+		return UserDefault::getInstance()->getIntegerForKey("feverCount");
 	else
 		return 0;
 }
