@@ -77,6 +77,7 @@ public:
 
 	// score
 	static void playScoreEffect();
+	static void playHighScoreEffect();
 	
 };
 

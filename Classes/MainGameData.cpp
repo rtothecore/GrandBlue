@@ -21,6 +21,8 @@ void MainGameDataLayer::saveDiver(DiverLayer* diverL)
 	UserDefault::getInstance()->setIntegerForKey("diverLovePoint", diverL->lovePoint);
 	UserDefault::getInstance()->setBoolForKey("diverIsLove", diverL->isLove);
 
+	UserDefault::getInstance()->setIntegerForKey("diverLapCount", diverL->lapCount);
+
 	MainGameDataLayer::isSaveDiver = true;
 }
 
@@ -36,6 +38,7 @@ DiverLayer* MainGameDataLayer::loadDiver()
 								   UserDefault::getInstance()->getFloatForKey("diverAncY")) );
 		ret->lovePoint = UserDefault::getInstance()->getIntegerForKey("diverLovePoint");
 		ret->isLove = UserDefault::getInstance()->getBoolForKey("diverIsLove");
+		ret->lapCount = UserDefault::getInstance()->getIntegerForKey("diverLapCount");
 
 		ret->refreshDiver();
 	}
@@ -53,6 +56,7 @@ void MainGameDataLayer::resetDiver()
 
 	UserDefault::getInstance()->setIntegerForKey("diverLovePoint", 0);
 	UserDefault::getInstance()->setBoolForKey("diverIsLove", 0);
+	UserDefault::getInstance()->setIntegerForKey("diverLapCount", 1);
 
 	MainGameDataLayer::isSaveDiver = false;
 }
@@ -131,12 +135,13 @@ void MainGameDataLayer::resetAllData()
 	resetFever();
 }
 
-void MainGameDataLayer::saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint, int FeverCount)
+void MainGameDataLayer::saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint, int FeverCount, int DiverLapCount)
 {
 	UserDefault::getInstance()->setIntegerForKey("divedFeet", DivedFeet);
 	UserDefault::getInstance()->setIntegerForKey("marinelifeBye", ByeCount);
 	UserDefault::getInstance()->setIntegerForKey("diverLovePoint", LovePoint);
 	UserDefault::getInstance()->setIntegerForKey("feverCount", FeverCount);
+	UserDefault::getInstance()->setIntegerForKey("diverLapCount", DiverLapCount);
 }
 
 int MainGameDataLayer::getDivedFeet()
@@ -169,4 +174,12 @@ int MainGameDataLayer::getFeverCount()
 		return UserDefault::getInstance()->getIntegerForKey("feverCount");
 	else
 		return 0;
+}
+
+int MainGameDataLayer::getDiverLapCount()
+{
+	if( UserDefault::getInstance()->getIntegerForKey("diverLapCount") )
+		return UserDefault::getInstance()->getIntegerForKey("diverLapCount");
+	else
+		return 1;
 }

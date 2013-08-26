@@ -31,12 +31,10 @@ bool BrainLayer::initWithPlist(const char* plist, const char* frameName)
 		// Animation
 		Array* animFrames = Array::createWithCapacity(5);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 6; i++) 
 		{
-			sprintf(str, "brain%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strBrain = String::createWithFormat("brain%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strBrain->getCString() );
 			animFrames->addObject(frame);
 		}
 

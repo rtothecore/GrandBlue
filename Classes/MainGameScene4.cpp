@@ -12,6 +12,7 @@
 #include "Tags.h"
 #include "MainGameData.h"
 #include "MainGameScene5.h"
+#include "GrandBlueConfig.h"
 
 //------------------------------------------------------------------
 //
@@ -33,7 +34,7 @@ bool MainGameScene4::init()
 //------------------------------------------------------------------
 bool MainGameLayer4::init()
 {
-	iMaxFeet = 160;
+	iMaxFeet = MAX_DIVE_FEET_AT_ONE_SCENE;
 	iTagForMarinelife = kTagLayerStarfish;
 
 	// Add background sprite
@@ -62,6 +63,7 @@ void MainGameLayer4::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add marinelife layer
+	addMarinelife(0);
 	schedule( schedule_selector(MainGameLayer4::addMarinelife), 3 );
 
 	// Sound
@@ -69,7 +71,7 @@ void MainGameLayer4::onEnterTransitionDidFinish()
 	schedule( schedule_selector(MainGameLayer4::playBubbleEffect), 2);
 
 	// Combo Label
-	addComboLabel();
+	addPlayStatusLabel();
 
 	// Menu Label - dive feet
 	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();

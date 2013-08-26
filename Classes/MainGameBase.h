@@ -57,9 +57,9 @@ public:
 	virtual bool init();
 
 	virtual void onEnterTransitionDidFinish();
-	virtual void addComboLabel();
+	virtual void addPlayStatusLabel();
 	virtual void addMarinelife(float dt);
-	virtual void comboLabelRefresh(float dt);
+	virtual void playStatusLabelRefresh(float dt);
 
 	virtual bool ccTouchBegan(Touch* touch, Event* event);
     virtual void ccTouchMoved(Touch* touch, Event* event);

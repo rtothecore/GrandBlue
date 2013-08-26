@@ -12,6 +12,7 @@
 #include "Tags.h"
 #include "MainGameData.h"
 #include "MainGameScene3.h"
+#include "GrandBlueConfig.h"
 
 //------------------------------------------------------------------
 //
@@ -33,7 +34,7 @@ bool MainGameScene2::init()
 //------------------------------------------------------------------
 bool MainGameLayer2::init()
 {
-	iMaxFeet = 80;
+	iMaxFeet = MAX_DIVE_FEET_AT_ONE_SCENE;
 	iTagForMarinelife = kTagLayerTurtle;
 
 	// Add background sprite
@@ -62,6 +63,7 @@ void MainGameLayer2::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add turtle layer
+	addMarinelife(0);
 	schedule( schedule_selector(MainGameLayer2::addMarinelife), 3 );
 
 	// Sound
@@ -69,7 +71,7 @@ void MainGameLayer2::onEnterTransitionDidFinish()
 	schedule( schedule_selector(MainGameLayer2::playBubbleEffect), 2);
 
 	// Combo Label
-	addComboLabel();
+	addPlayStatusLabel();
 
 	// Menu Label - dive feet
 	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();

@@ -25,7 +25,7 @@ void MenuLabelLayer::initWithLabel(char* chrLabel, float scaleVal)
 	menu = Menu::create( item, NULL);
 }
 
-void MenuLabelLayer::addMenuItem(char* chrLabel, float scaleVal)
+void MenuLabelLayer::addMenuItem(const char* chrLabel, float scaleVal)
 {
 	// Label Item (LabelTTF)
 	Size winSize = Director::getInstance()->getWinSize();
@@ -72,7 +72,7 @@ void MenuLabelLayer::createMenu()
 	addChild(menu, 0, 0);
 }
 
-void MenuLabelLayer::renameMenuItem(int itemIndex, char* chrLabel)
+void MenuLabelLayer::renameMenuItem(int itemIndex, const char* chrLabel)
 {
 	MenuItemLabel* item = (MenuItemLabel*)menu->getChildByTag(itemIndex);
 

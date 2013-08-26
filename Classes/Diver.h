@@ -37,9 +37,11 @@ public:
 	bool isLove;
 	static const unsigned int st_maxLovePoint = 5;
 	unsigned int lovePoint;
+	unsigned int lapCount;
 	Sprite *sprt_love;
 	void refreshLoveSprite();
 	void increaseLovePoint();
+	void increaseLapCount();
 	void runLoveAction();
 
 	// get collisioned dolphin
@@ -54,7 +56,6 @@ public:
 	void exitFevermodeAction();
 	void runMeetMarinelifeAction();
 
-	//
 	void moveByDisplacement(Point displace);
 };
 

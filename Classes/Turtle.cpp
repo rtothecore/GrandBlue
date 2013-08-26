@@ -31,12 +31,10 @@ bool TurtleLayer::initWithPlist(const char* plist, const char* frameName)
 		// Animation
 		Array* animFrames = Array::createWithCapacity(4);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 5; i++) 
 		{
-			sprintf(str, "turtle%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strTurtle = String::createWithFormat("turtle%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strTurtle->getCString() );
 			animFrames->addObject(frame);
 		}
 

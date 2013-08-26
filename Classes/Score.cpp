@@ -4,6 +4,7 @@
 #include "Sound.h"
 #include "Resource.h"
 #include "ScoreRecord.h"
+#include "Particle.h"
 
 bool ScoreLayer::init()
 {
@@ -22,10 +23,11 @@ void ScoreLayer::initWithGameResult()
 	int byeCount = MainGameDataLayer::getByeCount();
 	int attachedMarinelifeCount = MainGameDataLayer::getLovePoint();
 	int feverCount = MainGameDataLayer::getFeverCount();
+	int lapCount = MainGameDataLayer::getDiverLapCount();
 
-	resultScore = (divedFeet * divedFeet_score) + 
-		          (byeCount * byeCount_score) +
-				  (feverCount * feverCount_score);
+	resultScore = ( (divedFeet * divedFeet_score) + 
+		            (byeCount * byeCount_score) +
+				    (feverCount * feverCount_score) ) * lapCount;
 				  //(attachedMarinelifeCount * attachedMarinelifeCount_score);
 
 	countStep = resultScore / 10;
@@ -45,6 +47,12 @@ void ScoreLayer::initWithGameResult()
 		addResultScoreLabel(resultScore);
 	}
 
+	// add rapCount Label
+	if(1 < lapCount)
+	{
+		addLapCountLabel(lapCount);
+	}
+
 	// start count score
 	startScoreAction();
 	
@@ -52,13 +60,13 @@ void ScoreLayer::initWithGameResult()
 
 void ScoreLayer::showGameResult(int divedFeet, int byeCount, int attachedMLCount, int feverCount)
 {
-	char chrGameResult[70] = {0};
-	sprintf(chrGameResult, "Dive: %d x 10\nBye: %d x 100\nFever: %d x 1000", divedFeet, byeCount, feverCount);
+	String* strGameResult = String::createWithFormat("Dive: %d x 10\nBye: %d x 100\nFever: %d x 1000", 
+		                                              divedFeet, byeCount, feverCount);
 
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/5);
     float fontSize = 18;
-	auto labelGameResult = LabelTTF::create(chrGameResult, FONT_MENU_FILE, fontSize, 
+	auto labelGameResult = LabelTTF::create(strGameResult->getCString(), FONT_MENU_FILE, fontSize, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	labelGameResult->setPosition(Point(winSize.width/2, (winSize.height/2) + (labelGameResult->getContentSize().height)));
@@ -78,14 +86,14 @@ void ScoreLayer::countingScore(float dt)
 	countedResultScore += countStep;
 
 	LabelTTF* labelScore = ((LabelTTF*)getChildByTag(kTagLabelScore));
-	char chrScore[40] = {0};
-	
+	String* strScore;
+
 	if(isNewRecord)
-		sprintf(chrScore, "New High Score!\n%d", countedResultScore);
+		strScore = String::createWithFormat("New High Score!\n%d", countedResultScore);
 	else
-		sprintf(chrScore, "\nScore: %d", countedResultScore);
+		strScore = String::createWithFormat("\nScore: %d", countedResultScore);
 	
-	labelScore->setString(chrScore);
+	labelScore->setString(strScore->getCString());
 
 	if(resultScore <= countedResultScore)
 	{
@@ -121,8 +129,13 @@ void ScoreLayer::addNewRecordLabel(int newRecordScore)
 	auto labelNewRecord = LabelTTF::create(strNewRecord->getCString(), FONT_MENU_FILE, fontSize, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
-	//Point dstPoint = Point(winSize.width/4, winSize.height/2 + labelNewRecord->getContentSize().height*2);
-	Point dstPoint = Point(winSize.width/4, winSize.height/2);
+	Point dstPoint;
+	if( MainGameDataLayer::getDiverLapCount() )
+	{
+		dstPoint = Point(winSize.width/4, winSize.height/2 - labelNewRecord->getContentSize().height/2);
+	} else {
+		dstPoint = Point(winSize.width/4, winSize.height/2);
+	}
 	int offset = (int) (winSize.width/2 + 50);
 
 	labelNewRecord->setPosition(  Point( dstPoint.x + offset, dstPoint.y) );
@@ -130,20 +143,33 @@ void ScoreLayer::addNewRecordLabel(int newRecordScore)
 	labelNewRecord->runAction( EaseElasticOut::create(MoveBy::create(2, Point(dstPoint.x - offset,0)), 0.35f) );
 
 	addChild(labelNewRecord, 1, kTagLabelScore);
+
+	// sound
+	Sound::playHighScoreEffect();
+
+	// firworks effect
+	ParticleLayer* particle = ParticleLayer::create();
+	addChild(particle);
+	particle->runFirework();
 }
 
-//void ScoreLayer::countingNewRecordScore(float dt)
-//{
-//	countedResultScore += countStep;
-//
-//	LabelTTF* labelScore = ((LabelTTF*)getChildByTag(kTagLabelNewRecordScore));
-//	char chrScore[15] = {0};
-//	sprintf(chrScore, "Congratulation!\nNew Record Score!\n%d", countedResultScore);
-//	labelScore->setString(chrScore);
-//
-//	if(resultScore <= countedResultScore)
-//	{
-//		unschedule(schedule_selector(ScoreLayer::countingScore));
-//	}
-//}
+void ScoreLayer::addLapCountLabel(int lapCount)
+{
+	Size winSize = Director::getInstance()->getWinSize();
+	Size blockSize = Size(winSize.width, winSize.height/8);
+    float fontSize = 36;
 
+	String* strLapCount = String::createWithFormat("X %d Lap", lapCount);
+
+	auto labelLapCount = LabelTTF::create(strLapCount->getCString(), FONT_MENU_FILE, fontSize, 
+										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
+
+	Point dstPoint = Point(winSize.width/4, winSize.height/2 + labelLapCount->getContentSize().height/2);
+	int offset = (int) (winSize.width/2 + 50);
+
+	labelLapCount->setPosition(  Point( dstPoint.x + offset, dstPoint.y) );
+	labelLapCount->setColor(Color3B::YELLOW);
+	labelLapCount->runAction( EaseElasticOut::create(MoveBy::create(2, Point(dstPoint.x - offset,0)), 0.35f) );
+
+	addChild(labelLapCount, 1);
+}

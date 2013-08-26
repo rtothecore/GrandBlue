@@ -58,6 +58,7 @@ Sound::Sound(void)
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BRAIN3_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DIVER_MEET_MARINELIFE_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SCORE_FILE );
+		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_HIGH_SCORE_FILE );
 		SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
 	}
 #endif
@@ -476,6 +477,16 @@ void Sound::playScoreEffect()
 	if(bEffect)
 	{
 		SimpleAudioEngine::getInstance()->playEffect(EFFECT_SCORE_FILE, false, pitchVal, panVal, gainVal);
+	}
+#endif
+}
+
+void Sound::playHighScoreEffect()
+{
+#if (EFFECT_SOUND)
+	if(bEffect)
+	{
+		SimpleAudioEngine::getInstance()->playEffect(EFFECT_HIGH_SCORE_FILE, false, pitchVal, panVal, gainVal);
 	}
 #endif
 }

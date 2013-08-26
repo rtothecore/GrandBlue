@@ -31,12 +31,10 @@ bool DolphinLayer::initWithPlist(const char* plist, const char* frameName)
 		// Dolphin's Animation
 		Array* animFrames = Array::createWithCapacity(5);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 6; i++) 
 		{
-			sprintf(str, "dolphin%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strDolphin = String::createWithFormat("dolphin%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strDolphin->getCString() );
 			animFrames->addObject(frame);
 		}
 

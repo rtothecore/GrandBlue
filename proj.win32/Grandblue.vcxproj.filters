@@ -138,6 +138,9 @@
     <ClCompile Include="..\Classes\ScoreRecord.cpp">
       <Filter>MyClass</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Particle.cpp">
+      <Filter>MyClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -267,6 +270,9 @@
       <Filter>MyClass\MainGameScene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ScoreRecord.h">
+      <Filter>MyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Particle.h">
       <Filter>MyClass</Filter>
     </ClInclude>
   </ItemGroup>

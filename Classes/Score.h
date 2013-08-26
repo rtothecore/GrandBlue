@@ -29,6 +29,8 @@ public:
 
 	void addResultScoreLabel(int resultScore);
 	void addNewRecordLabel(int newRecordScore);
+
+	void addLapCountLabel(int lapCount);
 };
 
 #endif

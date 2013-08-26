@@ -79,20 +79,20 @@ bool MainTitleLayer::init()
 	MenuLabelLayer* labelOptionLayer = MenuLabelLayer::create();
 	labelOptionLayer->initWithLabel("Back", 3.0f);
 
-	char chrMusic[12] = {0};
+	String* strMusic;
 	if(Sound::isMusicOn())
-		sprintf(chrMusic, "Music on");
+		strMusic = String::create("Music on");
 	else
-		sprintf(chrMusic, "Music off");
+		strMusic = String::create("Music off");
 
-	char chrEffect[12] = {0};
+	String* strEffect;
 	if(Sound::isEffectOn())
-		sprintf(chrEffect, "Effect on");
+		strEffect = String::create("Effect on");
 	else
-		sprintf(chrEffect, "Effect off");
+		strEffect = String::create("Effect off");
 
-	labelOptionLayer->addMenuItem(chrMusic, 2.0f);
-	labelOptionLayer->addMenuItem(chrEffect, 2.0f);
+	labelOptionLayer->addMenuItem(strMusic->getCString(), 2.0f);
+	labelOptionLayer->addMenuItem(strEffect->getCString(), 2.0f);
 	labelOptionLayer->createMenu();
 	labelOptionLayer->setZOrder(1);
 	labelOptionLayer->setPosition(0, -100);
@@ -171,13 +171,13 @@ void MainTitleLayer::togglMusicCallback(Object* pSender)
 	// refresh option music label
 	MenuLabelLayer* lyr = (MenuLabelLayer*)getChildByTag(kTagMLTitleOption);
 
-	char chrMusic[12] = {0};
+	String* strMusic;
 	if(Sound::isMusicOn())
-		sprintf(chrMusic, "Music on");
+		strMusic = String::create("Music on");
 	else
-		sprintf(chrMusic, "Music off");
+		strMusic = String::create("Music off");
 
-	lyr->renameMenuItem(1, chrMusic);
+	lyr->renameMenuItem(1, strMusic->getCString());
 }
 
 void MainTitleLayer::togglEffectCallback(Object* pSender)
@@ -187,11 +187,11 @@ void MainTitleLayer::togglEffectCallback(Object* pSender)
 	// refresh option music label
 	MenuLabelLayer* lyr = (MenuLabelLayer*)getChildByTag(kTagMLTitleOption);
 
-	char chrEffect[12] = {0};
+	String* strEffect;
 	if(Sound::isEffectOn())
-		sprintf(chrEffect, "Effect on");
+		strEffect = String::create("Effect on");
 	else
-		sprintf(chrEffect, "Effect off");
+		strEffect = String::create("Effect off");
 
-	lyr->renameMenuItem(2, chrEffect);
+	lyr->renameMenuItem(2, strEffect->getCString());
 }

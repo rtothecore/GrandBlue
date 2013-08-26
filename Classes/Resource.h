@@ -101,6 +101,7 @@ static const char s_Title[]				   = "title.png";
 #define EFFECT_DIVER_MEET_MARINELIFE_FILE			"sound/diver1.wav"
 
 #define EFFECT_SCORE_FILE							"sound/score.wav"
+#define EFFECT_HIGH_SCORE_FILE						"sound/highScore.wav"
 
 // fonts
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

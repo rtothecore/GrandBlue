@@ -2,11 +2,13 @@
 #include "MenuLabel.h"
 #include "Tags.h"
 #include "Resource.h"
+#include "GrandBlueConfig.h"
 
 bool DiveFeetLayer::init()
 {
 	currentDivedFeet = 0;
 	diveStep = 1;
+	sceneDivedFeet = 0;
 
 	return true;
 }
@@ -14,13 +16,12 @@ bool DiveFeetLayer::init()
 void DiveFeetLayer::initWithLabel()
 {
 	// create feet label
-	char chrDiveFeet[9] = {0};
-	sprintf(chrDiveFeet, "%d Feet", currentDivedFeet);
+	String* strDiveFeet = String::createWithFormat("%d Feet", currentDivedFeet);
 
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width/2, winSize.height/20);
     float fontSize = 18;
-	auto labelFeet = LabelTTF::create(chrDiveFeet, FONT_MENU_FILE, fontSize, 
+	auto labelFeet = LabelTTF::create(strDiveFeet->getCString(), FONT_MENU_FILE, fontSize, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	labelFeet->setPosition(Point(winSize.width/2, winSize.height/2));
@@ -44,10 +45,11 @@ void DiveFeetLayer::incrementDiveFeet(float dt)
 {
 	currentDivedFeet += diveStep;
 
+	sceneDivedFeet += diveStep;
+
 	// rename menu label
-	char chrDiveFeet[9] = {0};
-	sprintf(chrDiveFeet, "%d Feet", currentDivedFeet);
-	((LabelTTF*)getChildByTag(kTagLabelDiveFeet))->setString(chrDiveFeet);
+	String* strDiveFeet = String::createWithFormat("%d Feet", currentDivedFeet);
+	((LabelTTF*)getChildByTag(kTagLabelDiveFeet))->setString(strDiveFeet->getCString());
 }
 
 void DiveFeetLayer::setDiveStepWithTime(int diveStepVal, float timeVal)
@@ -74,5 +76,19 @@ int DiveFeetLayer::getDivedFeet()
 void DiveFeetLayer::setDivedFeet(int divedFeetValue)
 {
 	currentDivedFeet = divedFeetValue;
+
+	sceneDivedFeet = currentDivedFeet % MAX_DIVE_FEET_AT_ONE_SCENE;
+}
+
+bool DiveFeetLayer::isMaxDivedFeetAtScene(int maxDivedFeet)
+{
+	log("current sceneDivedFeet: %d", sceneDivedFeet);
+	if(maxDivedFeet <= sceneDivedFeet)
+	{
+		log("maxDivedFeet <= sceneDivedFeet: %d", sceneDivedFeet);
+		return true;
+	}
+
+	return false;
 }
 

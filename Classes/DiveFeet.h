@@ -10,6 +10,7 @@ class DiveFeetLayer : public Layer
 private:
 	int currentDivedFeet;
 	int diveStep;
+	int sceneDivedFeet;
 
 	void initWithLabel();
 	void incrementDiveFeet(float dt);
@@ -26,6 +27,8 @@ public:
 	void setDiveStep(int diveStepVal);
 	int getDivedFeet();
 	void setDivedFeet(int divedFeetValue);
+
+	bool isMaxDivedFeetAtScene(int maxDivedFeet);
 };
 
 #endif

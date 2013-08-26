@@ -8,6 +8,7 @@ bool DiverLayer::init()
 {
 	isLove = false;
 	lovePoint = 0;
+	lapCount = 1;
 
 	initWithPlist(p_Diver);
 
@@ -47,12 +48,10 @@ bool DiverLayer::initWithPlist(const char* plist)
 		//Animation --------------> FIX ME : batchNode? make it that don't need to set Array's number
 		Array* animFrames = Array::createWithCapacity(4);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 5; i++) 
 		{
-			sprintf(str, "diver%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strDiver = String::createWithFormat("diver%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strDiver->getCString() );
 			animFrames->addObject(frame);
 		}
 
@@ -203,15 +202,12 @@ void DiverLayer::refreshLoveSprite()
 	{
 		sprt_love->setVisible(true);
 
-		char chrCurrentLoveFrame[10] = {0};
-		sprintf(chrCurrentLoveFrame, "love%d.png", lovePoint-1);
-
-		char chrNextLoveFrame[10] = {0};
-		sprintf(chrNextLoveFrame, "love%d.png", lovePoint);
+		String* strCurrentLoveFrame = String::createWithFormat("love%d.png", lovePoint-1);
+		String* strNextLoveFrame = String::createWithFormat("love%d.png", lovePoint);
 
 		if( sprt_love->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(s_Love)) ||
-			sprt_love->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(chrCurrentLoveFrame)) )
-			sprt_love->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(chrNextLoveFrame) );	
+			sprt_love->isFrameDisplayed(SpriteFrameCache::getInstance()->getSpriteFrameByName(strCurrentLoveFrame->getCString())) )
+			sprt_love->setDisplayFrame( SpriteFrameCache::getInstance()->getSpriteFrameByName(strNextLoveFrame->getCString()) );
 	}
 }
 
@@ -233,6 +229,11 @@ void DiverLayer::increaseLovePoint()
 		// sound
 		Sound::playDiverEffectWithType(1);
 	}
+}
+
+void DiverLayer::increaseLapCount()
+{
+	lapCount++;
 }
 
 void DiverLayer::runLoveAction()

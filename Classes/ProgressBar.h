@@ -21,12 +21,7 @@ public:
 	Sprite* sprt_back;
 	Sprite* sprt_fore;
 
-	void increaseProgress(int stepVal);
-	void decreaseProgress(int stepVal);
 	void setProgressWithTagetVal(int targetVal);
-
-	void emptyProgress();
-	void fullProgress();
 };
 
 #endif

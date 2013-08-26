@@ -13,6 +13,7 @@
 #include "MainGameScene2.h"
 #include "MainGameData.h"
 #include "UtilFunc.h"
+#include "GrandBlueConfig.h"
 
 //------------------------------------------------------------------
 //
@@ -34,7 +35,7 @@ bool MainGameScene::init()
 //------------------------------------------------------------------
 bool MainGameLayer::init()
 {
-	iMaxFeet = 40;
+	iMaxFeet = MAX_DIVE_FEET_AT_ONE_SCENE;
 	iTagForMarinelife = kTagLayerDolphin;
 
 	// Add background sprite
@@ -63,13 +64,14 @@ void MainGameLayer::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add dolphin layer
+	addMarinelife(0);
 	schedule( schedule_selector(MainGameLayer::addMarinelife), 3 );
 
 	// Sound
 	schedule( schedule_selector(MainGameLayer::playBubbleEffect), 2);
 
 	// Combo Label
-	addComboLabel();
+	addPlayStatusLabel();
 
 	// Dive feet Label
 	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();

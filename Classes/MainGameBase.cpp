@@ -33,20 +33,24 @@ void MainGameBaseLayer::onEnterTransitionDidFinish()
 {
 }
 
-void MainGameBaseLayer::addComboLabel()
+void MainGameBaseLayer::addPlayStatusLabel()
 {
 	// combo label
 	Size winSize = Director::getInstance()->getWinSize();
-	Size blockSize = Size(winSize.width/2, winSize.height/4);
-    float fontSize = 18;
+	Size blockSize = Size(winSize.width/4, winSize.height/4);
+    float fontSize = 16;
 
-	char chrComboLabel[20] = {0};
-	sprintf(chrComboLabel, "Bye: %d\nFever: %d", MainGameDataLayer::getByeCount(), MainGameDataLayer::getFeverCount());
-	auto labelCombo = LabelTTF::create(chrComboLabel, FONT_MENU_FILE, fontSize, 
+	String* strStatusLabel = String::createWithFormat("Bye: %d\nFever: %d\nLap: %d", 
+														 MainGameDataLayer::getByeCount(), 
+														 MainGameDataLayer::getFeverCount(), 
+														 MainGameDataLayer::getDiverLapCount());
+	
+	auto labelStatus = LabelTTF::create(strStatusLabel->getCString(), FONT_MENU_FILE, fontSize, 
 										blockSize, Label::HAlignment::LEFT, Label::VAlignment::CENTER);
-	labelCombo->setPosition( Point(winSize.width - labelCombo->getContentSize().width/6, labelCombo->getContentSize().height/4) );
-    addChild(labelCombo, 2, kTagMainGameMenuLabel);
-	schedule(schedule_selector(MainGameBaseLayer::comboLabelRefresh), 0.5);
+
+	labelStatus->setPosition( Point(winSize.width - labelStatus->getContentSize().width/2, labelStatus->getContentSize().height/3) );
+    addChild(labelStatus, 2, kTagMainGameMenuLabel);
+	schedule(schedule_selector(MainGameBaseLayer::playStatusLabelRefresh), 0.5);
 
 	// High Score label
 	ScoreRecordLayer::addHighScoreLabel(this, Color3B::BLUE);
@@ -56,13 +60,15 @@ void MainGameBaseLayer::addMarinelife(float dt)
 {
 }
 
-void MainGameBaseLayer::comboLabelRefresh(float dt)
+void MainGameBaseLayer::playStatusLabelRefresh(float dt)
 {
-	LabelTTF* labelCombo = (LabelTTF*)getChildByTag(kTagMainGameMenuLabel);
-	char chrMarinelifeBye[30] = {0};
-	sprintf(chrMarinelifeBye, "Bye: %d\nFever: %d", ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
-			((FeverLayer*)getChildByTag(kTagFever))->getFeverCount() );
-	labelCombo->setString(chrMarinelifeBye);
+	LabelTTF* labelStatus = (LabelTTF*)getChildByTag(kTagMainGameMenuLabel);
+
+	String* strGameStatus = String::createWithFormat("Bye: %d\nFever: %d\nLap: %d", 
+							((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
+							((FeverLayer*)getChildByTag(kTagFever))->getFeverCount(),
+							((DiverLayer*)getChildByTag(kTagLayerDiver))->lapCount);
+	labelStatus->setString(strGameStatus->getCString());
 }
 
 bool MainGameBaseLayer::containsMarinelifeLocation(Touch* touch)
@@ -180,13 +186,13 @@ void MainGameBaseLayer::checkCollision()
 			if( ropeL->getSpriteRepeaterRect().intersectsRect(diverL->getDiverRect()) )
 			{
 				if( ((FeverLayer*)getChildByTag(kTagFever))->isFever() )
-					diveWithTimes(2);
+					diveWithTimes(2*(diverL->lapCount));
 					//diveWithTimes(8);
 				else
-					diveWithTimes(1);
+					diveWithTimes(1*(diverL->lapCount));
 					//diveWithTimes(4);
 			} else {
-				diveWithTimes(0);
+				diveWithTimes(0+((diverL->lapCount-1)*1));
 				//diveWithTimes(2);
 			}
 		}
@@ -250,10 +256,14 @@ void MainGameBaseLayer::playBubbleEffect(float dt)
 void MainGameBaseLayer::checkFeet(float dt)
 {
 	DiveFeetLayer* divefeetL = (DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet);
-	if( iMaxFeet <= divefeetL->getDivedFeet() )
+	if( divefeetL->isMaxDivedFeetAtScene(iMaxFeet) )
 	{
 		readyToGoNextScene();
 	}
+	/*if( iMaxFeet <= divefeetL->getDivedFeet() )
+	{
+		readyToGoNextScene();
+	}*/
 }
 
 void MainGameBaseLayer::readyToGoNextScene()
@@ -301,7 +311,8 @@ void MainGameBaseLayer::saveAllGameResult()
 	MainGameDataLayer::saveAllGameResult( ((DiveFeetLayer*)getChildByTag(kTagLayerDiveFeet))->getDivedFeet(), 
 										  ((FeverLayer*)getChildByTag(kTagFever))->getMarinelifeBye(), 
 										  ((DiverLayer*)getChildByTag(kTagLayerDiver))->lovePoint, 
-										  ((FeverLayer*)getChildByTag(kTagFever))->getFeverCount());
+										  ((FeverLayer*)getChildByTag(kTagFever))->getFeverCount(),
+										  ((DiverLayer*)getChildByTag(kTagLayerDiver))->lapCount);
 }
 
 void MainGameBaseLayer::saveAllGameData()

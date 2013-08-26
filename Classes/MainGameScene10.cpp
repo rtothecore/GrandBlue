@@ -11,6 +11,8 @@
 #include "Diver.h"
 #include "Tags.h"
 #include "MainGameData.h"
+#include "GrandBlueConfig.h"
+#include "MainGameScene.h"
 
 //------------------------------------------------------------------
 //
@@ -32,7 +34,7 @@ bool MainGameScene10::init()
 //------------------------------------------------------------------
 bool MainGameLayer10::init()
 {
-	iMaxFeet = 400;
+	iMaxFeet = MAX_DIVE_FEET_AT_ONE_SCENE;
 	iTagForMarinelife = kTagLayerBrain;
 
 	// Add background sprite
@@ -61,13 +63,14 @@ void MainGameLayer10::onEnterTransitionDidFinish()
 	addDiver();
 
 	// Add marinelife layer
+	addMarinelife(0);
 	schedule( schedule_selector(MainGameLayer10::addMarinelife), 3 );
 
 	// Sound
 	schedule( schedule_selector(MainGameLayer10::playBubbleEffect), 2);
 
 	// Combo Label
-	addComboLabel();
+	addPlayStatusLabel();
 
 	// Menu Label - dive feet
 	DiveFeetLayer* diveFeetL = MainGameDataLayer::loadDivedFeet();
@@ -124,15 +127,19 @@ void MainGameLayer10::addDiver()
 
 void MainGameLayer10::goToNextGameScene()
 {
-	/*Scene *scene = MainGameScene10::create();
+	Scene *scene = MainGameScene::create();
 	addAttachedMarinelife((Layer*)scene->getChildByTag(kTagGameSceneLayer));
-	Director::getInstance()->replaceScene(scene);*/
+	Director::getInstance()->replaceScene(scene);
 }
 
 void MainGameLayer10::readyToGoNextScene()
 {
 	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
 	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );
+
+	// increase Lap count;
+	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
+	diverL->increaseLapCount();
 
 	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.2f);
 }

@@ -31,12 +31,10 @@ bool JellyfishLayer::initWithPlist(const char* plist, const char* frameName)
 		// Animation
 		Array* animFrames = Array::createWithCapacity(5);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 6; i++) 
 		{
-			sprintf(str, "jellyfish%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strJellyfish = String::createWithFormat("jellyfish%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strJellyfish->getCString() );
 			animFrames->addObject(frame);
 		}
 

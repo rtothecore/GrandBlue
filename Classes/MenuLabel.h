@@ -15,10 +15,10 @@ public:
 	char* fontFile;
 
 	void initWithLabel(char* chrLabel, float scaleVal);
-	void addMenuItem(char* chrLabel, float scaleVal);
+	void addMenuItem(const char* chrLabel, float scaleVal);
 	void createMenu();
 
-	void renameMenuItem(int itemIndex, char* chrLabel);
+	void renameMenuItem(int itemIndex, const char* chrLabel);
 };
 
 #endif

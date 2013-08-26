@@ -31,12 +31,10 @@ bool MermaidLayer::initWithPlist(const char* plist, const char* frameName)
 		// Animation
 		Array* animFrames = Array::createWithCapacity(5);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 6; i++) 
 		{
-			sprintf(str, "mermaid%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strMermaid = String::createWithFormat("mermaid%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strMermaid->getCString() );
 			animFrames->addObject(frame);
 		}
 

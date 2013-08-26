@@ -31,12 +31,10 @@ bool OrcaLayer::initWithPlist(const char* plist, const char* frameName)
 		// Animation
 		Array* animFrames = Array::createWithCapacity(5);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 6; i++) 
 		{
-			sprintf(str, "orca%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strOrca = String::createWithFormat("orca%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strOrca->getCString() );
 			animFrames->addObject(frame);
 		}
 

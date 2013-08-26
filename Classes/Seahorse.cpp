@@ -31,12 +31,10 @@ bool SeahorseLayer::initWithPlist(const char* plist, const char* frameName)
 		// Animation
 		Array* animFrames = Array::createWithCapacity(4);
 
-		char str[100] = {0};
-
 		for(int i = 1; i < 5; i++) 
 		{
-			sprintf(str, "seahorse%d.png", i);
-			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( str );
+			String* strSeahorse = String::createWithFormat("seahorse%d.png", i);
+			SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName( strSeahorse->getCString() );
 			animFrames->addObject(frame);
 		}
 

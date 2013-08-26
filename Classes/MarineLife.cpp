@@ -152,7 +152,7 @@ void MarineLifeLayer::comboForFeverUp()
 void MarineLifeLayer::actionBlinkAndRemove(Sprite* sprt)
 {
 	stopAllActions();
-	auto blinkAction = Blink::create(1, 3);
+	auto blinkAction = Blink::create(1, 2);
 	auto blinkActionDone = CallFuncN::create( CC_CALLBACK_1(MarineLifeLayer::spriteMoveFinished, this) );
 	auto seq = Sequence::create( blinkAction, blinkActionDone, NULL );
 	sprt->runAction(seq);

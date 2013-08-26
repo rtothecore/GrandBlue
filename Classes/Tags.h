@@ -8,7 +8,6 @@ enum {
 	kTagRope = 7,
 	kTagLabelDiveFeet = 8,
 	kTagLabelFever = 9,
-	
 	kTagGameSceneLayer = 10,
 	kTagMLTitleMain = 11,
 	kTagMLTitleOption = 12,
@@ -17,6 +16,8 @@ enum {
 	kTagLabelScore = 15,
 	kTagSprtBackground = 16,
 	kTagActionRopeSignal = 17,
+	kTagSprtBackgroundProgress = 18,
+	kTagSprtForegroundProgress = 19,
 
 	kTagForMarinelifes = 777,
 	kTagLayerDolphin = 778,
