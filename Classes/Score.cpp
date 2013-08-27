@@ -152,7 +152,7 @@ void ScoreLayer::addNewRecordLabel(int newRecordScore)
 	particle->setPosition(winSize.width/4, winSize.height/3);
 #endif
 	addChild(particle);
-	particle->runFirework();
+	particle->runFireWork();
 }
 
 void ScoreLayer::addLapCountLabel(int lapCount)

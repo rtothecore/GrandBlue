@@ -11,7 +11,9 @@ public:
 	CREATE_FUNC(ParticleLayer);
 	virtual bool init();
 
-	void runFirework();
+	void runFireWork();
+	
+	static ParticleSystem* createWithParticlePlist(const char* plist);
 	
 };
 

@@ -54,6 +54,9 @@ protected:
 	void actionTint(Sprite* sprt);
 	void comboForFeverUp();
 	void actionBlinkAndRemove(Sprite* sprt);
+
+	// particle
+	void runParticleEffect();
 		
 public:
 	void aliveMarineLifeTouched();

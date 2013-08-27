@@ -6,6 +6,7 @@
 #include "Fever.h"
 #include "Diver.h"
 #include "Tags.h"
+#include "Particle.h"
 
 bool MarineLifeLayer::init()
 {
@@ -86,6 +87,9 @@ void MarineLifeLayer::ccTouchEnded(Touch* touch, Event* event)
 
 void MarineLifeLayer::aliveMarineLifeTouched()
 {
+	// particle effect
+	runParticleEffect();
+
 	byePointUp();
 
 	playMarineLifeSound();
@@ -97,6 +101,13 @@ void MarineLifeLayer::aliveMarineLifeTouched()
 		comboForFeverUp();
 		actionBlinkAndRemove(sprt_marineLife);
 	}
+}
+
+void MarineLifeLayer::runParticleEffect()
+{
+	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/WaterSplash_touch.plist");
+	_emitter->setPositionY(getContentSize().height);
+	addChild(_emitter);
 }
 
 void MarineLifeLayer::byePointUp()
@@ -152,7 +163,7 @@ void MarineLifeLayer::comboForFeverUp()
 void MarineLifeLayer::actionBlinkAndRemove(Sprite* sprt)
 {
 	stopAllActions();
-	auto blinkAction = Blink::create(1, 2);
+	auto blinkAction = Blink::create(0.5, 1);
 	auto blinkActionDone = CallFuncN::create( CC_CALLBACK_1(MarineLifeLayer::spriteMoveFinished, this) );
 	auto seq = Sequence::create( blinkAction, blinkActionDone, NULL );
 	sprt->runAction(seq);

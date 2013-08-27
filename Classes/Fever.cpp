@@ -6,6 +6,7 @@
 #include "Diver.h"
 #include "Resource.h"
 #include "AppMacros.h"
+#include "Particle.h"
 
 enum {
 	kTagFeverProgressBar = 1,
@@ -90,6 +91,11 @@ void FeverLayer::intoTheFever()
 	// add fever label
 	addFeverLabel();
 
+	// particle effect
+	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/BlueRing_fever.plist");
+	_emitter->setPosition(UtilFunc::getWinSize().width/2, UtilFunc::getWinSize().height/2);
+	addChild(_emitter, kTagParticleFever);
+
 	// fever music
 	Sound::playFeverMusic(true);
 
@@ -131,6 +137,9 @@ void FeverLayer::endFever(float dt)
 
 	// exit Diver's fever mode
 	((DiverLayer*)getParent()->getChildByTag(kTagLayerDiver))->exitFevermodeAction();
+
+	// remove particle
+	removeChildByTag(kTagParticleFever);
 }
 
 int FeverLayer::getTouchDamage()

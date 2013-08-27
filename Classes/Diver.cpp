@@ -3,6 +3,7 @@
 #include "UtilFunc.h"
 #include "Tags.h"
 #include "Sound.h"
+#include "Particle.h"
 
 bool DiverLayer::init()
 {
@@ -266,6 +267,11 @@ void DiverLayer::runFevermodeAction()
 																tintblue, tintblue_back, NULL) );
 	diverFeverAction->setTag(kTagActionDiverFever);
 	sprt_diver->runAction(diverFeverAction);
+
+	// particle effect
+	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/BlueBooster.plist");
+	_emitter->setPositionY(getContentSize().height*2);
+	addChild(_emitter, kTagParticleDiverBoost);
 }
 
 void DiverLayer::runMeetMarinelifeAction()
@@ -279,6 +285,9 @@ void DiverLayer::runMeetMarinelifeAction()
 void DiverLayer::exitFevermodeAction()
 {
 	sprt_diver->stopActionByTag(kTagActionDiverFever);
+
+	// remove particle effect
+	removeChildByTag(kTagParticleDiverBoost);
 }
 
 void DiverLayer::refreshDiver()
