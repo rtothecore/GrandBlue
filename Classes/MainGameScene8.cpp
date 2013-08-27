@@ -96,9 +96,7 @@ void MainGameLayer8::addBackground()
 
 void MainGameLayer8::addRocks()
 {
-	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
-	Rocks* rocks = Rocks::create();
-	rocks->initWithTexture(rocksTexture, 1);
+	Rocks* rocks = MainGameDataLayer::loadRocks();
 	addChild(rocks, 1, kTagRocks);
 }
 

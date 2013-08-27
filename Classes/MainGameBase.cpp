@@ -153,7 +153,8 @@ void MainGameBaseLayer::checkCollision()
 			if(!marinelifeL)
 				break;
 
-			if( !diverL->isLove
+			//if( !diverL->isLove
+			if(	5 > diverL->lovePoint
 				&& !marinelifeL->isBye
 				&& !marinelifeL->isAttachedToDiver 
 				&& marinelifeL->getMarineLifeRect().intersectsRect(diverL->getDiverRect()) )
@@ -320,6 +321,7 @@ void MainGameBaseLayer::saveAllGameData()
 	saveDiverData();
 	saveDivedFeetData();
 	saveFeverData();
+	saveRocksData();
 }
 
 void MainGameBaseLayer::saveDiverData()
@@ -338,6 +340,12 @@ void MainGameBaseLayer::saveFeverData()
 {
 	FeverLayer* feverL = (FeverLayer*)getChildByTag(kTagFever);
 	MainGameDataLayer::saveFever(feverL);
+}
+
+void MainGameBaseLayer::saveRocksData()
+{
+	Rocks* rocksS = (Rocks*)getChildByTag(kTagRocks);
+	MainGameDataLayer::saveRocks(rocksS);
 }
 
 void MainGameBaseLayer::addAttachedMarinelife(Layer* lyr)

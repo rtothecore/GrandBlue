@@ -67,7 +67,7 @@ void ScoreLayer::showGameResult(int divedFeet, int byeCount, int attachedMLCount
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/5);
 
-	auto labelGameResult = LabelTTF::create(strGameResult->getCString(), FONT_MENU_FILE, SCORE_FONT_SIZE, 
+	auto labelGameResult = LabelTTF::create(strGameResult->getCString(), FONT_MENU_FILE, RESULT_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	labelGameResult->setPosition(Point(winSize.width/2, (winSize.height/2) + (labelGameResult->getContentSize().height)));
@@ -107,7 +107,6 @@ void ScoreLayer::addResultScoreLabel(int resultScore)
 	// create score label
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/5);
-	//float fontSize = 18;
 
 	String* strScore = String::createWithFormat("\nScore:%d", resultScore);
 
@@ -122,7 +121,7 @@ void ScoreLayer::addResultScoreLabel(int resultScore)
 void ScoreLayer::addNewRecordLabel(int newRecordScore)
 {
 	Size winSize = Director::getInstance()->getWinSize();
-	Size blockSize = Size(winSize.width, winSize.height/8);
+	Size blockSize = Size(winSize.width, winSize.height/5);
 
 	String* strNewRecord = String::createWithFormat("New High Score!\n%d", newRecordScore);
 
@@ -130,9 +129,9 @@ void ScoreLayer::addNewRecordLabel(int newRecordScore)
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	Point dstPoint;
-	if( MainGameDataLayer::getDiverLapCount() )
+	if( 1 < MainGameDataLayer::getDiverLapCount() )
 	{
-		dstPoint = Point(winSize.width/4, winSize.height/2 - labelNewRecord->getContentSize().height/2);
+		dstPoint = Point(winSize.width/4, winSize.height/2 - labelNewRecord->getContentSize().height/4);
 	} else {
 		dstPoint = Point(winSize.width/4, winSize.height/2);
 	}
@@ -149,6 +148,9 @@ void ScoreLayer::addNewRecordLabel(int newRecordScore)
 
 	// firworks effect
 	ParticleLayer* particle = ParticleLayer::create();
+#if(CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
+	particle->setPosition(winSize.width/4, winSize.height/3);
+#endif
 	addChild(particle);
 	particle->runFirework();
 }
