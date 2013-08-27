@@ -141,5 +141,5 @@ void MainGameLayer10::readyToGoNextScene()
 	DiverLayer* diverL = (DiverLayer*)getChildByTag(kTagLayerDiver);
 	diverL->increaseLapCount();
 
-	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.2f);
+	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.02f);
 }

@@ -7,41 +7,41 @@
             <key>bye1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{210,135}}</string>
+                <string>{{0,0},{220,124}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{210,135}}</string>
+                <string>{{0,0},{220,124}}</string>
                 <key>sourceSize</key>
-                <string>{210,135}</string>
+                <string>{220,124}</string>
             </dict>
             <key>bye2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,137},{210,135}}</string>
+                <string>{{0,126},{220,124}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{210,135}}</string>
+                <string>{{0,0},{220,124}}</string>
                 <key>sourceSize</key>
-                <string>{210,135}</string>
+                <string>{220,124}</string>
             </dict>
             <key>bye3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,274},{210,135}}</string>
+                <string>{{0,252},{220,124}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{210,135}}</string>
+                <string>{{0,0},{220,124}}</string>
                 <key>sourceSize</key>
-                <string>{210,135}</string>
+                <string>{220,124}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -53,7 +53,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1c4239f0253ca911a794062bba5ff11a:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:f532fc5849b16841d865d533b7abe84a:1/1$</string>
             <key>textureFileName</key>
             <string>bye.png</string>
         </dict>

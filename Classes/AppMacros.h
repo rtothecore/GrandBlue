@@ -61,9 +61,18 @@ static cocos2d::Size designResolutionSize = cocos2d::Size(2048, 1536);
 #define DESIGN_RESOLUTION_320X480    0
 #define DESIGN_RESOLUTION_768X1024   1
 #define DESIGN_RESOLUTION_1536X2048  2
+#define DESIGN_RESOLUTION_720X1280   3
+
+// ------------- FOR IOS TEST ------------------
+//#define CC_TARGET_PLATFORM CC_PLATFORM_IOS
+// ------------- FOR IOS TEST ------------------
 
 /* If you want to switch design resolution, change next line */
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define TARGET_DESIGN_RESOLUTION_SIZE  DESIGN_RESOLUTION_320X480
+#else
+#define TARGET_DESIGN_RESOLUTION_SIZE  DESIGN_RESOLUTION_720X1280
+#endif
 
 typedef struct tagResource
 {
@@ -74,6 +83,7 @@ typedef struct tagResource
 static Resource smallResource  =  { cocos2d::Size(320, 480),   "iphone" };
 static Resource mediumResource =  { cocos2d::Size(768, 1024),  "ipad"   };
 static Resource largeResource  =  { cocos2d::Size(1536, 2048), "ipadhd" };
+static Resource androidResource  =  { cocos2d::Size(720, 1280), "android" };
 
 #if (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_320X480)
 static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
@@ -81,6 +91,8 @@ static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
 static cocos2d::Size designResolutionSize = cocos2d::Size(768, 1024);
 #elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_1536X2048)
 static cocos2d::Size designResolutionSize = cocos2d::Size(1536, 2048);
+#elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_720X1280)
+static cocos2d::Size designResolutionSize = cocos2d::Size(720, 1280);
 #else
 #error unknown target design resolution!
 #endif
@@ -88,6 +100,13 @@ static cocos2d::Size designResolutionSize = cocos2d::Size(1536, 2048);
 #endif	// ORIENTATION
 
 // The font size 24 is designed for small resolution, so we should change it to fit for current design resolution
-#define TITLE_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 24)
+#define TITLE_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 40)
+#define STATUS_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 16)
+#define MENU_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 18)
+#define DIVEFEET_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 18)
+#define SCORE_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 18)
+#define LAP_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 36)
+#define FEVER_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 24)
+#define HIGHSCORE_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 12)
 
 #endif /* __APPMACROS_H__ */

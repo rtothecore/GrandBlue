@@ -5,6 +5,7 @@
 #include "Resource.h"
 #include "ScoreRecord.h"
 #include "Particle.h"
+#include "AppMacros.h"
 
 bool ScoreLayer::init()
 {
@@ -65,8 +66,8 @@ void ScoreLayer::showGameResult(int divedFeet, int byeCount, int attachedMLCount
 
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/5);
-    float fontSize = 18;
-	auto labelGameResult = LabelTTF::create(strGameResult->getCString(), FONT_MENU_FILE, fontSize, 
+
+	auto labelGameResult = LabelTTF::create(strGameResult->getCString(), FONT_MENU_FILE, SCORE_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	labelGameResult->setPosition(Point(winSize.width/2, (winSize.height/2) + (labelGameResult->getContentSize().height)));
@@ -106,11 +107,11 @@ void ScoreLayer::addResultScoreLabel(int resultScore)
 	// create score label
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/5);
-	float fontSize = 18;
+	//float fontSize = 18;
 
 	String* strScore = String::createWithFormat("\nScore:%d", resultScore);
 
-	auto labelScore = LabelTTF::create(strScore->getCString(), FONT_MENU_FILE, fontSize, 
+	auto labelScore = LabelTTF::create(strScore->getCString(), FONT_MENU_FILE, SCORE_FONT_SIZE, 
 		blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	labelScore->setPosition(Point(winSize.width/2, winSize.height/2));
@@ -122,11 +123,10 @@ void ScoreLayer::addNewRecordLabel(int newRecordScore)
 {
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/8);
-    float fontSize = 18;
 
 	String* strNewRecord = String::createWithFormat("New High Score!\n%d", newRecordScore);
 
-	auto labelNewRecord = LabelTTF::create(strNewRecord->getCString(), FONT_MENU_FILE, fontSize, 
+	auto labelNewRecord = LabelTTF::create(strNewRecord->getCString(), FONT_MENU_FILE, SCORE_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	Point dstPoint;
@@ -157,11 +157,10 @@ void ScoreLayer::addLapCountLabel(int lapCount)
 {
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/8);
-    float fontSize = 36;
 
 	String* strLapCount = String::createWithFormat("X %d Lap", lapCount);
 
-	auto labelLapCount = LabelTTF::create(strLapCount->getCString(), FONT_MENU_FILE, fontSize, 
+	auto labelLapCount = LabelTTF::create(strLapCount->getCString(), FONT_MENU_FILE, LAP_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	Point dstPoint = Point(winSize.width/4, winSize.height/2 + labelLapCount->getContentSize().height/2);

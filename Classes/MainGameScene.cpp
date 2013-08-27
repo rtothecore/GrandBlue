@@ -137,6 +137,6 @@ void MainGameLayer::readyToGoNextScene()
 {
 	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
 	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );
-
-	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.2f);
+	
+	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.02f);
 }

@@ -1,5 +1,6 @@
 #include "MenuLabel.h"
 #include "Resource.h"
+#include "AppMacros.h"
 
 bool MenuLabelLayer::init()
 {
@@ -13,9 +14,8 @@ void MenuLabelLayer::initWithLabel(char* chrLabel, float scaleVal)
 	// Label Item (LabelTTF)
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width/2, winSize.height/20);
-    float fontSize = 18;
 
-	LabelTTF *label = LabelTTF::create(chrLabel, FONT_MENU_FILE, fontSize, 
+	LabelTTF *label = LabelTTF::create(chrLabel, FONT_MENU_FILE, MENU_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 	MenuItemLabel* item = MenuItemLabel::create(label);
     //item->setScale( scaleVal );
@@ -30,9 +30,8 @@ void MenuLabelLayer::addMenuItem(const char* chrLabel, float scaleVal)
 	// Label Item (LabelTTF)
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width/2, winSize.height/20);
-    float fontSize = 18;
 
-	LabelTTF *label = LabelTTF::create(chrLabel, FONT_MENU_FILE, fontSize, 
+	LabelTTF *label = LabelTTF::create(chrLabel, FONT_MENU_FILE, MENU_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 	MenuItemLabel* item = MenuItemLabel::create(label);
     //item->setScale( scaleVal );
@@ -78,8 +77,7 @@ void MenuLabelLayer::renameMenuItem(int itemIndex, const char* chrLabel)
 
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width/2, winSize.height/20);
-    float fontSize = 18;
 
-	item->setLabel(LabelTTF::create(chrLabel, FONT_MENU_FILE, fontSize, 
+	item->setLabel(LabelTTF::create(chrLabel, FONT_MENU_FILE, MENU_FONT_SIZE, 
 		                            blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER));
 }

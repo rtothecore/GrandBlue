@@ -7,6 +7,7 @@
 #include "Tags.h"
 #include "Resource.h"
 #include "ScoreRecord.h"
+#include "AppMacros.h"
 
 //------------------------------------------------------------------
 //
@@ -42,8 +43,7 @@ bool MainTitleLayer::init()
 
 	// Title label
     Size blockSize = Size(winSize.width, 200);
-    float fontSize = 40;
-	LabelTTF *labelTitle = LabelTTF::create("Grand Blue", FONT_TITLE_FILE, fontSize, 
+	LabelTTF *labelTitle = LabelTTF::create("Grand Blue", FONT_TITLE_FILE, TITLE_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 	labelTitle->setColor(Color3B::BLUE);
 	labelTitle->setZOrder(1);

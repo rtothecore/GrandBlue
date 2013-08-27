@@ -5,6 +5,7 @@
 #include "Tags.h"
 #include "Diver.h"
 #include "Resource.h"
+#include "AppMacros.h"
 
 enum {
 	kTagFeverProgressBar = 1,
@@ -76,7 +77,7 @@ void FeverLayer::checkFeverOnNewScene()
 		intoTheFever();
 
 		LabelTTF* labelFever = (LabelTTF*)getChildByTag(kTagLabelFever);
-		labelFever->setString("Fever Time x2!!!!");
+		labelFever->setString("Fever Time x2!!!! ");
 
 		scheduleOnce( schedule_selector(FeverLayer::endFever), st_feverTime );
 	} 
@@ -84,8 +85,6 @@ void FeverLayer::checkFeverOnNewScene()
 
 void FeverLayer::intoTheFever()
 {
-	log("Fever Time!!!");
-
 	bFeverMode = true;
 
 	// add fever label
@@ -105,9 +104,8 @@ void FeverLayer::addFeverLabel()
 {
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width, winSize.height/20);
-    float fontSize = 18;
 
-	auto labelFever = LabelTTF::create("Fever Time!!!!", FONT_MENU_FILE, fontSize, 
+	auto labelFever = LabelTTF::create("Fever Time!!!! ", FONT_MENU_FILE, FEVER_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	Point dstPoint = Point(winSize.width/4, winSize.height/2 + labelFever->getContentSize().height*2);
@@ -122,8 +120,6 @@ void FeverLayer::addFeverLabel()
 
 void FeverLayer::endFever(float dt)
 {
-	log("End Fever...");
-
 	bFeverMode = false;
 	resetTouchCombo();
 

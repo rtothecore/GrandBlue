@@ -101,7 +101,7 @@ void BrainLayer::playMarineLifeSound()
 			break;
 		case 3:
 		default:
-			Sound::playBrainEffectWithType(3);
+			Sound::playBrainEffectWithType(2);
 			break;
 	}
 }

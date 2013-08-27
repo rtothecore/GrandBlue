@@ -3,6 +3,7 @@
 #include "Tags.h"
 #include "Resource.h"
 #include "GrandBlueConfig.h"
+#include "AppMacros.h"
 
 bool DiveFeetLayer::init()
 {
@@ -20,8 +21,8 @@ void DiveFeetLayer::initWithLabel()
 
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width/2, winSize.height/20);
-    float fontSize = 18;
-	auto labelFeet = LabelTTF::create(strDiveFeet->getCString(), FONT_MENU_FILE, fontSize, 
+
+	auto labelFeet = LabelTTF::create(strDiveFeet->getCString(), FONT_MENU_FILE, DIVEFEET_FONT_SIZE, 
 										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
 
 	labelFeet->setPosition(Point(winSize.width/2, winSize.height/2));
@@ -82,10 +83,8 @@ void DiveFeetLayer::setDivedFeet(int divedFeetValue)
 
 bool DiveFeetLayer::isMaxDivedFeetAtScene(int maxDivedFeet)
 {
-	log("current sceneDivedFeet: %d", sceneDivedFeet);
 	if(maxDivedFeet <= sceneDivedFeet)
 	{
-		log("maxDivedFeet <= sceneDivedFeet: %d", sceneDivedFeet);
 		return true;
 	}
 

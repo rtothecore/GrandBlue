@@ -1,6 +1,7 @@
 #include "ScoreRecord.h"
 #include "Resource.h"
 #include "UtilFunc.h"
+#include "AppMacros.h"
 
 bool ScoreRecordLayer::init()
 {
@@ -60,10 +61,10 @@ void ScoreRecordLayer::addHighScoreLabel(Layer* lyr, Color3B color)
 
 	// 1st Score
 	Size blockSizeForScore = Size(winSize.width, 100);
-    float fontSizeForScore = 12;
+    //float fontSizeForScore = 12;
 	String* str1stScore = String::createWithFormat("HIGH SCORE : %d", ScoreRecordLayer::readScoreFromPlist());
 
-	LabelTTF *label1stScore = LabelTTF::create(str1stScore->getCString(), FONT_TITLE_FILE, fontSizeForScore, 
+	LabelTTF *label1stScore = LabelTTF::create(str1stScore->getCString(), FONT_TITLE_FILE, HIGHSCORE_FONT_SIZE, 
 										blockSizeForScore, Label::HAlignment::CENTER, Label::VAlignment::TOP);
 	label1stScore->setColor(color);
 	label1stScore->setZOrder(1);

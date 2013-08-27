@@ -67,7 +67,6 @@ void MainGameLayer6::onEnterTransitionDidFinish()
 	schedule( schedule_selector(MainGameLayer6::addMarinelife), 3 );
 
 	// Sound
-	//Sound::playBackgroundMusic(true);
 	schedule( schedule_selector(MainGameLayer6::playBubbleEffect), 2);
 
 	// Combo Label
@@ -115,8 +114,8 @@ void MainGameLayer6::addMarinelife(float dt)
 {
 	for(int i=0; i<7; i++)
 	{
-		MermaidLayer* seahorseL = MermaidLayer::create();
-		addChild(seahorseL, 0, kTagLayerMermaid);
+		MermaidLayer* mermaidL = MermaidLayer::create();
+		addChild(mermaidL, 0, kTagLayerMermaid);
 	}
 }
 
@@ -138,5 +137,5 @@ void MainGameLayer6::readyToGoNextScene()
 	unschedule( schedule_selector(MainGameBaseLayer::checkFeet) );
 	unschedule( schedule_selector(MainGameBaseLayer::addMarinelife) );
 
-	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.2f);
+	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.02f);
 }

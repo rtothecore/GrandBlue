@@ -55,7 +55,6 @@ Sound::Sound(void)
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_ORCA3_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BRAIN1_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BRAIN2_FILE );
-		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_BRAIN3_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DIVER_MEET_MARINELIFE_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SCORE_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_HIGH_SCORE_FILE );
@@ -440,9 +439,6 @@ void Sound::playBrainEffectWithType(int type)
 				break;
 			case 2:
 				SimpleAudioEngine::getInstance()->playEffect(EFFECT_BRAIN2_FILE, false, pitchVal, panVal, gainVal);
-				break;
-			case 3:
-				SimpleAudioEngine::getInstance()->playEffect(EFFECT_BRAIN3_FILE, false, pitchVal, panVal, gainVal);
 				break;
 			default:
 				break;

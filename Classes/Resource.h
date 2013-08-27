@@ -48,8 +48,8 @@ static const char k_1stScore[]			= "1st_Score";
 
 
 // Image
-static const char s_UnderSea[]			   = "underTheSea_light.png";
-static const char s_Rocks[]				   = "underTheSea_rocks.png";
+static const char s_UnderSea[]			   = "underTheSea.png";
+static const char s_Rocks[]				   = "rocks.png";
 static const char s_Rope[]				   = "rope.png";
 static const char s_Title[]				   = "title.png";
 

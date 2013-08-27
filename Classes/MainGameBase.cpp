@@ -13,6 +13,7 @@
 #include "Resource.h"
 #include "UtilFunc.h"
 #include "ScoreRecord.h"
+#include "AppMacros.h"
 
 bool MainGameBaseLayer::init()
 {
@@ -38,14 +39,13 @@ void MainGameBaseLayer::addPlayStatusLabel()
 	// combo label
 	Size winSize = Director::getInstance()->getWinSize();
 	Size blockSize = Size(winSize.width/4, winSize.height/4);
-    float fontSize = 16;
 
 	String* strStatusLabel = String::createWithFormat("Bye: %d\nFever: %d\nLap: %d", 
 														 MainGameDataLayer::getByeCount(), 
 														 MainGameDataLayer::getFeverCount(), 
 														 MainGameDataLayer::getDiverLapCount());
 	
-	auto labelStatus = LabelTTF::create(strStatusLabel->getCString(), FONT_MENU_FILE, fontSize, 
+	auto labelStatus = LabelTTF::create(strStatusLabel->getCString(), FONT_MENU_FILE, STATUS_FONT_SIZE, 
 										blockSize, Label::HAlignment::LEFT, Label::VAlignment::CENTER);
 
 	labelStatus->setPosition( Point(winSize.width - labelStatus->getContentSize().width/2, labelStatus->getContentSize().height/3) );
