@@ -1,5 +1,6 @@
 #include "MainGameData.h"
 #include "DiveFeet.h"
+#include "Resource.h"
 
 bool MainGameDataLayer::isSaveDiver;
 
@@ -128,11 +129,42 @@ void MainGameDataLayer::resetFever()
 	MainGameDataLayer::isSaveFever = false;
 }
 
+bool MainGameDataLayer::isSaveRocks = false;
+
+void MainGameDataLayer::saveRocks(Rocks* rocks)
+{
+	UserDefault::getInstance()->setFloatForKey("rocksPosition", rocks->stopActionAndGetPositionY());
+
+	MainGameDataLayer::isSaveRocks = true;
+}
+
+Rocks* MainGameDataLayer::loadRocks()
+{
+	Texture2D* rocksTexture = TextureCache::getInstance()->addImage(s_Rocks);
+	Rocks* ret = Rocks::create();
+
+	if(MainGameDataLayer::isSaveRocks)
+	{
+		ret->setStartY( UserDefault::getInstance()->getFloatForKey("rocksPosition") );
+	}
+	ret->initWithTexture(rocksTexture, 1);
+
+	return ret;
+}
+
+void MainGameDataLayer::resetRocks()
+{
+	UserDefault::getInstance()->setFloatForKey("rocksPosition", 0);
+
+	MainGameDataLayer::isSaveRocks = false;
+}
+
 void MainGameDataLayer::resetAllData()
 {
 	resetDiver();
 	resetDivedFeet();
 	resetFever();
+	resetRocks();
 }
 
 void MainGameDataLayer::saveAllGameResult(int DivedFeet, int ByeCount, int LovePoint, int FeverCount, int DiverLapCount)

@@ -19,6 +19,11 @@ public:
 
 	Rect getSpriteRepeaterRect();
 
+	// Y postion 
+	float stopActionAndGetPositionY();
+	float startY;
+	void setStartY(float startYVal);
+
 	// -- For Overriding --
 	virtual bool initWithTexture(Texture2D* aTexture, int zValue);
 	virtual void actionSequence(Sprite* spr, int destX, int destY);

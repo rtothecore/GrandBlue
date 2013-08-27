@@ -10,6 +10,8 @@
 //------------------------------------------------------------------
 bool SpriteRepeater::init()
 {
+	startY = 0;
+
     return true;
 }
 
@@ -19,7 +21,8 @@ bool SpriteRepeater::initWithTexture(Texture2D* aTexture, int zValue)
     {
 		// coordinates
 		int orgX = UtilFunc::getWinSize().width / 2;
-		int orgY = 0;
+		//int orgY = 0;
+		int orgY = startY;
 		int destY = UtilFunc::getWinSize().height;
 
 		// set position
@@ -79,6 +82,17 @@ Rect SpriteRepeater::getSpriteRepeaterRect()
 				 getContentSize().height );
 }
 
+float SpriteRepeater::stopActionAndGetPositionY()
+{
+	stopAllActions();
+	return getPositionY();
+}
+
+void SpriteRepeater::setStartY(float startYVal)
+{
+	startY = startYVal;
+}
+
 //------------------------------------------------------------------
 //
 // Rope
@@ -87,6 +101,7 @@ Rect SpriteRepeater::getSpriteRepeaterRect()
 bool Rope::init()
 {
 	actionDurVal = 15;
+	startY = 0;
     return true;
 }
 
@@ -99,5 +114,6 @@ bool Rope::init()
 bool Rocks::init()
 {
 	actionDurVal = 3;
+	startY = 0;
     return true;
 }

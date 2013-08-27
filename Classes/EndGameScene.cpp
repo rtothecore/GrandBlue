@@ -9,6 +9,7 @@
 #include "MainTitleScene.h"
 #include "Score.h"
 #include "ScoreRecord.h"
+#include "UtilFunc.h"
 
 bool EndGameScene::init()
 {
@@ -61,7 +62,7 @@ void EndGameScene::addContinueMenu(float dt)
 	labelContinue->addMenuItem("Exit", 3.0f);
 	labelContinue->createMenu();
 	labelContinue->setZOrder(1);
-	labelContinue->setPosition(0, -100);
+	labelContinue->setPosition(0, -(UtilFunc::getWinSize().height / 5));
 
 	// set "continue" callback
 	Menu* labelMenu = (Menu*)labelContinue->getChildByTag(0);

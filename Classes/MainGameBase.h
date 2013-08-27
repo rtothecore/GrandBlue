@@ -32,6 +32,7 @@ public:
 	void addAttachedMarinelife(Layer* lyr);
 	void saveDivedFeetData();
 	void saveFeverData();
+	void saveRocksData();
 
 	// ready go to next scene
 	bool existUnattachedMarinlife();

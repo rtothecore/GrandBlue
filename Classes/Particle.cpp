@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include "UtilFunc.h"
 
 bool ParticleLayer::init()
 {

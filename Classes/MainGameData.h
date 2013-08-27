@@ -5,6 +5,7 @@
 #include "Diver.h"
 #include "DiveFeet.h"
 #include "Fever.h"
+#include "SpriteRepeater.h"
 
 USING_NS_CC;
 
@@ -28,6 +29,11 @@ public:
 	static void saveFever(FeverLayer* feverL);
 	static FeverLayer* loadFever();
 	static void resetFever();
+
+	static bool isSaveRocks;
+	static void saveRocks(Rocks* rocks);
+	static Rocks* loadRocks();
+	static void resetRocks();
 
 	// reset
 	static void resetAllData();
