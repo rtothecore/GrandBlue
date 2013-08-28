@@ -42,13 +42,18 @@ bool MainTitleLayer::init()
 	ScoreRecordLayer::addHighScoreLabel(this, Color3B::WHITE);
 
 	// Title label
-    Size blockSize = Size(winSize.width, 200);
+    /*Size blockSize = Size(winSize.width, 200);
 	LabelTTF *labelTitle = LabelTTF::create("Grand Blue", FONT_TITLE_FILE, TITLE_FONT_SIZE, 
-										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);
+										blockSize, Label::HAlignment::CENTER, Label::VAlignment::CENTER);*/
+	/* NEW
+	Size blockSize = Size(winSize.width, winSize.height/2);
+	LabelTTF *labelTitle = LabelTTF::create("Grand\n Blue", FONT_TITLE_FILE, TITLE_FONT_SIZE, 
+										blockSize, Label::HAlignment::RIGHT, Label::VAlignment::TOP);
 	labelTitle->setColor(Color3B::BLUE);
 	labelTitle->setZOrder(1);
 	labelTitle->setPosition(Point(winSize.width/2, winSize.height/2 + (winSize.height/20)));
 	addChild(labelTitle);
+	*/
 
 	// ----- main menu -----
 	MenuLabelLayer* labelMainLayer = MenuLabelLayer::create();
