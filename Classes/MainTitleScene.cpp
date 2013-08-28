@@ -57,7 +57,6 @@ bool MainTitleLayer::init()
 	labelMainLayer->addMenuItem("Exit", 2.0f);
 	labelMainLayer->createMenu();
 	labelMainLayer->setZOrder(1);
-	//labelMainLayer->setPosition(0, -100);
 	labelMainLayer->setPosition(0, -(winSize.height/5));
 
 	// set "Dive!" callback
@@ -95,7 +94,7 @@ bool MainTitleLayer::init()
 	labelOptionLayer->addMenuItem(strEffect->getCString(), 2.0f);
 	labelOptionLayer->createMenu();
 	labelOptionLayer->setZOrder(1);
-	labelOptionLayer->setPosition(0, -100);
+	labelOptionLayer->setPosition(0, -(winSize.height/5));
 
 	//set "back" callback
 	Menu* labelOptionMenu = (Menu*)labelOptionLayer->getChildByTag(0);

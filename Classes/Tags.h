@@ -19,9 +19,6 @@ enum {
 	kTagSprtBackgroundProgress = 18,
 	kTagSprtForegroundProgress = 19,
 
-	kTagParticleDiverBoost = 20,
-	kTagParticleFever = 21,
-
 	kTagForMarinelifes = 777,
 	kTagLayerDolphin = 778,
 	kTagLayerTurtle = 779,

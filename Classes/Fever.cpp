@@ -91,11 +91,6 @@ void FeverLayer::intoTheFever()
 	// add fever label
 	addFeverLabel();
 
-	// particle effect
-	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/BlueRing_fever.plist");
-	_emitter->setPosition(UtilFunc::getWinSize().width/2, UtilFunc::getWinSize().height/2);
-	addChild(_emitter, kTagParticleFever);
-
 	// fever music
 	Sound::playFeverMusic(true);
 
@@ -122,6 +117,11 @@ void FeverLayer::addFeverLabel()
 	labelFever->runAction( EaseElasticOut::create(MoveBy::create(2, Point(dstPoint.x - offset,0)), 0.35f) );
 
 	addChild(labelFever, 1, kTagLabelFever);
+
+	// particle effect
+	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/BlueRing_fever.plist");
+	_emitter->setPosition(winSize.width/2, winSize.height/2 + labelFever->getContentSize().height*2);
+	addChild(_emitter);
 }
 
 void FeverLayer::endFever(float dt)
@@ -137,9 +137,6 @@ void FeverLayer::endFever(float dt)
 
 	// exit Diver's fever mode
 	((DiverLayer*)getParent()->getChildByTag(kTagLayerDiver))->exitFevermodeAction();
-
-	// remove particle
-	removeChildByTag(kTagParticleFever);
 }
 
 int FeverLayer::getTouchDamage()

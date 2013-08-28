@@ -180,17 +180,8 @@ Rect DiverLayer::getDiverRect()
 
 void DiverLayer::refreshDiverPositionWithDolphin()
 {
-	if(0 + getContentSize().height < getPositionY() - 20)
-		actionDownMoveBy(-20);
-
 	increaseLovePoint();
 	refreshLoveSprite();
-}
-
-void DiverLayer::actionDownMoveBy(int yDelta)
-{
-	auto actionMoveToDown = MoveBy::create( 1.0f, Point(0, yDelta) );
-	runAction(actionMoveToDown);
 }
 
 void DiverLayer::refreshLoveSprite()
@@ -269,9 +260,8 @@ void DiverLayer::runFevermodeAction()
 	sprt_diver->runAction(diverFeverAction);
 
 	// particle effect
-	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/BlueBooster.plist");
-	_emitter->setPositionY(getContentSize().height*2);
-	addChild(_emitter, kTagParticleDiverBoost);
+	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/WaterSpiral_fever.plist");
+	addChild(_emitter);
 }
 
 void DiverLayer::runMeetMarinelifeAction()
@@ -285,9 +275,6 @@ void DiverLayer::runMeetMarinelifeAction()
 void DiverLayer::exitFevermodeAction()
 {
 	sprt_diver->stopActionByTag(kTagActionDiverFever);
-
-	// remove particle effect
-	removeChildByTag(kTagParticleDiverBoost);
 }
 
 void DiverLayer::refreshDiver()

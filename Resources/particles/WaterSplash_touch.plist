@@ -95,9 +95,9 @@
 	<key>startColorVarianceRed</key>
 	<real>0.0</real>
 	<key>startParticleSize</key>
-	<real>32</real>
+	<real>16</real>
 	<key>startParticleSizeVariance</key>
-	<real>32</real>
+	<real>16</real>
 	<key>tangentialAccelVariance</key>
 	<real>0.0</real>
 	<key>tangentialAcceleration</key>

@@ -47,7 +47,6 @@ public:
 	// get collisioned dolphin
 	Rect getDiverRect();
 	void refreshDiverPositionWithDolphin();
-	void actionDownMoveBy(int yDelta);
 
 	// refresh diver
 	void refreshDiver();

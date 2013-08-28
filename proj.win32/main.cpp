@@ -21,8 +21,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	eglView->setFrameSize(720, 1280);	// Galaxy S3
 	eglView->setFrameZoomFactor(0.7f);
 
-	//eglView->setFrameSize(320, 480);
-	//eglView->setFrameSize(640, 960);
+	//eglView->setFrameSize(320, 480);	// iphone
+	//eglView->setFrameZoomFactor(1.8f);
+
+	//eglView->setFrameSize(768, 1024);	// ipad
+	//eglView->setFrameZoomFactor(0.7f);
+
+	//eglView->setFrameSize(1536, 2048);	// ipadHd
+	//eglView->setFrameZoomFactor(0.3f);
 
     return Application::getInstance()->run();
 }

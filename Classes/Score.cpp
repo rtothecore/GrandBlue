@@ -116,6 +116,13 @@ void ScoreLayer::addResultScoreLabel(int resultScore)
 	labelScore->setPosition(Point(winSize.width/2, winSize.height/2));
 	labelScore->setColor(Color3B::YELLOW);
 	addChild(labelScore, 1, kTagLabelScore);
+
+	// particle effect
+	String* particlePlist;
+	0 < (rand() % 2) ? particlePlist = String::create("particles/MagicianFloor_score.plist") : particlePlist = String::create("particles/Cosmos_score.plist");
+	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist(particlePlist->getCString());
+	_emitter->setPosition(winSize.width/2, 0);
+	addChild(_emitter);
 }
 
 void ScoreLayer::addNewRecordLabel(int newRecordScore)
@@ -146,13 +153,10 @@ void ScoreLayer::addNewRecordLabel(int newRecordScore)
 	// sound
 	Sound::playHighScoreEffect();
 
-	// firworks effect
-	ParticleLayer* particle = ParticleLayer::create();
-#if(CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
-	particle->setPosition(winSize.width/4, winSize.height/3);
-#endif
-	addChild(particle);
-	particle->runFireWork();
+	// particle effect
+	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/FireWorks_highscore.plist");
+	_emitter->setPosition(0, 0);
+	addChild(_emitter);
 }
 
 void ScoreLayer::addLapCountLabel(int lapCount)

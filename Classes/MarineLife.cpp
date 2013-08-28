@@ -106,7 +106,9 @@ void MarineLifeLayer::aliveMarineLifeTouched()
 void MarineLifeLayer::runParticleEffect()
 {
 	ParticleSystem* _emitter = ParticleLayer::createWithParticlePlist("particles/WaterSplash_touch.plist");
-	_emitter->setPositionY(getContentSize().height);
+	/*_emitter->setStartSize(64);
+	_emitter->setEndSize(4);*/
+
 	addChild(_emitter);
 }
 
