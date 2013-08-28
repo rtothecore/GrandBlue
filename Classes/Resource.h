@@ -48,10 +48,11 @@ static const char k_1stScore[]			= "1st_Score";
 
 
 // Image
+static const char s_Logo[]				   = "logo.png";
+static const char s_Title[]				   = "title.png";
 static const char s_UnderSea[]			   = "underTheSea.png";
 static const char s_Rocks[]				   = "rocks.png";
 static const char s_Rope[]				   = "rope.png";
-static const char s_Title[]				   = "title.png";
 
 // Sound
 #define MUSIC_FILE									"sound/grandblue.wav"

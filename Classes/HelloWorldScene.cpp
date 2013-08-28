@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "MainTitleScene.h"
 #include "UtilFunc.h"
+#include "Resource.h"
 
 USING_NS_CC;
 
@@ -29,47 +30,51 @@ bool HelloWorld::init()
         return false;
     }
     
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
+   /* Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();*/
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
+ //   /////////////////////////////
+ //   // 2. add a menu item with "X" image, which is clicked to quit the program
+ //   //    you may modify it.
 
-    // add a "close" icon to exit the progress. it's an autorelease object
-    MenuItemImage *closeItem = MenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
-                                        CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-    
-	closeItem->setPosition(Point(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+ //   // add a "close" icon to exit the progress. it's an autorelease object
+ //   MenuItemImage *closeItem = MenuItemImage::create(
+ //                                       "CloseNormal.png",
+ //                                       "CloseSelected.png",
+ //                                       CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+ //   
+	//closeItem->setPosition(Point(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
+ //                               origin.y + closeItem->getContentSize().height/2));
 
-    // create menu, it's an autorelease object
-    Menu* menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Point::ZERO);
-    this->addChild(menu, 1);
+ //   // create menu, it's an autorelease object
+ //   Menu* menu = Menu::create(closeItem, NULL);
+ //   menu->setPosition(Point::ZERO);
+ //   this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
+ //   /////////////////////////////
+ //   // 3. add your codes below...
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    LabelTTF* label = LabelTTF::create("Hello World", "Arial", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Point(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
+ //   // add a label shows "Hello World"
+ //   // create and initialize a label
+ //   
+ //   LabelTTF* label = LabelTTF::create("Hello World", "Arial", 24);
+ //   
+ //   // position the label on the center of the screen
+ //   label->setPosition(Point(origin.x + visibleSize.width/2,
+ //                           origin.y + visibleSize.height - label->getContentSize().height));
 
-    // add the label as a child to this layer
-    this->addChild(label, 1);
+ //   // add the label as a child to this layer
+ //   this->addChild(label, 1);
 
-    // add "HelloWorld" splash screen"
-    Sprite* sprite = Sprite::create("HelloWorld.png");
+    //// add "HelloWorld" splash screen"
+    //Sprite* sprite = Sprite::create("HelloWorld.png");
 
-    // position the sprite on the center of the screen
-    sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    //// position the sprite on the center of the screen
+    //sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+
+	// show splash logo
+	Sprite* sprite = Sprite::create(s_Logo);
+	sprite->setPosition( Point(UtilFunc::getWinSize().width/2, UtilFunc::getWinSize().height/2) );
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
@@ -92,6 +97,6 @@ void HelloWorld::menuCloseCallback(Object* pSender)
 void HelloWorld::goToMainTitle(float dt)
 {
 	//Scene *scene = MainTitleScene::create();
-	Scene *scene = TransitionFade::create(1, MainTitleScene::create());
+	Scene *scene = TransitionFade::create(0.5, MainTitleScene::create());
 	Director::getInstance()->pushScene(scene);
 }
