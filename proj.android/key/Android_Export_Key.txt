@@ -1,0 +1,20 @@
+Android Export Key : Jean-Marc Barr
+
+Alias : grandblue
+
+Password : Jean Reno
+
+Validity : 30
+
+First and Last Name : Hyeok Kim
+
+Organizational Unit : AretteQ Dev
+
+Organization : AretteQ
+
+City or Locality : Guro
+
+State or Province : Seoul
+
+Country Code : 82
+
