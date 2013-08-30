@@ -24,54 +24,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     Size size = director->getWinSize();
 
+	setDesignResolution();
+
     // Set the design resolution
 	glView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-
-	Size frameSize = glView->getFrameSize();
-    
-    vector<string> searchPath;
-
-    // In this demo, we select resource according to the frame's height.
-    // If the resource size is different from design resolution size, you need to set contentScaleFactor.
-    // We use the ratio of resource's height to the height of design resolution,
-    // this can make sure that the resource's height could fit for the height of design resolution.
-
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    // if the frame's height is larger than the height of medium resource size, select large resource.
-	if (frameSize.height > mediumResource.size.height)
-	{
-		log("ipadhd resource selected");
-
-        searchPath.push_back(largeResource.directory);
-
-        director->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
-	}
-    // if the frame's height is larger than the height of small resource size, select medium resource.
-    else if (frameSize.height > smallResource.size.height)
-    {
-		log("ipad resource selected");
-
-        searchPath.push_back(mediumResource.directory);
-        
-        director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium resource size, select small resource.
-	else
-    {
-		log("iphone resource selected");
-
-        searchPath.push_back(smallResource.directory);
-
-        director->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
-    }
-#else
-	log("android resource selected");
-	searchPath.push_back(androidResource.directory);
-	director->setContentScaleFactor(MIN(androidResource.size.height/designResolutionSize.height, androidResource.size.width/designResolutionSize.width));
-#endif
-    
-    // set searching path
-    FileUtils::getInstance()->setSearchPaths(searchPath);
 	
     // turn on display FPS
     //director->setDisplayStats(true);
@@ -80,13 +36,68 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	Scene *scene = MainTitleScene::create();
+#else
     Scene *scene = HelloWorld::scene();
-	//Scene *scene = MainTitleScene::create();
-
+#endif
     // run
     director->runWithScene(scene);
 
     return true;
+}
+
+void AppDelegate::setDesignResolution()
+{
+	Director* director = Director::getInstance();
+	EGLView* glView = EGLView::getInstance();
+
+	Size frameSize = glView->getFrameSize();  
+	vector<string> searchPath;
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	if (frameSize.height > small5Resource.size.height)
+	{
+		log("ipadhd resource selected");
+
+		designResolutionSize = largeResource.size;
+		searchPath.push_back(largeResource.directory);
+		director->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
+	}
+	else if (frameSize.height > mediumResource.size.height)
+	{
+		log("iphone5 resource selected");
+
+		designResolutionSize = small5Resource.size;
+		searchPath.push_back(small5Resource.directory);
+		director->setContentScaleFactor(MIN(small5Resource.size.height/designResolutionSize.height, small5Resource.size.width/designResolutionSize.width));
+	}
+	else if (frameSize.height > smallResource.size.height)
+	{
+		log("ipad resource selected");
+
+		designResolutionSize = mediumResource.size;
+		searchPath.push_back(mediumResource.directory);
+		director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
+	}
+	else
+	{
+		log("iphone resource selected");
+
+		designResolutionSize = smallResource.size;
+		searchPath.push_back(smallResource.directory);
+		director->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
+	}
+#else
+	log("android resource selected");
+
+	designResolutionSize = androidResource.size;
+	searchPath.push_back(androidResource.directory);
+	director->setContentScaleFactor(MIN(androidResource.size.height/designResolutionSize.height, androidResource.size.width/designResolutionSize.width));
+#endif
+
+	// set searching path
+	FileUtils::getInstance()->setSearchPaths(searchPath);
 }
 
 // ORIGINAL

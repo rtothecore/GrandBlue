@@ -19,7 +19,7 @@ Sound::Sound(void)
 	{
 		SimpleAudioEngine::getInstance()->preloadBackgroundMusic( MUSIC_FILE );
 		SimpleAudioEngine::getInstance()->preloadBackgroundMusic( FEVER_FILE );
-		SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5);
+		//SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5);
 	}
 #endif
 
@@ -58,7 +58,7 @@ Sound::Sound(void)
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_DIVER_MEET_MARINELIFE_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_SCORE_FILE );
 		SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_HIGH_SCORE_FILE );
-		SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
+		//SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
 	}
 #endif
 }

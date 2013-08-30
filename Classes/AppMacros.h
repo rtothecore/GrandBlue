@@ -23,81 +23,35 @@
    [Note] Normally, developer just need to define one design resolution(e.g. 960x640) with one or more resources.
  */
 
+// ------------- FOR IOS TEST ------------------
+//#define CC_TARGET_PLATFORM CC_PLATFORM_IOS
+// ------------- FOR IOS TEST ------------------
+
+typedef struct tagResource
+{
+    cocos2d::Size size;
+    char directory[100];
+}Resource;
 
 #define ORIENTATION_LANDSCAPE		0
 #define ORIENTATION_PORTRAIT		1
 #define ORIENTATION		ORIENTATION_PORTRAIT
 
-#if (ORIENTATION == ORIENTATION_LANDSCAPE)
-#define DESIGN_RESOLUTION_480X320    0
-#define DESIGN_RESOLUTION_1024X768   1
-#define DESIGN_RESOLUTION_2048X1536  2
-
-/* If you want to switch design resolution, change next line */
-#define TARGET_DESIGN_RESOLUTION_SIZE  DESIGN_RESOLUTION_480X320
-
-typedef struct tagResource
-{
-    cocos2d::Size size;
-    char directory[100];
-}Resource;
-
+#if (ORIENTATION == ORIENTATION_LANDSCAPE)	// ORIENTATION_LANDSCAPE
 static Resource smallResource  =  { cocos2d::Size(480, 320),   "iphone" };
+static Resource small5Resource = { cocos2d::Size(1136, 640),   "iphone5" };
 static Resource mediumResource =  { cocos2d::Size(1024, 768),  "ipad"   };
 static Resource largeResource  =  { cocos2d::Size(2048, 1536), "ipadhd" };
-
-#if (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_480X320)
-static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
-#elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_1024X768)
-static cocos2d::Size designResolutionSize = cocos2d::Size(1024, 768);
-#elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_2048X1536)
-static cocos2d::Size designResolutionSize = cocos2d::Size(2048, 1536);
-#else
-#error unknown target design resolution!
-#endif
-
+static Resource androidResource  =  { cocos2d::Size(1280, 720), "android" };
 #else	// ORIENTATION_PORTRAIT
-
-#define DESIGN_RESOLUTION_320X480    0
-#define DESIGN_RESOLUTION_768X1024   1
-#define DESIGN_RESOLUTION_1536X2048  2
-#define DESIGN_RESOLUTION_720X1280   3
-
-// ------------- FOR IOS TEST ------------------
-//#define CC_TARGET_PLATFORM CC_PLATFORM_IOS
-// ------------- FOR IOS TEST ------------------
-
-/* If you want to switch design resolution, change next line */
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#define TARGET_DESIGN_RESOLUTION_SIZE  DESIGN_RESOLUTION_320X480
-#else
-#define TARGET_DESIGN_RESOLUTION_SIZE  DESIGN_RESOLUTION_720X1280
-#endif
-
-typedef struct tagResource
-{
-    cocos2d::Size size;
-    char directory[100];
-}Resource;
-
 static Resource smallResource  =  { cocos2d::Size(320, 480),   "iphone" };
+static Resource small5Resource = { cocos2d::Size(640, 1136),   "iphone5" };
 static Resource mediumResource =  { cocos2d::Size(768, 1024),  "ipad"   };
 static Resource largeResource  =  { cocos2d::Size(1536, 2048), "ipadhd" };
 static Resource androidResource  =  { cocos2d::Size(720, 1280), "android" };
-
-#if (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_320X480)
-static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
-#elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_768X1024)
-static cocos2d::Size designResolutionSize = cocos2d::Size(768, 1024);
-#elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_1536X2048)
-static cocos2d::Size designResolutionSize = cocos2d::Size(1536, 2048);
-#elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_720X1280)
-static cocos2d::Size designResolutionSize = cocos2d::Size(720, 1280);
-#else
-#error unknown target design resolution!
 #endif
 
-#endif	// ORIENTATION
+static cocos2d::Size designResolutionSize;
 
 // The font size 24 is designed for small resolution, so we should change it to fit for current design resolution
 #define TITLE_FONT_SIZE  (cocos2d::EGLView::getInstance()->getDesignResolutionSize().width / smallResource.size.width * 40)

@@ -24,6 +24,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	//eglView->setFrameSize(320, 480);	// iphone
 	//eglView->setFrameZoomFactor(1.8f);
 
+	//eglView->setFrameSize(640, 1136);	// iphone5
+	//eglView->setFrameZoomFactor(0.8f);
+
 	//eglView->setFrameSize(768, 1024);	// ipad
 	//eglView->setFrameZoomFactor(0.7f);
 
