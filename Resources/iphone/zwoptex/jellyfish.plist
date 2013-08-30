@@ -7,67 +7,67 @@
             <key>jellyfish1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{59,101}}</string>
+                <string>{{0,0},{118,202}}</string>
                 <key>offset</key>
-                <string>{0,-2}</string>
+                <string>{0,-4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,4},{59,101}}</string>
+                <string>{{0,8},{118,202}}</string>
                 <key>sourceSize</key>
-                <string>{59,105}</string>
+                <string>{118,210}</string>
             </dict>
             <key>jellyfish2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{61,0},{59,101}}</string>
+                <string>{{0,204},{118,202}}</string>
                 <key>offset</key>
-                <string>{0,-2}</string>
+                <string>{0,-4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,4},{59,101}}</string>
+                <string>{{0,8},{118,202}}</string>
                 <key>sourceSize</key>
-                <string>{59,105}</string>
+                <string>{118,210}</string>
             </dict>
             <key>jellyfish3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{122,0},{59,101}}</string>
+                <string>{{0,408},{118,202}}</string>
                 <key>offset</key>
-                <string>{0,-2}</string>
+                <string>{0,-4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,4},{59,101}}</string>
+                <string>{{0,8},{118,202}}</string>
                 <key>sourceSize</key>
-                <string>{59,105}</string>
+                <string>{118,210}</string>
             </dict>
             <key>jellyfish4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{183,0},{53,101}}</string>
+                <string>{{0,612},{106,202}}</string>
                 <key>offset</key>
-                <string>{-1,0}</string>
+                <string>{-2,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,2},{53,101}}</string>
+                <string>{{4,4},{106,202}}</string>
                 <key>sourceSize</key>
-                <string>{59,105}</string>
+                <string>{118,210}</string>
             </dict>
             <key>jellyfish5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,103},{57,103}}</string>
+                <string>{{0,816},{114,206}}</string>
                 <key>offset</key>
-                <string>{-1,1}</string>
+                <string>{-2,2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{57,103}}</string>
+                <string>{{0,0},{114,206}}</string>
                 <key>sourceSize</key>
-                <string>{59,105}</string>
+                <string>{118,210}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +77,9 @@
             <key>realTextureFileName</key>
             <string>jellyfish.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{128,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b3605cd309ef7d6e42863d62677dc7e4:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:2b91cb1fc79f11e6d57322b393d1b62b:1/1$</string>
             <key>textureFileName</key>
             <string>jellyfish.png</string>
         </dict>

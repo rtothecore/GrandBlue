@@ -7,54 +7,54 @@
             <key>diver1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,120},{36,94}}</string>
+                <string>{{0,0},{97,250}}</string>
                 <key>offset</key>
-                <string>{-2,0}</string>
+                <string>{-5,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,94}}</string>
+                <string>{{0,0},{97,250}}</string>
                 <key>sourceSize</key>
-                <string>{40,94}</string>
+                <string>{107,250}</string>
             </dict>
             <key>diver2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,82},{36,94}}</string>
+                <string>{{99,0},{97,250}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,0},{36,94}}</string>
+                <string>{{5,0},{97,250}}</string>
                 <key>sourceSize</key>
-                <string>{40,94}</string>
+                <string>{107,250}</string>
             </dict>
             <key>diver3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{40,94}}</string>
+                <string>{{0,252},{107,250}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,94}}</string>
+                <string>{{0,0},{107,250}}</string>
                 <key>sourceSize</key>
-                <string>{40,94}</string>
+                <string>{107,250}</string>
             </dict>
             <key>diver4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,44},{36,94}}</string>
+                <string>{{109,252},{97,250}}</string>
                 <key>offset</key>
-                <string>{2,0}</string>
+                <string>{5,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{4,0},{36,94}}</string>
+                <string>{{10,0},{97,250}}</string>
                 <key>sourceSize</key>
-                <string>{40,94}</string>
+                <string>{107,250}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>diver.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4b514e09a7f2d4f3016be3ce8765b671:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:f3c8e5833bf8bf411efda1fbe866a11c:1/1$</string>
             <key>textureFileName</key>
             <string>diver.png</string>
         </dict>

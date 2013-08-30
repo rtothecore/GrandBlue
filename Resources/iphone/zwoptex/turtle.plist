@@ -7,54 +7,54 @@
             <key>turtle1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{100,91}}</string>
+                <string>{{0,0},{210,192}}</string>
                 <key>offset</key>
-                <string>{0,1}</string>
+                <string>{0,2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{100,91}}</string>
+                <string>{{0,0},{210,192}}</string>
                 <key>sourceSize</key>
-                <string>{100,93}</string>
+                <string>{210,196}</string>
             </dict>
             <key>turtle2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{102,0},{100,91}}</string>
+                <string>{{212,0},{210,192}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,2},{100,91}}</string>
+                <string>{{0,4},{210,192}}</string>
                 <key>sourceSize</key>
-                <string>{100,93}</string>
+                <string>{210,196}</string>
             </dict>
             <key>turtle3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,93},{100,91}}</string>
+                <string>{{0,194},{210,192}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,2},{100,91}}</string>
+                <string>{{0,4},{210,192}}</string>
                 <key>sourceSize</key>
-                <string>{100,93}</string>
+                <string>{210,196}</string>
             </dict>
             <key>turtle4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{102,93},{98,79}}</string>
+                <string>{{212,194},{206,164}}</string>
                 <key>offset</key>
-                <string>{1,2}</string>
+                <string>{2,3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,5},{98,79}}</string>
+                <string>{{4,13},{206,164}}</string>
                 <key>sourceSize</key>
-                <string>{100,93}</string>
+                <string>{210,196}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>turtle.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:0ca14c7569474acd8f2c405bdd5f3aa1:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:31ed4de0a5288aa3a1a3d7037fa9daf9:1/1$</string>
             <key>textureFileName</key>
             <string>turtle.png</string>
         </dict>

@@ -7,67 +7,67 @@
             <key>dolphin1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{98,68}}</string>
+                <string>{{0,0},{206,143}}</string>
                 <key>offset</key>
-                <string>{-1,-1}</string>
+                <string>{-2,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,2},{98,68}}</string>
+                <string>{{0,4},{206,143}}</string>
                 <key>sourceSize</key>
-                <string>{100,70}</string>
+                <string>{210,147}</string>
             </dict>
             <key>dolphin2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{100,0},{100,58}}</string>
+                <string>{{208,0},{210,123}}</string>
                 <key>offset</key>
-                <string>{0,1}</string>
+                <string>{0,3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,5},{100,58}}</string>
+                <string>{{0,9},{210,123}}</string>
                 <key>sourceSize</key>
-                <string>{100,70}</string>
+                <string>{210,147}</string>
             </dict>
             <key>dolphin3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,70},{100,46}}</string>
+                <string>{{0,145},{210,97}}</string>
                 <key>offset</key>
-                <string>{0,5}</string>
+                <string>{0,11}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,7},{100,46}}</string>
+                <string>{{0,14},{210,97}}</string>
                 <key>sourceSize</key>
-                <string>{100,70}</string>
+                <string>{210,147}</string>
             </dict>
             <key>dolphin4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{102,70},{98,46}}</string>
+                <string>{{212,145},{206,95}}</string>
                 <key>offset</key>
-                <string>{-1,8}</string>
+                <string>{-2,16}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,4},{98,46}}</string>
+                <string>{{0,10},{206,95}}</string>
                 <key>sourceSize</key>
-                <string>{100,70}</string>
+                <string>{210,147}</string>
             </dict>
             <key>dolphin5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,118},{98,50}}</string>
+                <string>{{0,244},{206,105}}</string>
                 <key>offset</key>
-                <string>{1,10}</string>
+                <string>{2,21}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,0},{98,50}}</string>
+                <string>{{4,0},{206,105}}</string>
                 <key>sourceSize</key>
-                <string>{100,70}</string>
+                <string>{210,147}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +77,9 @@
             <key>realTextureFileName</key>
             <string>dolphin.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c448e596b4dd8c45cbe8209cd0cb4d9b:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:217a9c341828104345996203c2b4fdd5:1/1$</string>
             <key>textureFileName</key>
             <string>dolphin.png</string>
         </dict>

@@ -7,67 +7,67 @@
             <key>love1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{64,36}}</string>
+                <string>{{0,0},{110,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{64,36}}</string>
+                <string>{{0,0},{110,62}}</string>
                 <key>sourceSize</key>
-                <string>{64,36}</string>
+                <string>{110,62}</string>
             </dict>
             <key>love2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,38},{64,36}}</string>
+                <string>{{112,0},{110,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{64,36}}</string>
+                <string>{{0,0},{110,62}}</string>
                 <key>sourceSize</key>
-                <string>{64,36}</string>
+                <string>{110,62}</string>
             </dict>
             <key>love3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,76},{64,36}}</string>
+                <string>{{0,64},{110,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{64,36}}</string>
+                <string>{{0,0},{110,62}}</string>
                 <key>sourceSize</key>
-                <string>{64,36}</string>
+                <string>{110,62}</string>
             </dict>
             <key>love4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,114},{64,36}}</string>
+                <string>{{112,64},{110,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{64,36}}</string>
+                <string>{{0,0},{110,62}}</string>
                 <key>sourceSize</key>
-                <string>{64,36}</string>
+                <string>{110,62}</string>
             </dict>
             <key>love5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,152},{64,36}}</string>
+                <string>{{0,128},{110,62}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{64,36}}</string>
+                <string>{{0,0},{110,62}}</string>
                 <key>sourceSize</key>
-                <string>{64,36}</string>
+                <string>{110,62}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +77,9 @@
             <key>realTextureFileName</key>
             <string>love.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c3c1c4820196489edd98367a689bfc46:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:6670bbcfd93103b38680396d8d28fa88:1/1$</string>
             <key>textureFileName</key>
             <string>love.png</string>
         </dict>

@@ -7,67 +7,67 @@
             <key>orca1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{210,125}}</string>
+                <string>{{0,0},{420,250}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{210,125}}</string>
+                <string>{{0,0},{420,250}}</string>
                 <key>sourceSize</key>
-                <string>{210,125}</string>
+                <string>{420,250}</string>
             </dict>
             <key>orca2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{212,0},{210,125}}</string>
+                <string>{{422,0},{420,250}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{210,125}}</string>
+                <string>{{0,0},{420,250}}</string>
                 <key>sourceSize</key>
-                <string>{210,125}</string>
+                <string>{420,250}</string>
             </dict>
             <key>orca3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,127},{210,121}}</string>
+                <string>{{0,252},{420,242}}</string>
                 <key>offset</key>
-                <string>{0,2}</string>
+                <string>{0,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{210,121}}</string>
+                <string>{{0,0},{420,242}}</string>
                 <key>sourceSize</key>
-                <string>{210,125}</string>
+                <string>{420,250}</string>
             </dict>
             <key>orca4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{212,127},{210,117}}</string>
+                <string>{{422,252},{420,234}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,4},{210,117}}</string>
+                <string>{{0,8},{420,234}}</string>
                 <key>sourceSize</key>
-                <string>{210,125}</string>
+                <string>{420,250}</string>
             </dict>
             <key>orca5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,250},{210,121}}</string>
+                <string>{{0,496},{420,242}}</string>
                 <key>offset</key>
-                <string>{0,-2}</string>
+                <string>{0,-4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,4},{210,121}}</string>
+                <string>{{0,8},{420,242}}</string>
                 <key>sourceSize</key>
-                <string>{210,125}</string>
+                <string>{420,250}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +77,9 @@
             <key>realTextureFileName</key>
             <string>orca.png</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fd22e61475c158a5818d54dee5387cd0:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:9ce5df7b36214b036a5b08f39693a007:1/1$</string>
             <key>textureFileName</key>
             <string>orca.png</string>
         </dict>

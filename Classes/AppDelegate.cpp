@@ -80,13 +80,21 @@ void AppDelegate::setDesignResolution()
 		searchPath.push_back(mediumResource.directory);
 		director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
 	}
-	else
+	else if (frameSize.height > small3Resource.size.height)
 	{
 		log("iphone resource selected");
 
 		designResolutionSize = smallResource.size;
 		searchPath.push_back(smallResource.directory);
 		director->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
+	}
+	else
+	{
+		log("iphone3 resource selected");
+
+		designResolutionSize = small3Resource.size;
+		searchPath.push_back(small3Resource.directory);
+		director->setContentScaleFactor(MIN(small3Resource.size.height/designResolutionSize.height, small3Resource.size.width/designResolutionSize.width));
 	}
 #else
 	log("android resource selected");

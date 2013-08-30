@@ -7,67 +7,67 @@
             <key>mermaid1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{105,53}}</string>
+                <string>{{0,0},{210,107}}</string>
                 <key>offset</key>
-                <string>{0,3}</string>
+                <string>{0,6}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{105,53}}</string>
+                <string>{{0,0},{210,107}}</string>
                 <key>sourceSize</key>
-                <string>{105,59}</string>
+                <string>{210,119}</string>
             </dict>
             <key>mermaid2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{107,0},{105,55}}</string>
+                <string>{{212,0},{210,111}}</string>
                 <key>offset</key>
-                <string>{0,2}</string>
+                <string>{0,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{105,55}}</string>
+                <string>{{0,0},{210,111}}</string>
                 <key>sourceSize</key>
-                <string>{105,59}</string>
+                <string>{210,119}</string>
             </dict>
             <key>mermaid3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,57},{105,55}}</string>
+                <string>{{0,113},{210,111}}</string>
                 <key>offset</key>
-                <string>{0,2}</string>
+                <string>{0,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{105,55}}</string>
+                <string>{{0,0},{210,111}}</string>
                 <key>sourceSize</key>
-                <string>{105,59}</string>
+                <string>{210,119}</string>
             </dict>
             <key>mermaid4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{107,57},{105,55}}</string>
+                <string>{{212,113},{210,111}}</string>
                 <key>offset</key>
-                <string>{0,2}</string>
+                <string>{0,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{105,55}}</string>
+                <string>{{0,0},{210,111}}</string>
                 <key>sourceSize</key>
-                <string>{105,59}</string>
+                <string>{210,119}</string>
             </dict>
             <key>mermaid5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,114},{105,59}}</string>
+                <string>{{0,226},{210,119}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{105,59}}</string>
+                <string>{{0,0},{210,119}}</string>
                 <key>sourceSize</key>
-                <string>{105,59}</string>
+                <string>{210,119}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +77,9 @@
             <key>realTextureFileName</key>
             <string>mermaid.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:23f40066e67fc9e618a95a897b664c5d:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:588ed85558bc3b302066c83539fa3883:1/1$</string>
             <key>textureFileName</key>
             <string>mermaid.png</string>
         </dict>
