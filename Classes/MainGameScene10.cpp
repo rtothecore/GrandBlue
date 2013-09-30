@@ -13,6 +13,7 @@
 #include "MainGameData.h"
 #include "GrandBlueConfig.h"
 #include "MainGameScene.h"
+#include "AdmobJNI.h"
 
 //------------------------------------------------------------------
 //
@@ -43,6 +44,9 @@ bool MainGameLayer10::init()
 	// Touch
 	Director* director = Director::getInstance();
     director->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(true, true);
 
 	return true;
 }
@@ -140,4 +144,7 @@ void MainGameLayer10::readyToGoNextScene()
 	diverL->increaseLapCount();
 
 	schedule(schedule_selector(MainGameBaseLayer::checkRemainUnattachedMarinlife), 0.02f);
+
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(false, true);
 }

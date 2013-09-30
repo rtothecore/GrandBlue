@@ -8,6 +8,7 @@
 #include "Resource.h"
 #include "ScoreRecord.h"
 #include "AppMacros.h"
+#include "AdmobJNI.h"
 
 //------------------------------------------------------------------
 //
@@ -125,7 +126,10 @@ bool MainTitleLayer::init()
 
 	// background music
 	Sound::playBackgroundMusic(true);
-    
+
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(true, false);
+
     return true;
 }
 
@@ -142,6 +146,9 @@ void MainTitleLayer::menuCloseCallback(Object* pSender)
 
 void MainTitleLayer::menuDiveCallback(Object* pSender)
 {
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(false, false);
+
 	Scene *scene = TransitionSlideInB::create(2, MainGameScene::create());
 	Director::getInstance()->pushScene(scene);
 }

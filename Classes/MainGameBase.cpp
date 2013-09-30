@@ -14,6 +14,7 @@
 #include "UtilFunc.h"
 #include "ScoreRecord.h"
 #include "AppMacros.h"
+#include "AdmobJNI.h"
 
 bool MainGameBaseLayer::init()
 {
@@ -216,6 +217,9 @@ void MainGameBaseLayer::diveWithTimes(int timesValue)
 
 void MainGameBaseLayer::toEndGameSceneWithLove()
 {
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(false, true);
+
 	EndGameScene *scene = EndGameScene::create();
 
 	// clone Diver

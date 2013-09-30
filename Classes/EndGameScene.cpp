@@ -10,6 +10,7 @@
 #include "Score.h"
 #include "ScoreRecord.h"
 #include "UtilFunc.h"
+#include "AdmobJNI.h"
 
 bool EndGameScene::init()
 {
@@ -17,6 +18,9 @@ bool EndGameScene::init()
 	Layer* lyr = Layer::create();
 	ScoreRecordLayer::addHighScoreLabel(lyr, Color3B::WHITE);
 	addChild(lyr, 2);
+
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(true, false);
 
 	return true;
 }
@@ -85,6 +89,9 @@ void EndGameScene::addScoreLabel()
 
 void EndGameScene::continueGameCallback(Object* pSender)
 {
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(false, false);
+
 	MainGameDataLayer::resetAllData();
 
 	Scene* scene = MainGameScene::create();
@@ -93,6 +100,9 @@ void EndGameScene::continueGameCallback(Object* pSender)
 
 void EndGameScene::endGameCallback(Object* pSender)
 {
+	// ADMOB JNI
+	AdmobJNI::setAdmobVisible(false, false);
+
 	MainGameDataLayer::resetAllData();
 
 	Scene *scene = TransitionSlideInT::create(2, MainTitleScene::create());

@@ -1,4 +1,4 @@
-APPNAME="Grandblue"
+APPNAME="TestGame"
 
 # options
 
