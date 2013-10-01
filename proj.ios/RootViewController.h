@@ -2,7 +2,6 @@
 
 
 @interface RootViewController : UIViewController {
-
 }
 
 @end

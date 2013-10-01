@@ -6,6 +6,10 @@
 
 @implementation AppController
 
+#import "GADBannerView.h"
+#import "GADRequest.h"
+#define GADUnitID @"40b2102b943344b2";
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -49,11 +53,82 @@ static AppDelegate s_sharedApplication;
     
     [[UIApplication sharedApplication] setStatusBarHidden:true];
     
+    // Initialize Admob
+    [self initAdmob];
+    
     cocos2d::Application::getInstance()->run();
 
     return YES;
 }
 
+// Admob START
+- (void)initAdmob{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    //CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    // bottom
+    bannerView_Bottom = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:CGPointMake(0, screenHeight-kGADAdSizeBanner.size.height)];
+    [bannerView_Bottom setDelegate:self];
+    bannerView_Bottom.rootViewController = viewController;
+    bannerView_Bottom.adUnitID = GADUnitID;
+    [viewController.view addSubview:bannerView_Bottom];
+    
+    [bannerView_Bottom loadRequest:[GADRequest request]];   // REAL
+    //[bannerView_Bottom loadRequest:[self createrRequest]];    // TEST
+    [bannerView_Bottom setHidden:true];
+    
+    // top
+    bannerView_Top = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:CGPointMake(0, 0)];
+    [bannerView_Top setDelegate:self];
+    bannerView_Top.rootViewController = viewController;
+    bannerView_Top.adUnitID = GADUnitID;
+    [viewController.view addSubview:bannerView_Top];
+    
+    [bannerView_Top loadRequest:[GADRequest request]]; // REAL
+    //[bannerView_Top loadRequest:[self createrRequest]]; // TEST
+    [bannerView_Top setHidden:true];
+}
+
++ (void)setAdmobVisible:(BOOL)visible isTopVisible:(BOOL)isTop {
+    if(visible) {
+        if(isTop) {
+            [bannerView_Top setHidden:false];
+        } else {
+            [bannerView_Bottom setHidden:false];
+        }
+    } else {
+        if(isTop) {
+            [bannerView_Top setHidden:true];
+        } else {
+            [bannerView_Bottom setHidden:true];
+        }
+    }
+}
+
+- (GADRequest*)createrRequest{
+    GADRequest *request = [GADRequest request];
+    
+    // Make the request for a test ad. Put in an identifier for
+    // the simulator as well as any devices you want to receive test ads.
+    [request setTesting:TRUE];
+    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
+    
+    //NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
+    //NSLog(@"Device udid is %@", udid);
+    
+    return request;
+}
+
+- (void)adViewDidReceiveAd:(GADBannerView *)adView {
+    NSLog(@"Received ad successfully");
+}
+
+- (void)adView:(GADBannerView *)view
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
+}
+// Admob END
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -104,6 +179,8 @@ static AppDelegate s_sharedApplication;
 
 
 - (void)dealloc {
+    [bannerView_Bottom release];
+    [bannerView_Top release];
     [window release];
     [super dealloc];
 }

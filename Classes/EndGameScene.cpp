@@ -62,6 +62,7 @@ void EndGameScene::actionLove(float dt)
 void EndGameScene::addContinueMenu(float dt)
 {
 	MenuLabelLayer* labelContinue = MenuLabelLayer::create();
+    
 	labelContinue->initWithLabel("Continue", 3.0f);
 	labelContinue->addMenuItem("Exit", 3.0f);
 	labelContinue->createMenu();

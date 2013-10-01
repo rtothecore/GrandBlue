@@ -35,9 +35,9 @@ bool MainTitleLayer::init()
         return false;
     }
     
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
-	Size winSize = Director::getInstance()->getWinSize();
+    cocos2d::Size visibleSize = Director::getInstance()->getVisibleSize();
+    cocos2d::Point origin = Director::getInstance()->getVisibleOrigin();
+    cocos2d::Size winSize = Director::getInstance()->getWinSize();
 
 	// High Score label
 	ScoreRecordLayer::addHighScoreLabel(this, Color3B::WHITE);
@@ -121,7 +121,7 @@ bool MainTitleLayer::init()
 
     // Background Sprite
     Sprite* sprite = Sprite::create(s_Title);
-    sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    sprite->setPosition(cocos2d::Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(sprite, 0);
 
 	// background music

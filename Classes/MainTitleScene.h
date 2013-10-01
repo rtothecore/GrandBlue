@@ -15,7 +15,7 @@ public:
 class MainTitleLayer : public Layer
 {
 public:
-    virtual bool init();  
+    virtual bool init();
     
     void menuCloseCallback(Object* pSender);
 	void menuDiveCallback(Object* pSender);
@@ -28,6 +28,7 @@ public:
 	void togglEffectCallback(Object* pSender);
     
     CREATE_FUNC(MainTitleLayer);
+    
 };
 
 #endif // __MAINTITLE_SCENE_H__

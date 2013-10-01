@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2EEEC3A7-B209-47F7-BD9D-F1B81DCD6173</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Grandblue</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8D69BE8A-2C5B-4E2D-BC5E-6DECED2960D9</key>
+		<string>https://github.com/rtothecore/GrandBlue.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>proj.ios/Grandblue.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8D69BE8A-2C5B-4E2D-BC5E-6DECED2960D9</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/rtothecore/GrandBlue.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8D69BE8A-2C5B-4E2D-BC5E-6DECED2960D9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8D69BE8A-2C5B-4E2D-BC5E-6DECED2960D9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GrandBlue</string>
+		</dict>
+	</array>
+</dict>
+</plist>

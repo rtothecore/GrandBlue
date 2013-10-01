@@ -2,6 +2,8 @@
 
 #if( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
 #include "platform\android\jni\JniHelper.h"
+#elif( CC_TARGET_PLATFORM == CC_PLATFORM_IOS )
+#include "../proj.ios/AppController.h"
 #endif
 
 AdmobJNI::AdmobJNI(void)
@@ -22,5 +24,8 @@ void AdmobJNI::setAdmobVisible(bool visible, bool isTop)
 		t.env->CallStaticVoidMethod(t.classID, t.methodID, visible, isTop);
 		t.env->DeleteLocalRef(t.classID);
 	}
+#elif(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    [AppController setAdmobVisible:visible isTopVisible:isTop];
 #endif
+    
 }
